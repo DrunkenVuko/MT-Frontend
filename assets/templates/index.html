@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="de">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Restorani</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="/images/favicon.png" type=image/x-icon />
+    <link rel="stylesheet" href="<%= asset('css/main.css') %>" />
+
+    <base href="<%= basepath %>">
+</head>
+<body>
+  <body ng-app="application" ng-controller="PageBaseCtrl as base" ng-cloak="ng-cloak">
+
+      <div id="root" class="areaRoot" ng-class="{ 'behavior-view-filter-blur' : base.viewLocked }">
+          <div class="areaContent" ng-view="ng-view"></div>
+      </div>
+
+      <script src="<%= asset('js/bundle.js') %>"></script>
+  </body>
+</body>
+</html>

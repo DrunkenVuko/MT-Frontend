@@ -1,0 +1,11 @@
+.area {
+  &Root {
+  	height: 100%;
+  }
+
+  &Content {
+    position: relative;
+  	min-height: 100%;
+    padding: 40px;
+  }
+}

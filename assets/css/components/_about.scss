@@ -1,0 +1,22 @@
+.about {
+  // position:relative;
+
+  ._human {
+    // position: absolute;
+    background-color: $white;
+    border-radius: 50%;
+
+    width: 100%;
+    height: auto;
+    padding-top: 100%;
+
+
+  }
+
+  .__name {
+    position:relative;
+    top:50%;
+    transform:translateY(-50%);
+    margin: auto 0;
+  }
+}
