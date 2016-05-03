@@ -13,8 +13,8 @@ module.exports = ['$translateProvider', function ($translateProvider) {
   };
 
   self.endpoints = {
-    www : {
-      // development: 'http://localhost:3000/login'
+    backend : {
+      development: 'http://localhost:3000'
     }
   };
 }];

@@ -19,9 +19,12 @@ module.exports = ['$resource', '$http', 'CommonConfig', function($resource, $htt
   $http.defaults.headers.common.locale = 'de-DE'; // todo: hard coded - COUREON-347
 
   return {
-    // baseConfig : generateResource('configs/base', 'ui'),
-    users : generateResource('users', '/'),
-    // order : generateResource(),
+    users : generateResource('users', 'backend', null, {
+      getUserById : {
+        method : 'GET',
+        url : 'users/:userId'
+      }
+    })
     // catalog : generateResource()
   };
 }];

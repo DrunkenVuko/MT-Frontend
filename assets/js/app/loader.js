@@ -18,7 +18,7 @@ application
   .factory('CommonBrowser', require('./common/browser'))
   .factory('CommonMoment', require('./common/moment'))
 
-  .factory('StorageTracking', require('./storage/tracking'))
+  .factory('StorageUsers', require('./storage/users'))
 
   .provider('CommonUi', require('./ui/config'))
   .controller('UiCtrl', require('./ui/controller'))
