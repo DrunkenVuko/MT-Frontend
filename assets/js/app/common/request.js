@@ -3,10 +3,6 @@ module.exports = ['$resource', '$http', 'CommonConfig', function($resource, $htt
 
   var generateResource = function(route, endpoint, paramDefaults, actions, options) {
     if (actions) {
-
-      // console.log('CommonConfig.endpoints', CommonConfig.endpoints);
-      // console.log('CommonConfig.environment()', CommonConfig.environment());
-
       angular.forEach(actions, function(action) {
         action.url = CommonConfig.endpoints[endpoint][CommonConfig.environment()] + action.url;
       });
@@ -15,16 +11,19 @@ module.exports = ['$resource', '$http', 'CommonConfig', function($resource, $htt
     return $resource((endpoint ? CommonConfig.endpoints[endpoint][CommonConfig.environment()] : '/') + route, paramDefaults, actions, options);
   };
 
-  $http.defaults.headers.common.env = 'production'; // todo: hard coded
-  $http.defaults.headers.common.locale = 'de-DE'; // todo: hard coded - COUREON-347
-
   return {
     users : generateResource('users', 'backend', null, {
+      // die standard operationen (get post put delete) werden automatisch erzeugt
       getUserById : {
         method : 'GET',
         url : 'users/:userId'
       }
     })
-    // catalog : generateResource()
+    // articles : generateResource('articles', 'backend', null, {
+    //   getUserById : {
+    //     method : 'POST',
+    //     url : 'articles/add/:articleId'
+    //   }
+    // })
   };
 }];

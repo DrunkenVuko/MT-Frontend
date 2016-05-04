@@ -24,7 +24,6 @@ application
   .controller('UiCtrl', require('./ui/controller'))
 
   .controller('PageBaseCtrl', require('./page/base'))
-  .controller('PageTrackingCtrl', require('./page/tracking'))
   .controller('PageUsersCtrl', require('./page/users'))
   ;
 

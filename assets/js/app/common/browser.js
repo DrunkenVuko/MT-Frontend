@@ -17,50 +17,8 @@ module.exports = [function() {
         leftCenter : (clientRect.left - bodyClientRect.left) + (clientRect.width / 2),
         topCenter : (clientRect.top - bodyClientRect.top) + (clientRect.height / 2)
       };
-    },/*
-    smoothScroll : function(element, target, duration) {
-      target = Math.round(target);
-      duration = Math.round(duration);
-      if (duration < 0) {
-        return;
-      }
-      if (duration === 0) {
-        element.scrollTop = target;
-        return;
-      }
+    },
 
-      var start_time = Date.now(),
-        end_time = start_time + duration,
-        start_top = element.scrollTop,
-        distance = target - start_top;
-
-      var smoothStep = function(start, end, point) {
-        if (point <= start) { return 0; }
-        if (point >= end) { return 1; }
-        var x = (point - start) / (end - start);
-        return x * x * (3 - 2 * x);
-      };
-      var previous_top = element.scrollTop;
-      var scrollFrame = function() {
-        if (element.scrollTop !== previous_top) {
-          return;
-        }
-
-        var now = Date.now();
-        var point = smoothStep(start_time, end_time, now);
-        var frameTop = Math.round(start_top + (distance * point));
-        element.scrollTop = frameTop;
-
-        if (now >= end_time || (element.scrollTop === previous_top && element.scrollTop !== frameTop)) {
-          return;
-        }
-
-        previous_top = element.scrollTop;
-        setTimeout(scrollFrame, 0);
-      };
-
-      setTimeout(scrollFrame, 0);
-    },*/
     ensureVisibility : function(targetEl, toElementTop) {
       if (!targetEl) {
         return;

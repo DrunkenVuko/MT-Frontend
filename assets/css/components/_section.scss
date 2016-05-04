@@ -15,23 +15,23 @@
   }
 
   &.-white{
-    background: $_rgbWhite;
-    color: $_rgbMineShaft;
+    background: $white;
+    color: $gray;
   }
 
   &.-blue{
-    background: $_rgbPacificBlue;
-    color: $_rgbWhite;
+    background: $green;
+    color: $white;
   }
 
   &.-black{
-    background: $_rgbBlack;
-    color: $_rgbWhite;
+    background: $black;
+    color: $white;
   }
 
   &.-subchilds{
     padding: 44px 0 0;
-    background: $_rgbAthensGray;
+    background: $gray;
   }
 
   &.-hero{
@@ -51,7 +51,7 @@
   &.-testimonials{
     padding-bottom: 72px;
     background-position: center right !important;
-    color: $_rgbWhite;
+    color: $white;
 
     ._subtitle{
       margin-top: -55px;
@@ -84,8 +84,8 @@
 
       font-size: $_fsMedium;
       line-height: $_lhMedium;
-      // color: $_rgbDustyGray;
-      color: $_rgbWhite;
+      // color: $gray;
+      color: $white;
     }
   }
 }

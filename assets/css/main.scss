@@ -8,3 +8,9 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+a,
+.link {
+  text-decoration: underline;
+  color: $green;
+}

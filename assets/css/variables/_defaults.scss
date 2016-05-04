@@ -8,15 +8,15 @@
 html {
   font-size:$_fsDefault;
   font-family:$_ffSans;
-  background:$_rgbWhite;
-  color:$_rgbMineShaft;
+  background:$white;
+  color:$gray;
 }
 
 html, body {
   font-family: $_ffSans;
   font-size: 17px;
   line-height: $_lhDefault;
-  color: $_rgbMineShaft;
+  color: $gray;
   height: 100%;
   -webkit-tap-highlight-color: transparent;
   margin: 0;

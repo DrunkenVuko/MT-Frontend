@@ -3,13 +3,13 @@
   border-radius:$_borderRadiusDefault;
   padding:($_defaultSpacing / 2) $_defaultSpacing;
   padding-right: calc(#{$_defaultSpacing} + .5rem);
-  color:$_rgbWhite;
+  color:$white;
   font-size:$_fsDefault;
   text-align:left;
   white-space:normal;
   overflow:hidden;
   text-overflow:ellipsis;
-  background-color:$_rgbAlto;
+  background-color:$gray;
   position: relative;
 
   &s {
@@ -60,16 +60,16 @@
   }
 
   &.-error {
-    background-color:$_rgbBlush;
+    background-color:$orange;
   }
 
   &.-ok {
-    background-color:$_rgbBlizzardBlue;
+    background-color:$red;
   }
 
   &.-transparent {
-    background-color: $_rgbWhite;
-    color: $_rgbMineShaft;
+    background-color: $white;
+    color: $gray;
     padding: 0;
     overflow:visible;
   }

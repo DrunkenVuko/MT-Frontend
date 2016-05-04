@@ -26,27 +26,22 @@ module.exports = ['$routeProvider', '$locationProvider', '$httpProvider', 'Commo
   $locationProvider.html5Mode(true);
 
   $routeProvider
-    .when('/peats', {
+    .when('/', {
       controller : 'PageBaseCtrl as base',
       templateUrl : 'views/landingpage.html',
       resolve : independentPageResolver,
     })
-/*    .when('/:trackingId', {
-      controller : 'PageTrackingCtrl as tracking',
-      templateUrl : 'views/tracking.html',
-      resolve : independentPageResolver,
-    })*/
     .when('/users', {
-        controller : 'PageUsersCtrl as base',
+        controller : 'PageUsersCtrl as users',
         templateUrl : 'views/users.html',
         resolve : independentPageResolver,
     })
-    .when('/registration/', {
-        controller : 'PageUsersCtrl as base',
-        templateUrl : 'views/users.html',
-        resolve : independentPageResolver,
-    })
+    // .when('/register', {
+    //     controller : 'PageRegisterCtrl as register',
+    //     templateUrl : 'views/register.html',
+    //     resolve : independentPageResolver,
+    // })
     .otherwise({
-      redirectTo : '/peats'
+      redirectTo : '/'
     });
 }];
