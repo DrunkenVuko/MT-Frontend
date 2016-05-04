@@ -12,7 +12,7 @@
 
     <small><pre>{{ user | json }}</pre></small>
 
-    <button class="button -blush" type="button" name="button" ng-click="users.getById(user._id)">Lade Details (die eigentlich ja grade schon da sind... :-)</button>
+    <button class="button success" type="button" name="button" ng-click="users.getById(user._id)">Lade Details (die eigentlich ja grade schon da sind... :-)</button>
     <div class="color-red" ng-if="users.details[user._id]" ng-bind="users.details[user._id]"></div>
     <hr>
 </div>
