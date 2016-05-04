@@ -29,13 +29,19 @@ module.exports = ['$routeProvider', '$locationProvider', '$httpProvider', 'Commo
     .when('/', {
       controller : 'PageBaseCtrl as base',
       templateUrl : 'views/landingpage.html',
-      resolve : independentPageResolver,
+      resolve: independentPageResolver,
+
     })
-    .when('/users', {
-        controller : 'PageUsersCtrl as users',
-        templateUrl : 'views/users.html',
-        resolve : independentPageResolver,
-    })
+      .when('/users', {
+          controller : 'PageUsersCtrl as users',
+          templateUrl : 'views/users.html',
+          resolve : independentPageResolver,
+      })
+      .when('/articles', {
+          controller : 'ArticlesCtrl as articles',
+          templateUrl : 'views/articles.html',
+          resolve : independentPageResolver,
+      })
     // .when('/register', {
     //     controller : 'PageRegisterCtrl as register',
     //     templateUrl : 'views/register.html',

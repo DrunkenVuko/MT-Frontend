@@ -104,7 +104,7 @@ $show-header-for-stacked: false !default;
         }
       }
 
-      // If stripe is set to odd, darken the odd rows.
+        // If stripe is set to odd, darken the odd rows.
       @else if $stripe == odd {
         &:nth-child(odd) {
           background-color: $table-striped-background;
@@ -161,7 +161,7 @@ $show-header-for-stacked: false !default;
       }
     }
 
-    //Darkens the odd striped table rows.
+      //Darkens the odd striped table rows.
     @elseif($table-stripe == odd) {
       &:nth-of-type(odd):hover {
         background-color: $table-row-stripe-hover;

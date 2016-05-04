@@ -18,6 +18,13 @@ module.exports = ['$resource', '$http', 'CommonConfig', function($resource, $htt
         method : 'GET',
         url : 'users/:userId'
       }
+    }),
+    articles : generateResource('article', 'backend', null, {
+      // die standard operationen (get post put delete) werden automatisch erzeugt
+      getArticleById : {
+        method : 'GET',
+        url : 'article/:articleId'
+      }
     })
     // articles : generateResource('articles', 'backend', null, {
     //   getUserById : {

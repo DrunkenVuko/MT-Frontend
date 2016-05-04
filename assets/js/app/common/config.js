@@ -14,8 +14,8 @@ module.exports = ['$translateProvider', function ($translateProvider) {
 
   self.endpoints = {
     backend : {
-      // development: 'http://localhost:3000'
-      development: 'http://52.29.105.245:3000/'
+      development: 'http://localhost:3000/'
+      //development: 'http://52.29.105.245:3000/'
     }
   };
 }];

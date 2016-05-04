@@ -26,8 +26,5 @@ function(
     }, function(response) {
       console.log('error', response);
     });
-
   };
-
-
 }];
