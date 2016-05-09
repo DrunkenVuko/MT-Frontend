@@ -1,9 +1,9 @@
 module.exports = ['$routeProvider', '$locationProvider', '$httpProvider', 'CommonConfigProvider', 'CommonUiProvider', function($routeProvider, $locationProvider, $httpProvider, CommonConfig, CommonUi) {
   'use strict';
 
-  var needsToBeLoggedIn = false;
+  var needsToBeLoggedIn = true;
   var independentPageResolver = function() {
-    needsToBeLoggedIn = false;
+    needsToBeLoggedIn = true;
   };
 
   $httpProvider.defaults.withCredentials = false;
@@ -32,11 +32,11 @@ module.exports = ['$routeProvider', '$locationProvider', '$httpProvider', 'Commo
       resolve: independentPageResolver,
 
     })
-      .when('/users', {
-          controller : 'PageUsersCtrl as users',
-          templateUrl : 'views/users.html',
-          resolve : independentPageResolver,
-      })
+    .when('/users/authenticate', {
+        controller : 'PageUsersLoginCtrl as users',
+        templateUrl : 'views/login.html',
+        resolve : independentPageResolver,
+    })
       .when('/articles', {
           controller : 'ArticlesCtrl as articles',
           templateUrl : 'views/articles.html',

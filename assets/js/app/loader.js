@@ -25,6 +25,7 @@ application
 
   .controller('PageBaseCtrl', require('./page/base'))
   .controller('PageUsersCtrl', require('./page/users'))
+  .controller('PageUsersLoginCtrl', require('./page/users'))
   .controller('ArticlesCtrl', require('./page/articles'))
 
   ;

@@ -17,6 +17,10 @@ module.exports = ['$resource', '$http', 'CommonConfig', function($resource, $htt
       getUserById : {
         method : 'GET',
         url : 'users/:userId'
+      },
+      getTokenByLogin : {
+        method : 'POST',
+        url : 'users/authenticate/'
       }
     }),
     articles : generateResource('article', 'backend', null, {

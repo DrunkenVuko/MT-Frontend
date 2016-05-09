@@ -6,7 +6,6 @@ module.exports = ['CommonBrowser', function(CommonBrowser) {
   // console.log('CommonBrowser', CommonBrowser);
 
   self.getDimensions = CommonBrowser.getAbsoluteClientRect;
-  self.test = 'go go goran';
 
   console.log('self.test', self.test);
 }];
