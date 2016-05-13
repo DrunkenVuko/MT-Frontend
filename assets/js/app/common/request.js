@@ -8,12 +8,16 @@ module.exports = ['$resource', '$http', 'CommonConfig', function($resource, $htt
       });
     }
 
-    return $resource((endpoint ? CommonConfig.endpoints[endpoint][CommonConfig.environment()] : '/') + route, paramDefaults, actions, options);
+    return $resource((endpoint ? CommonConfig.endpoints[endpoint][CommonConfig.environment()] : '/')  + route, paramDefaults, actions, options);
   };
 
   return {
     users : generateResource('users', 'backend', null, {
       // die standard operationen (get post put delete) werden automatisch erzeugt
+      getAll : {
+        method : 'GET',
+        url : 'users/'
+      },
       getUserById : {
         method : 'GET',
         url : 'users/:userId'
@@ -21,7 +25,11 @@ module.exports = ['$resource', '$http', 'CommonConfig', function($resource, $htt
       getTokenByLogin : {
         method : 'POST',
         url : 'users/authenticate/'
-      }
+      },
+      changeProfile : {
+        method : 'PUT',
+        url : 'users/:userId'
+      },
     }),
     articles : generateResource('article', 'backend', null, {
       // die standard operationen (get post put delete) werden automatisch erzeugt

@@ -1,10 +1,119 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<script src="bower_components/angular-formly/dist/formly.min.js"></script>
+<script src="bower_components/angular-formly-templates-bootstrap/dist/angular-formly-templates-bootstrap.min.js"></script>
 
-</body>
-</html>
+<script>
+    input[type=text] {
+        width: 100%;
+        display: block;
+        margin-bottom: 10px;
+        background-color: yellow;
+        border: 0px;
+    }
+
+</script>
+<h1 ng-class="{ 'color-red' : !users.tempUser, 'color-lightgreen' : users.tempUser }">{{users.tempUser.firstname}} {{users.tempUser.lastname}}</h1>
+
+<div class="" ng-if="!users.tempUser">
+    User werden geladen ...
+</div>
+<h4>{{users.tempUser}}</h4>
+<!--<formly-form model="users.tempUser" fields="users.userFields">-->
+    <!--<button type="submit" class="btn btn-default" ng-click="vm.submit(vm.user)">Submit</button>-->
+<!--</formly-form>-->
+
+<table style="text-align: left; width: 100%;" border="1" cellpadding="2"
+       cellspacing="2">
+    <form name="form" ng-submit="users.updateProfile()" role="form">
+        <div class="form-actions">
+            <button type="submit" ng-disabled="form.$invalid || dataLoading" class="btn btn-danger">Login</button>
+            <img ng-if="dataLoading" src=""/>
+        </div>
+
+        <tbody>
+    <tr>
+        <td colspan="5" rowspan="1">Profile:</td>
+    </tr>
+    <tr>
+        <td colspan="1" rowspan="4">IMAGE<br>
+        </td>
+        <td>Account Settings<br>
+        </td>
+        <td><button ng-click=users.updateProfile()>Speichern</button><br>
+        </td>
+    </tr>
+    <tr>
+        <td>Benutzername<br>
+        </td>
+        <td><input name="username" type="text" ng-model="users.tempUser.username" width="100%" ng-change="users.updateProfile()"> </td>
+    </tr>
+    <tr>
+        <td>eMail<br>
+        </td>
+        <td><input name="email" type="text" ng-model="users.tempUser.email" width="100%"> </td>
+    </tr>
+    <tr>
+        <td>Firmenname<br>
+        </td>
+        <td><input name="company" type="text" ng-model="users.tempUser.company" width="100%"> </td>
+    </tr>
+    <tr>
+        <td rowspan="1">1<br>
+        </td>
+        <td>Profile Setting</td>
+        <td><br>
+        </td>
+    </tr>
+    <tr>
+        <td>2<br>
+        </td>
+        <td>Vorname<br>
+        </td>
+        <td><input name="firstname" type="text" ng-model="users.tempUser.firstname" width="100%"> </td>
+    </tr>
+    <tr>
+        <td>3<br>
+        </td>
+        <td>Nachname<br>
+        </td>
+        <td><input name="lastname" type="text" ng-model="users.tempUser.lastname" width="100%"></td>
+    </tr>
+    <tr>
+        <td>4<br>
+        </td>
+        <td>Geburtstag<br>
+        </td>
+        <td>Noch nicht implementiert<br>
+        </td>
+    </tr>
+    <tr>
+        <td>5<br>
+        </td>
+        <td>Straße<br>
+        </td>
+        <td><input name="street" type="text" ng-model="users.tempUser.street" width="100%"> </td>
+    </tr>
+    <tr>
+        <td>6<br>
+        </td>
+        <td>Hausnummer<br>
+        </td>
+        <td><input name="streetnumber" type="text" ng-model="users.tempUser.streetnumber" width="100%"> </td>
+    </tr>
+    <tr>
+        <td>7<br>
+        </td>
+        <td>PLZ<br>
+        </td>
+        <td><input name="zip" type="text" ng-model="users.tempUser.zip" width="100%"> </td>
+    </tr>
+    <tr>
+        <td>8<br>
+        </td>
+        <td>Stadt<br>
+        </td>
+        <td><input name="city" type="text" ng-model="users.tempUser.city" width="100%"><br>
+        </td>
+    </tr>
+    </tbody>
+</form>
+</table>

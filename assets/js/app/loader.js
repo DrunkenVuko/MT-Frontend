@@ -3,8 +3,11 @@ require('angular-resource'); // $resource
 require('angular-route'); // $route
 require('angular-translate'); // $translate
 require('angular-hotkeys'); // hotkeys
+require('angular-formly'); // formly
+require('angular-formly-templates-bootstrap'); // formlyBootsrap
 
-var application = angular.module('application', ['ngResource', 'ngRoute', 'pascalprecht.translate', 'cfp.hotkeys']);
+
+var application = angular.module('application', ['ngResource', 'ngRoute', 'pascalprecht.translate', 'cfp.hotkeys','formly', 'formlyBootstrap']);
 require('./common/filters')(application);
 require('./common/directives')(application);
 
@@ -27,6 +30,8 @@ application
   .controller('PageUsersCtrl', require('./page/users'))
   .controller('PageUsersLoginCtrl', require('./page/users'))
   .controller('ArticlesCtrl', require('./page/articles'))
+    .controller('UsersListCtrl', require('./page/users'))
+    .controller('UsersSingleListCtrl', require('./page/users'))
 
   ;
 

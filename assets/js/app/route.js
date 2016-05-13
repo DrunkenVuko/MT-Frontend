@@ -32,11 +32,21 @@ module.exports = ['$routeProvider', '$locationProvider', '$httpProvider', 'Commo
       resolve: independentPageResolver,
 
     })
-    .when('/users/authenticate', {
-        controller : 'PageUsersLoginCtrl as users',
-        templateUrl : 'views/login.html',
-        resolve : independentPageResolver,
-    })
+      .when('/users/authenticate', {
+          controller : 'PageUsersLoginCtrl as users',
+          templateUrl : 'views/login.html',
+          resolve : independentPageResolver,
+      })
+      .when('/users/', {
+          controller : 'UsersListCtrl as users',
+          templateUrl : 'views/users.html',
+          resolve : independentPageResolver,
+      })
+      .when('/users/:id', {
+          controller : 'UsersSingleListCtrl as users',
+          templateUrl : 'views/usersList.html',
+          resolve : independentPageResolver,
+      })
       .when('/articles', {
           controller : 'ArticlesCtrl as articles',
           templateUrl : 'views/articles.html',

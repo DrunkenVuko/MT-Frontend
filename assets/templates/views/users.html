@@ -1,18 +1,107 @@
-<h1 ng-class="{ 'color-red' : !users.list, 'color-lightgreen' : users.list }">Users</h1>
+<style>
+    /*
+    Max width before this PARTICULAR table gets nasty
+    This query will take effect for any screen smaller than 760px
+    and also iPads specifically.
+    */
+    @media
+    only screen and (max-width: 760px),
+    (min-device-width: 768px) and (max-device-width: 1024px)  {
+
+        /* Force table to not be like tables anymore */
+        table, thead, tbody, th, td, tr {
+            display: block;
+        }
+
+        /* Hide table headers (but not display: none;, for accessibility) */
+        thead tr {
+            position: absolute;
+            top: -9999px;
+            left: -9999px;
+        }
+
+        tr { border: 1px solid #ccc; }
+
+        td {
+            /* Behave  like a "row" */
+            border: none;
+            border-bottom: 1px solid #eee;
+            position: relative;
+            padding-left: 50%;
+        }
+
+        td:before {
+            /* Now like a table header */
+            position: absolute;
+            /* Top/left values mimic padding */
+            top: 6px;
+            left: 6px;
+            width: 45%;
+            padding-right: 10px;
+            white-space: nowrap;
+        }
+    }
+</style>
+<h1 ng-class="{ 'color-red' : !users.list, 'color-lightgreen' : users.list }">Users (all PW: "temp")</h1>
 
 <div class="" ng-if="!users.list">
     User werden geladen ...
 </div>
+<body>
+<div class="table-container">
+    <table st-table="rowCollection" class="table table-striped" align="center">
+        <thead>
+        <tr>
+            <th colspan="17"> Globale Suche</th>
+        </tr>
+        <tr>
+            <th colspan="17">
+                <input st-search placeholder="global search" class="input-sm form-control" type="search" ng-model="filterAll"/>
+            </th>
+        </tr>
+        <tr>
+            <td>Vorname</td>
+            <td>Nachname</td>
+            <td>Benutzername</td>
+            <td>Email-Adresse</td>
+            <td>Firmenname</td>
+            <td>Plz</td>
+            <td>Stadt</td>
+            <td>Straße</td>
+            <td colspan="2">Nummer</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="user in users.list | filter:filterAll">
+            <td>{{user.firstname}}</td>
+            <td>{{user.lastname}}</td>
+            <td>{{user.username}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.company}}</td>
+            <td>{{user.zip}}</td>
+            <td>{{user.city}}</td>
+            <td>{{user.street}}</td>
+            <td>{{user.streetnumber}}</td>
+            <td><form name="form" ng-submit="users.getById(user._id)" role="form">
+                <div class="form-actions">
+                    <button type="submit" ng-disabled="form.$invalid || dataLoading" class="btn btn-danger">Edit</button>
+                    <img ng-if="dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
+                </div>
+            </form></td>
+        </tr>
+        </tbody>
+    </table>
 
-<div class="" ng-if="users.list" ng-repeat="user in users.list">
-
-    <h3 class="" ng-if="user.lastname === 'Fischer'">
-      Siehe da, ein Fischer.
-    </h3>
-
-    <small><pre>{{ user | json }}</pre></small>
-
-    <button class="button success" type="button" name="button" ng-click="users.getById(user._id)">Lade Details (die eigentlich ja grade schon da sind... :-)</button>
-    <div class="color-red" ng-if="users.details[user._id]" ng-bind="users.details[user._id]"></div>
-    <hr>
 </div>
+</div>
+<div ng-show="isLoading" class="loading-indicator"></div>
+</body>
+
+</div>
+
+<!--<form name="form" ng-submit="users.temp()" role="form">-->
+<!--<div class="form-actions">-->
+<!--<button type="submit" ng-disabled="form.$invalid || dataLoading" class="btn btn-danger">Login</button>-->
+<!--<img ng-if="dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>-->
+<!--</div>-->
+<!--</form>-->
