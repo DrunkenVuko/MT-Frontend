@@ -1,0 +1,93 @@
+<style>
+    /*
+    Max width before this PARTICULAR table gets nasty
+    This query will take effect for any screen smaller than 760px
+    and also iPads specifically.
+    */
+    @media
+    only screen and (max-width: 760px),
+    (min-device-width: 768px) and (max-device-width: 1024px)  {
+
+        /* Force table to not be like tables anymore */
+        table, thead, tbody, th, td, tr {
+            display: block;
+        }
+
+        /* Hide table headers (but not display: none;, for accessibility) */
+        thead tr {
+            position: absolute;
+            top: -9999px;
+            left: -9999px;
+        }
+
+        tr { border: 1px solid #ccc; }
+
+        td {
+            /* Behave  like a "row" */
+            border: none;
+            border-bottom: 1px solid #eee;
+            position: relative;
+            padding-left: 50%;
+        }
+
+        td:before {
+            /* Now like a table header */
+            position: absolute;
+            /* Top/left values mimic padding */
+            top: 6px;
+            left: 6px;
+            width: 45%;
+            padding-right: 10px;
+            white-space: nowrap;
+        }
+    }
+</style>
+<h1 ng-class="{ 'color-red' : !users.list, 'color-lightgreen' : articles.list }">Artikel</h1>
+
+<div class="" ng-if="!articles.list">
+    User werden geladen ...
+</div>
+<body>
+<div class="table-container">
+    <table st-table="rowCollection" class="table table-striped" align="center">
+        <thead>
+        <tr>
+            <th colspan="9"> Globale Suche </th>
+            <th colspan="1"><button ng-click=articles.goToAdd()>Hinzufügen</button></th>
+        </tr>
+        <tr>
+            <th colspan="10">
+                <input st-search placeholder="global search" class="input-sm form-control" type="search" ng-model="filterAll"/>
+            </th>
+        </tr>
+        <tr>
+            <th>Bild</th>
+            <th>Gruppierung</th>
+            <th colspan="2">Name</th>
+            <th>Preis</th>
+            <th>Allergene</th>
+        </tr>
+        </thead>
+        <tbody ng-if="articles.list" ng-repeat="article in articles.list | filter:filterAll">
+        <tr>
+            <th width="160"><img src="{{article.img}}" width="100%" max-width="100%"></th>
+            <th width="80">{{article.group}}</th>
+            <th width="260">{{article.name}}</th>
+            <th width="70">{{article.price}}€</th>
+            <th width="100">{{article.allergics.toString()}}</th>
+            <td><form name="form" ng-submit="users.getById(user._id)" role="form">
+                <div class="form-actions">
+                    <button type="submit" ng-disabled="form.$invalid || dataLoading" class="btn btn-danger">Edit</button>
+                    <img ng-if="dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
+                </div>
+            </form></td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+</div>
+<div ng-show="isLoading" class="loading-indicator"></div>
+</body>
+
+</div>

@@ -30,8 +30,9 @@ application
   .controller('PageUsersCtrl', require('./page/users'))
   .controller('PageUsersLoginCtrl', require('./page/users'))
   .controller('ArticlesCtrl', require('./page/articles'))
-    .controller('UsersListCtrl', require('./page/users'))
-    .controller('UsersSingleListCtrl', require('./page/users'))
+  .controller('UsersListCtrl', require('./page/users'))
+  .controller('UsersSingleListCtrl', require('./page/users'))
+  .controller('UsersAddCtrl', require('./page/users'))
 
   ;
 

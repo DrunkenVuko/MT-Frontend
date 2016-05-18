@@ -37,19 +37,24 @@ module.exports = ['$routeProvider', '$locationProvider', '$httpProvider', 'Commo
           templateUrl : 'views/login.html',
           resolve : independentPageResolver,
       })
+      .when('/users/add', {
+          controller : 'UsersAddCtrl as users',
+          templateUrl : 'views/user/addUser.html',
+          resolve : independentPageResolver,
+      })
       .when('/users/', {
           controller : 'UsersListCtrl as users',
-          templateUrl : 'views/users.html',
+          templateUrl : 'views/user/users.html',
           resolve : independentPageResolver,
       })
       .when('/users/:id', {
           controller : 'UsersSingleListCtrl as users',
-          templateUrl : 'views/usersList.html',
+          templateUrl : 'views/user/usersList.html',
           resolve : independentPageResolver,
       })
       .when('/articles', {
           controller : 'ArticlesCtrl as articles',
-          templateUrl : 'views/articles.html',
+          templateUrl : 'views/article/articles.html',
           resolve : independentPageResolver,
       })
     // .when('/register', {
