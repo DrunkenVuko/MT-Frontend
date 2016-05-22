@@ -11,6 +11,7 @@
         /* Force table to not be like tables anymore */
         table, thead, tbody, th, td, tr {
             display: block;
+            text-align: center;
         }
 
         /* Hide table headers (but not display: none;, for accessibility) */
@@ -49,7 +50,7 @@
 </div>
 <body>
 <div class="table-container">
-    <table st-table="rowCollection" class="table table-striped" align="center">
+    <table st-table="rowCollection" class="table table-striped">
         <thead>
         <tr>
             <th colspan="9"> Globale Suche </th>
@@ -60,10 +61,10 @@
                 <input st-search placeholder="global search" class="input-sm form-control" type="search" ng-model="filterAll"/>
             </th>
         </tr>
-        <tr>
+        <tr colspan="10">
             <th>Bild</th>
             <th>Gruppierung</th>
-            <th colspan="2">Name</th>
+            <th colspan="6">Name</th>
             <th>Preis</th>
             <th>Allergene</th>
         </tr>
@@ -72,7 +73,7 @@
         <tr>
             <th width="160"><img src="{{article.img}}" width="100%" max-width="100%"></th>
             <th width="80">{{article.group}}</th>
-            <th width="260">{{article.name}}</th>
+            <th width="260" colspan="6">{{article.name}}</th>
             <th width="70">{{article.price}}€</th>
             <th width="100">{{article.allergics.toString()}}</th>
             <td><form name="form" ng-submit="users.getById(user._id)" role="form">

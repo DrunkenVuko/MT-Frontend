@@ -5,9 +5,12 @@ require('angular-translate'); // $translate
 require('angular-hotkeys'); // hotkeys
 require('angular-formly'); // formly
 require('angular-formly-templates-bootstrap'); // formlyBootsrap
+//require('angular-multiple-select'); // Multi Select
+require('ng-dropdown-multiselect');
 
 
-var application = angular.module('application', ['ngResource', 'ngRoute', 'pascalprecht.translate', 'cfp.hotkeys','formly', 'formlyBootstrap']);
+var application = angular.module('application', [ 'angularjs-dropdown-multiselect','ngResource', 'ngRoute', 'pascalprecht.translate', 'cfp.hotkeys','formly', 'formlyBootstrap']);
+
 require('./common/filters')(application);
 require('./common/directives')(application);
 

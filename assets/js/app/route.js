@@ -57,6 +57,11 @@ module.exports = ['$routeProvider', '$locationProvider', '$httpProvider', 'Commo
           templateUrl : 'views/article/articles.html',
           resolve : independentPageResolver,
       })
+      .when('/articles/add', {
+          controller : 'ArticlesCtrl as articles',
+          templateUrl : 'views/article/addArticles.html',
+          resolve : independentPageResolver,
+      })
     // .when('/register', {
     //     controller : 'PageRegisterCtrl as register',
     //     templateUrl : 'views/register.html',

@@ -1,10 +1,64 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>addArticles</title>
-</head>
-<body>
+<link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
+<script src="angular-dropdownMultiselect.js"></script>
 
-</body>
-</html>
+<style>
+    div.outterBox {
+        max-width:500px;
+        margin: auto;
+        border: 1px solid #adacaa;
+        align-items:center;
+    }
+
+</style>
+<div class="outterBox">
+<h3>{{articles.multipleSelect_Selected}}</h3>
+
+<h1>Artikel hinzufügen</h1>
+<table style="text-align: left; width: 100%;" border="1" cellpadding="2"
+       cellspacing="2">
+    <form name="form" ng-submit="articles.add()" role="form">
+        <div class="form-actions">
+            <button type="submit" ng-disabled="form.$invalid || dataLoading" class="btn btn-danger">Speichern</button>
+            <img ng-if="dataLoading" src=""/>
+        </div>
+
+        <tbody>
+        <tr>
+            <td colspan="5" rowspan="1">Artikeldetails</td>
+        </tr>
+        <tr>
+            <td>Name<span class="required">*</span><br>
+            </td>
+            <td><input name="name" type="text" ng-model="articles.newUser.name" width="100%"> </td>
+        </tr>
+        <tr>
+            <td>Preis<span class="required">*</span><br>
+            </td>
+            <td><input name="price" type="text" ng-model="articles.newUser.price" width="100%"> </td>
+        </tr>
+        <tr>
+            <td>Bild<br>
+            </td>
+            <td><div class="element-file"><label class="large" ><input type="file" class="file_input" name="file" /></label></div>
+            </td>
+        </tr>
+
+        <tr>
+            <td rowspan="1">Gruppierung<br>
+            </td>
+            <td>
+                <div ng-dropdown-multiselect="" options="articles.group_multipleSelect_Data" selected-model="articles.group_multipleSelect_Selected" extra-settings="articles.group_multipleSelect_Settings"></div>
+            </td>
+        </tr>
+        <tr>
+            <td rowspan="1">Allergene<br>
+            </td>
+            <td>
+                <div ng-dropdown-multiselect="" options="articles.allergic_multipleSelect_Data" selected-model="articles.allergic_multipleSelect_Selected" extra-settings="articles.allergic_multipleSelect_Settings"></div>
+            </td>
+        </tr>
+        </tbody>
+    </form>
+</table>
+</div>
