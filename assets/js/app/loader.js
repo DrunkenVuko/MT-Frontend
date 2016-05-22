@@ -7,9 +7,10 @@ require('angular-formly'); // formly
 require('angular-formly-templates-bootstrap'); // formlyBootsrap
 //require('angular-multiple-select'); // Multi Select
 require('ng-dropdown-multiselect');
+require('ng-dialog');
 
 
-var application = angular.module('application', [ 'angularjs-dropdown-multiselect','ngResource', 'ngRoute', 'pascalprecht.translate', 'cfp.hotkeys','formly', 'formlyBootstrap']);
+var application = angular.module('application', [ 'ngDialog', 'angularjs-dropdown-multiselect','ngResource', 'ngRoute', 'pascalprecht.translate', 'cfp.hotkeys','formly', 'formlyBootstrap']);
 
 require('./common/filters')(application);
 require('./common/directives')(application);

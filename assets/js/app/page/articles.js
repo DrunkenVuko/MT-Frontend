@@ -1,12 +1,13 @@
 module.exports = [
-    'CommonRequest',
+    'CommonRequest', 'ngDialog',
     function(
-        CommonRequest
+        CommonRequest, ngDialog
     ) {
         'use strict';
         var self = this;
 
         self.details = {};
+        self.x = "Hello";
 
         // Allergene
         self.allergic_multipleSelect_Selected = [];
@@ -128,6 +129,17 @@ module.exports = [
                 console.log('error', response);
             });
         };
+        self.openAdd = function clickToOpen() {
+            ngDialog.open({
+                controller: 'ArticlesCtrl',
+                template: 'views/article/addArticles.html'
+            });
+        };
+
+        self.reload = function()
+        {
+            window.location.reload();
+        }
     }];
 
 

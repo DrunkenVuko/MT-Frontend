@@ -11,13 +11,19 @@
     }
 
 </style>
+<body ng-controller="ArticlesCtrl" ng-if="ArticlesCtrl.articles.x">
+{{ArticlesCtrl.articles.reload()}}
+
+{{ArticlesCtrl.articles.x + 44}}
+articles.x
+++++
 <div class="outterBox">
-<h3>{{articles.multipleSelect_Selected}}</h3>
+<h3>{{articles.multipleSelect_Selected}} jjjj</h3>
 
 <h1>Artikel hinzufügen</h1>
 <table style="text-align: left; width: 100%;" border="1" cellpadding="2"
        cellspacing="2">
-    <form name="form" ng-submit="articles.add()" role="form">
+    <form name="form" ng-submit="articles.add()" role="form" ng-controller="ArticlesCtrl" ng-app="application">
         <div class="form-actions">
             <button type="submit" ng-disabled="form.$invalid || dataLoading" class="btn btn-danger">Speichern</button>
             <img ng-if="dataLoading" src=""/>
@@ -48,17 +54,18 @@
             <td rowspan="1">Gruppierung<br>
             </td>
             <td>
-                <div ng-dropdown-multiselect="" options="articles.group_multipleSelect_Data" selected-model="articles.group_multipleSelect_Selected" extra-settings="articles.group_multipleSelect_Settings"></div>
+                <!--<div ng-dropdown-multiselect="" options="ArticlesCtrlarticles.group_multipleSelect_Data" selected-model="articles.group_multipleSelect_Selected" extra-settings="articles.group_multipleSelect_Settings"></div>-->
             </td>
         </tr>
         <tr>
             <td rowspan="1">Allergene<br>
             </td>
             <td>
-                <div ng-dropdown-multiselect="" options="articles.allergic_multipleSelect_Data" selected-model="articles.allergic_multipleSelect_Selected" extra-settings="articles.allergic_multipleSelect_Settings"></div>
+                <!--<div ng-dropdown-multiselect="" options="articles.allergic_multipleSelect_Data" selected-model="articles.allergic_multipleSelect_Selected" extra-settings="articles.allergic_multipleSelect_Settings"></div>-->
             </td>
         </tr>
         </tbody>
     </form>
 </table>
 </div>
+</body>

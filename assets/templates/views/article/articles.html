@@ -1,3 +1,9 @@
+<script src="http://pixelcrafts.com/soo/lib/angular/angular.min.js"></script>
+<script src="http://pixelcrafts.com/soo/lib/angular/ngDialog.min.js"></script>
+
+<link rel="stylesheet" href="http://pixelcrafts.com/soo/css/ngDialog-theme-default.css">
+<link rel="stylesheet" href="http://pixelcrafts.com/soo/css/ngDialog.css">
+
 <style>
     /*
     Max width before this PARTICULAR table gets nasty
@@ -43,6 +49,8 @@
         }
     }
 </style>
+
+
 <h1 ng-class="{ 'color-red' : !users.list, 'color-lightgreen' : articles.list }">Artikel</h1>
 
 <div class="" ng-if="!articles.list">
@@ -54,7 +62,7 @@
         <thead>
         <tr>
             <th colspan="9"> Globale Suche </th>
-            <th colspan="1"><button ng-click=articles.goToAdd()>Hinzufügen</button></th>
+            <th colspan="1"><button ng-click=articles.openAdd()>Hinzufügen</button></th>
         </tr>
         <tr>
             <th colspan="10">
