@@ -20,7 +20,8 @@ module.exports = ['$resource', '$http', 'CommonConfig', function($resource, $htt
       },
       getAll : {
         method : 'GET',
-        url : 'users/'
+        url : 'users/',
+        cache: true
       },
       getUserById : {
         method : 'GET',
@@ -43,7 +44,8 @@ module.exports = ['$resource', '$http', 'CommonConfig', function($resource, $htt
       },
       getAll : {
         method : 'GET',
-        url : 'article/'
+        url : 'article/',
+        cache: true
       },
       addArticle : {
         method : 'POST',
@@ -52,6 +54,26 @@ module.exports = ['$resource', '$http', 'CommonConfig', function($resource, $htt
       changeArticle : {
         method: 'PUT',
         url: 'article/:articleId'
+      }
+    }),
+    allergics : generateResource('allergic', 'backend', null, {
+      // die standard operationen (get post put delete) werden automatisch erzeugt
+      getAllergicById : {
+        method : 'GET',
+        url : 'allergics//:allergicId'
+      },
+      getAll : {
+        method : 'GET',
+        url : 'allergics/',
+        cache: true
+      },
+      addAllergic : {
+        method : 'POST',
+        url : 'allergics/add/'
+      },
+      changeArticle : {
+        method: 'PUT',
+        url: 'allergics//:allergicId'
       }
     })
     // articles : generateResource('articles', 'backend', null, {

@@ -50,6 +50,13 @@
     }
 </style>
 
+<p> Key: <input type="text" ng-model="articles.test1"> </p>
+<p> Value: <input type="text" ng-model="articles.test2"> </p>
+<p> <button ng-click="articles.addItem(articles.test1, articles.test2)" >Hinzufügen</button> </p>
+<hr/>
+<p> GetItem: <input type="text" ng-model="articles.getKey"> </p>
+<p> <button ng-click="articles.getItem(articles.getKey)">Hinzufügen</button> </p>
+
 
 <h1 ng-class="{ 'color-red' : !users.list, 'color-lightgreen' : articles.list }">Artikel</h1>
 

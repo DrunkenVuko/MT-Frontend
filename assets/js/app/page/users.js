@@ -42,14 +42,14 @@ function(
       },  {
           'x-access-token': getCookie('token'),
           'username' : self.tempUser.username,
-          "firstname" : self.tempUser.firstname,
-          "lastname" : self.tempUser.lastname,
-          "email" : self.tempUser.email,
-          "company" : self.tempUser.company,
-          "zip" : self.tempUser.zip,
-          "city" : self.tempUser.city,
-          "street" : self.tempUser.street,
-          "streetnumber" : self.tempUser.streetnumber
+          'firstname' : self.tempUser.firstname,
+          'lastname' : self.tempUser.lastname,
+          'email' : self.tempUser.email,
+          'company' : self.tempUser.company,
+          'zip' : self.tempUser.zip,
+          'city' : self.tempUser.city,
+          'street' : self.tempUser.street,
+          'streetnumber' : self.tempUser.streetnumber
       }, function(response) {
         console.log('error', response);
       });
@@ -59,16 +59,16 @@ self.add = function() {
   CommonRequest.users.addUser({
 
   }, {
-    "username": self.newUser.username,
-    "firstname": self.newUser.firstname,
-    "lastname": self.newUser.lastname,
-    "email": self.newUser.email,
-    "company": self.newUser.company,
-    "zip": self.newUser.zip,
-    "city": self.newUser.city,
-    "street": self.newUser.street,
-    "streetnumber": self.newUser.streetnumber,
-    "password": self.newUser.password
+    'username': self.newUser.username,
+    'firstname': self.newUser.firstname,
+    'lastname': self.newUser.lastname,
+    'email': self.newUser.email,
+    'company': self.newUser.company,
+    'zip': self.newUser.zip,
+    'city': self.newUser.city,
+    'street': self.newUser.street,
+    'streetnumber': self.newUser.streetnumber,
+    'password': self.newUser.password
   }, function(response) {
     console.log('error', response);
   });

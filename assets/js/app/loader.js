@@ -8,9 +8,12 @@ require('angular-formly-templates-bootstrap'); // formlyBootsrap
 //require('angular-multiple-select'); // Multi Select
 require('ng-dropdown-multiselect');
 require('ng-dialog');
+require('angular-cache');
+require('simplestorage.js');
 
 
-var application = angular.module('application', [ 'ngDialog', 'angularjs-dropdown-multiselect','ngResource', 'ngRoute', 'pascalprecht.translate', 'cfp.hotkeys','formly', 'formlyBootstrap']);
+var application = angular.module('application', [ 'angular-cache','ngDialog', 'angularjs-dropdown-multiselect','ngResource', 'ngRoute', 'pascalprecht.translate', 'cfp.hotkeys','formly', 'formlyBootstrap'])
+;
 
 require('./common/filters')(application);
 require('./common/directives')(application);

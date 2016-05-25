@@ -1,79 +1,25 @@
+/**
+ * Created by Vuko on 24.05.16.
+ */
 module.exports = [
-    'CommonRequest', 'ngDialog', '$cacheFactory',
+    'CommonRequest', 'ngDialog',
     function(
-        CommonRequest, ngDialog, $cacheFactory
+        CommonRequest, ngDialog
     ) {
         'use strict';
         var self = this;
 
-
-        var simpleStorage = require('simpleStorage.js');
-
-        //simpleStorage.set('1', 'hello');
-
-        self.aaa =[
-            {id: 1, label: 'David'},
-            {id: 2, label: 'Jhon'},
-            {id: 3, label: 'Lisa'},
-            {id: 4, label: 'Nicole'},
-            {id: 5, label: 'Danny'}];
-
-
-for(var i = 0; i < self.aaa.length; i++)
-{
-    simpleStorage.set(self.aaa[i].id, self.aaa[i].label);
-
-}
-
-
         self.details = {};
-        self.x = 'Hello';
-
-        //self.username = localStorage.getItem('username');
-
-        self.save = function(){
-            var username = self.test1.val();
-            localStorage.setItem('username', username);
-        };
-
-        // Cache ****************************************
-        self.keys= [];
-        self.cache = $cacheFactory('testCache');
-
-        self.addItem = function(itemKey, itemValue){
-            self.keys.push(itemKey);
-            self.cache.put(itemKey, itemValue);
-            console.log(self.keys);
-        };
-
-        self.getItem = function(itemKey){
-            self.currentItem = self.cache.get(itemKey);
-            var httpCache = $cacheFactory.get('$http');
-
-            var cachedResponse = httpCache.get('article/');
-            console.log("****************************************");
-
-
-
-
-        };
-
-        self.removeItem = function(itemKey){
-            self.keys = self.keys.filter(function(key){
-                return(key !== itemKey);
-            });
-            self.cache.remove(itemKey);
-        };
-
+        self.x = "Hello";
 
         // Allergene
         self.allergic_multipleSelect_Selected = [];
         self.allergic_multipleSelect_Data = [
-            {id: 1, label: 'David'},
-            {id: 2, label: 'Jhon'},
-            {id: 3, label: 'Lisa'},
-            {id: 4, label: 'Nicole'},
-            {id: 5, label: 'Danny'}];
+            {id: 1, label: "David"},
+            {id: 2, label: "Jhon"},
+            {id: 3, label: "Lisa"},
+            {id: 4, label: "Nicole"},
+            {id: 5, label: "Danny"}];
 
         self.allergic_multipleSelect_Settings = {
             enableSearch: true,
@@ -88,30 +34,27 @@ for(var i = 0; i < self.aaa.length; i++)
             }
         };
 
+        // Gruppierungen
+        self.group_multipleSelect_Selected = [];
+        self.group_multipleSelect_Data = [
+            {id: 1, label: "Vorspeise"},
+            {id: 2, label: "Hauptspeise"},
+            {id: 3, label: "Dessert"},
+            {id: 4, label: "Spirituosen"},
+            {id: 5, label: "etc"}];
 
+        self.group_multipleSelect_Settings = {
+            enableSearch: true,
+            scrollable: true,
+            smartButtonMaxItems: 2,
+            smartButtonTextConverter: function(itemText, originalItem) {
+                if (itemText === 'Jhon') {
+                    return 'Jhonny!';
+                }
 
-
-        // // Gruppierungen
-        // self.group_multipleSelect_Selected = [];
-        // self.group_multipleSelect_Data = [
-        //     {id: 1, label: 'Vorspeise'},
-        //     {id: 2, label: 'Hauptspeise'},
-        //     {id: 3, label: 'Dessert'},
-        //     {id: 4, label: 'Spirituosen'},
-        //     {id: 5, label: 'etc'}];
-        //
-        // self.group_multipleSelect_Settings = {
-        //     enableSearch: true,
-        //     scrollable: true,
-        //     smartButtonMaxItems: 2,
-        //     smartButtonTextConverter: function(itemText, originalItem) {
-        //         if (itemText === 'Jhon') {
-        //             return 'Jhonny!';
-        //         }
-        //
-        //         return itemText;
-        //     }
-        // };
+                return itemText;
+            }
+        };
 
         // CommonRequest.articles.getAll({'x-access-token' : getCookie('token')}, {}, function(response) {
         //     if (response && response.message) {
@@ -136,12 +79,12 @@ for(var i = 0; i < self.aaa.length; i++)
             CommonRequest.users.changeProfile({
                 articleId : getCookie('tempArticleID')
             },  {
-                'x-access-token': getCookie('token'),
-                'name': self.tempArticle.name,
-                'price': self.tempArticle.price,
-                'allergics': self.tempArticle.allergics,
-                'img': self.tempArticle.img,
-                'group': self.tempArticle.group
+                "x-access-token": getCookie('token'),
+                "name": self.tempArticle.name,
+                "price": self.tempArticle.price,
+                "allergics": self.tempArticle.allergics,
+                "img": self.tempArticle.img,
+                "group": self.tempArticle.group
             }, function(response) {
                 console.log('error', response);
             });
@@ -150,11 +93,11 @@ for(var i = 0; i < self.aaa.length; i++)
             CommonRequest.users.addArticle({
 
             }, {
-                'name': self.newArticle.name,
-                'price': self.newArticle.price,
-                'allergics': self.newArticle.allergics,
-                'img': self.newArticle.img,
-                'group': self.newArticle.group
+                "name": self.newArticle.name,
+                "price": self.newArticle.price,
+                "allergics": self.newArticle.allergics,
+                "img": self.newArticle.img,
+                "group": self.newArticle.group
             }, function(response) {
                 console.log('error', response);
             });
