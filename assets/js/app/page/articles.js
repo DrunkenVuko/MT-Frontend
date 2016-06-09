@@ -5,29 +5,8 @@ module.exports = [
     ) {
         'use strict';
         var self = this;
-
-
         var simpleStorage = require('simpleStorage.js');
-
-        //simpleStorage.set('1', 'hello');
-
-        self.aaa =[
-            {id: 1, label: 'David'},
-            {id: 2, label: 'Jhon'},
-            {id: 3, label: 'Lisa'},
-            {id: 4, label: 'Nicole'},
-            {id: 5, label: 'Danny'}];
-
-
-for(var i = 0; i < self.aaa.length; i++)
-{
-    simpleStorage.set(self.aaa[i].id, self.aaa[i].label);
-
-}
-
-
         self.details = {};
-        self.x = 'Hello';
 
         //self.username = localStorage.getItem('username');
 
@@ -36,9 +15,9 @@ for(var i = 0; i < self.aaa.length; i++)
             localStorage.setItem('username', username);
         };
 
-        // Cache ****************************************
+ /*       // Cache ****************************************
         self.keys= [];
-        self.cache = $cacheFactory('testCache');
+        //self.cache = $cacheFactory('tempCache');
 
         self.addItem = function(itemKey, itemValue){
             self.keys.push(itemKey);
@@ -52,10 +31,6 @@ for(var i = 0; i < self.aaa.length; i++)
 
             var cachedResponse = httpCache.get('article/');
             console.log("****************************************");
-
-
-
-
         };
 
         self.removeItem = function(itemKey){
@@ -63,17 +38,12 @@ for(var i = 0; i < self.aaa.length; i++)
                 return(key !== itemKey);
             });
             self.cache.remove(itemKey);
-        };
+        };*/
 
 
         // Allergene
         self.allergic_multipleSelect_Selected = [];
-        self.allergic_multipleSelect_Data = [
-            {id: 1, label: 'David'},
-            {id: 2, label: 'Jhon'},
-            {id: 3, label: 'Lisa'},
-            {id: 4, label: 'Nicole'},
-            {id: 5, label: 'Danny'}];
+        self.allergic_multipleSelect_Data = simpleStorage.get('Allergic');
 
         self.allergic_multipleSelect_Settings = {
             enableSearch: true,
@@ -113,7 +83,7 @@ for(var i = 0; i < self.aaa.length; i++)
         //     }
         // };
 
-        // CommonRequest.articles.getAll({'x-access-token' : getCookie('token')}, {}, function(response) {
+        // CommonRequest.articles.getAll({'x-access-token' : simpleStorage.get('secToken')}, {}, function(response) {
         //     if (response && response.message) {
         //         self.list = response.message;
         //         console.log('articles.getAll wird ausgeführt');
@@ -124,9 +94,11 @@ for(var i = 0; i < self.aaa.length; i++)
                 console.log(response.messages);
                 self.list = response.message;
                 console.log('articles.getAll wird ausgeführt');
+                // preLoad
+                getAllAllergics();
             }
         });
-        // CommonRequest.articles.getArticleById({'x-access-token' : getCookie('token'), articleId : getCookie('tempArticleID')}, {}, function(response) {
+        // CommonRequest.articles.getArticleById({'x-access-token' : simpleStorage.get('secToken'), articleId : getCookie('tempArticleID')}, {}, function(response) {
         //     if (response && response.message) {
         //         console.log('article.getArticleById wird ausgeführt');
         //         self.tempArticle = response.message;
@@ -136,7 +108,7 @@ for(var i = 0; i < self.aaa.length; i++)
             CommonRequest.users.changeProfile({
                 articleId : getCookie('tempArticleID')
             },  {
-                'x-access-token': getCookie('token'),
+                'x-access-token': simpleStorage.get('secToken'),
                 'name': self.tempArticle.name,
                 'price': self.tempArticle.price,
                 'allergics': self.tempArticle.allergics,
@@ -161,10 +133,14 @@ for(var i = 0; i < self.aaa.length; i++)
         };
         self.getAll = function () {
             CommonRequest.articles.getAll({
-                'x-access-token' : getCookie('token')
+                'x-access-token' : simpleStorage.get('secToken')
 
             },  {}, function(response) {
                 if (response && response.message) {
+                    // preLoad
+                    getAllAllergics();
+                    console.log(self.list);
+
                     self.list = response.message;
                     console.log('self.articles.getAll wird ausgeführt');
                 }
@@ -178,7 +154,7 @@ for(var i = 0; i < self.aaa.length; i++)
 
         self.getById = function (articleID) {
             CommonRequest.articles.getArticleById({
-                'x-access-token' : getCookie('token'), articleId : articleID
+                'x-access-token' : simpleStorage.get('secToken'), articleId : articleID
 
             },  {}, function(response) {
                 self.tempArticle = response.message;
@@ -190,18 +166,70 @@ for(var i = 0; i < self.aaa.length; i++)
             });
         };
         self.openAdd = function clickToOpen() {
+            getAllAllergics();
             ngDialog.open({
-                controller: 'ArticlesCtrl',
-                template: 'views/article/addArticles.html'
+                template: 'views/article/addArticles.html',
+                //controller: 'ArticlesCtrl',
+                //controllerAs: 'AllergicsValueCtrl'
+                data: {
+                    allergicData: simpleStorage.get('Allergic'),
+                    allergicDataSelected: '',
+                    allergicSettings: {
+                        enableSearch: true,
+                        scrollable: true,
+                        smartButtonMaxItems: 3,
+                        smartButtonTextConverter: function(itemText, originalItem) {
+                            if (itemText === 'Jhon') {
+                                return 'Jhonny!';
+                            }
+
+                            return itemText;
+                        }
+                    }
+                }
             });
         };
+/*##################################################################################
+####################### Allergics ##################################################
+##################################################################################*/
+        //{_id: "5744761e555738a40e2bf399", longName: "Roggen", shortName: "RG", __v: 0, $$hashKey: "object:49"}
+
+        function getAllAllergics() {
+            CommonRequest.allergics.getAll({
+                'x-access-token' : simpleStorage.get('secToken')
+
+            },  {}, function(response) {
+                if (response && response.message) {
+                    self.list = response.message;
+                    console.log('self.allergics.getAll wird ausgeführt und lokal gespeichert');
+                    // Get all names from Server and save it local via 'Allergic'
+                    var tempArr = [];
+                    for(var i = 0; i < self.list.length; i++)
+                    {
+                        var temp = {id : self.list[i].shortName, label: self.list[i].longName};
+                        tempArr[i] = temp;
+                        temp = '';
+                        self.allergic_multipleSelect_Data =  {id: self.list[i].shortName, label: self.list[i].longName}
+
+                    }
+                    simpleStorage.set('Allergic', tempArr, {TTL: 100000});
+
+                }
+            }, function(response) {
+                console.log('error', response);
+            });
+        };
+
 
         self.reload = function()
         {
             window.location.reload();
         }
-    }];
 
+        function getAllergics() {
+            return self.allergic_multipleSelect_Data;
+        }
+    }];
 
 function getCookie(cname) {
     var name = cname + '=';

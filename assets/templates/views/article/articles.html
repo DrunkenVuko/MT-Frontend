@@ -50,13 +50,21 @@
     }
 </style>
 
-<p> Key: <input type="text" ng-model="articles.test1"> </p>
-<p> Value: <input type="text" ng-model="articles.test2"> </p>
-<p> <button ng-click="articles.addItem(articles.test1, articles.test2)" >Hinzufügen</button> </p>
-<hr/>
-<p> GetItem: <input type="text" ng-model="articles.getKey"> </p>
-<p> <button ng-click="articles.getItem(articles.getKey)">Hinzufügen</button> </p>
+<!--<p> Key: <input type="text" ng-model="articles.test1"> </p>-->
+<!--<p> Value: <input type="text" ng-model="articles.test2"> </p>-->
+<!--<p> <button ng-click="articles.addItem(articles.test1, articles.test2)" >Hinzufügen</button> </p>-->
+<!--<hr/>-->
+<!--<p> GetItem: <input type="text" ng-model="articles.getKey"> </p>-->
+<!--<p> <button ng-click="articles.getItem(articles.getKey)">Hinzufügen</button> </p>-->
+<script src="//code.angularjs.org/1.2.20/angular-sanitize.min.js"></script>
 
+<button type="button"
+        ng-dialog="views/article/addArticles.html"
+        ng-dialog-class="ngdialog-theme-flat"
+        ng-dialog-controller="AllergicsValueCtrl"
+        ng-dialog-close-previous>
+    Open modal text
+</button>
 
 <h1 ng-class="{ 'color-red' : !users.list, 'color-lightgreen' : articles.list }">Artikel</h1>
 
@@ -69,7 +77,7 @@
         <thead>
         <tr>
             <th colspan="9"> Globale Suche </th>
-            <th colspan="1"><button ng-click=articles.openAdd()>Hinzufügen</button></th>
+            <th colspan="1"><button ng-click=articles.goToAdd()>Hinzufügen</button></th>
         </tr>
         <tr>
             <th colspan="10">
@@ -94,7 +102,7 @@
             <td><form name="form" ng-submit="users.getById(user._id)" role="form">
                 <div class="form-actions">
                     <button type="submit" ng-disabled="form.$invalid || dataLoading" class="btn btn-danger">Edit</button>
-                    <img ng-if="dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
+                    <!--<img ng-if="dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>-->
                 </div>
             </form></td>
         </tr>

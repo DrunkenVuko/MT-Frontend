@@ -6,6 +6,8 @@ function(
   'use strict';
   var self = this;
   self.details = {};
+  var simpleStorage = require('simpleStorage.js');
+
   var newUser = {
     username : '',
     firstname : '',
@@ -19,7 +21,7 @@ function(
     password : ''
   };
 
-  CommonRequest.users.getAll({'x-access-token' : getCookie('token')}, {}, function(response) {
+  CommonRequest.users.getAll({'x-access-token' : simpleStorage.get('secToken')}, {}, function(response) {
     //delCookie('tempID');
     if (response && response.message) {
       self.list = response.message;
@@ -28,7 +30,7 @@ function(
     }
   });
 
-  CommonRequest.users.getUserById({'x-access-token' : getCookie('token'), userId : getCookie('tempID')}, {}, function(response) {
+  CommonRequest.users.getUserById({'x-access-token' : simpleStorage.get('secToken'), userId : getCookie('tempID')}, {}, function(response) {
     if (response && response.message) {
       console.log('users.getUserByIdl wird ausgeführt');
       console.log(response.message);
@@ -40,7 +42,7 @@ function(
       CommonRequest.users.changeProfile({
         userId : getCookie('tempID')
       },  {
-          'x-access-token': getCookie('token'),
+          'x-access-token': simpleStorage.get('secToken'),
           'username' : self.tempUser.username,
           'firstname' : self.tempUser.firstname,
           'lastname' : self.tempUser.lastname,
@@ -80,16 +82,17 @@ self.login = function() {
   }, function (response) {
     if (response && response.message) {
       console.log(response);
-      document.cookie = 'token=' + response.token;
+      simpleStorage.set('secToken', response.token, {TTL: 10000000}); // 2,7Std / Sekunden
+      //document.cookie = 'token=' + response.token;
       document.location.href = ('/users/');
-      console.log(getCookie('token'));
+      console.log('Der Sicherheitstoken', simpleStorage.get('secToken'));
     }
   });
 };
 
   self.getAll = function () {
     CommonRequest.users.getAll({
-      'x-access-token' : getCookie('token')
+      'x-access-token' : simpleStorage.get('secToken')
 
     },  {}, function(response) {
       if (response && response.message) {
@@ -107,7 +110,7 @@ self.login = function() {
 
   self.getById = function (theDesiredUserId) {
     CommonRequest.users.getUserById({
-      'x-access-token' : getCookie('token'), userId : theDesiredUserId
+      'x-access-token' : simpleStorage.get('secToken'), userId : theDesiredUserId
 
     },  {}, function(response) {
       self.tempUser = response.message;

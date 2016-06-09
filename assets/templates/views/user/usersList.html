@@ -49,12 +49,12 @@
     <tr>
         <td>eMail<br>
         </td>
-        <td><input name="email" type="text" ng-model="users.tempUser.email" width="100%"> </td>
+        <td><input name="email" type="text" ng-model="users.tempUser.email" width="100%" ng-change="users.updateProfile()"> </td>
     </tr>
     <tr>
         <td>Firmenname<br>
         </td>
-        <td><input name="company" type="text" ng-model="users.tempUser.company" width="100%"> </td>
+        <td><input name="company" type="text" ng-model="users.tempUser.company" width="100%" ng-change="users.updateProfile()"> </td>
     </tr>
     <tr>
         <td rowspan="1">1<br>
@@ -68,14 +68,14 @@
         </td>
         <td>Vorname<br>
         </td>
-        <td><input name="firstname" type="text" ng-model="users.tempUser.firstname" width="100%"> </td>
+        <td><input name="firstname" type="text" ng-model="users.tempUser.firstname" width="100%" ng-change="users.updateProfile()"> </td>
     </tr>
     <tr>
         <td>3<br>
         </td>
         <td>Nachname<br>
         </td>
-        <td><input name="lastname" type="text" ng-model="users.tempUser.lastname" width="100%"></td>
+        <td><input name="lastname" type="text" ng-model="users.tempUser.lastname" width="100%" ng-change="users.updateProfile()"></td>
     </tr>
     <tr>
         <td>4<br>
@@ -90,28 +90,28 @@
         </td>
         <td>Straße<br>
         </td>
-        <td><input name="street" type="text" ng-model="users.tempUser.street" width="100%"> </td>
+        <td><input name="street" type="text" ng-model="users.tempUser.street" width="100%" ng-change="users.updateProfile()"> </td>
     </tr>
     <tr>
         <td>6<br>
         </td>
         <td>Hausnummer<br>
         </td>
-        <td><input name="streetnumber" type="text" ng-model="users.tempUser.streetnumber" width="100%"> </td>
+        <td><input name="streetnumber" type="text" ng-model="users.tempUser.streetnumber" width="100%" ng-change="users.updateProfile()"> </td>
     </tr>
     <tr>
         <td>7<br>
         </td>
         <td>PLZ<br>
         </td>
-        <td><input name="zip" type="text" ng-model="users.tempUser.zip" width="100%"> </td>
+        <td><input name="zip" type="text" ng-model="users.tempUser.zip" width="100%" ng-change="users.updateProfile()"> </td>
     </tr>
     <tr>
         <td>8<br>
         </td>
         <td>Stadt<br>
         </td>
-        <td><input name="city" type="text" ng-model="users.tempUser.city" width="100%"><br>
+        <td><input name="city" type="text" ng-model="users.tempUser.city" width="100%" ng-change="users.updateProfile()"><br>
         </td>
     </tr>
     </tbody>

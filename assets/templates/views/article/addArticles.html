@@ -1,9 +1,16 @@
-<link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+<!--<link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />-->
 <link rel="stylesheet" type="text/css" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
 <script src="angular-dropdownMultiselect.js"></script>
 
 // Cache
 <script src="/js/plugins/angular-cache-2.1.0.min.js"></script>
+
+
+<!--
+<link rel="stylesheet" href="../css/ngDialog-theme-default.css">
+<link rel="stylesheet" href="../css/ngDialog-theme-plain.css">
+<link rel="stylesheet" href="../css/ngDialog-custom-width.css">
+-->
 
 
 <style>
@@ -15,16 +22,21 @@
     }
 
 </style>
-<body ng-controller="ArticlesCtrl" ng-if="ArticlesCtrl.articles.x">
-{{ArticlesCtrl.articles.reload()}}
+<body/>
+<!--
+<div>
+    <my-directive showtext="ngDialogData"></my-directive>
+    {{ngDialogData.name}}
+</div>
 
-{{ArticlesCtrl.articles.x + 44}}
-<div class="outterBox"  ng-controller="ArticlesCtrl" ng-app="application">
-<h3>{{articles.multipleSelect_Selected}} jjjj</h3>
+-->
 
+<div class="outterBox" ng-app="application">
+<h3>Auswahl: {{articles.allergic_multipleSelect_Data}}</h3>
+<h3>Selected: {{articles.allergic_multipleSelect_Selected}}</h3>
 <h1>Artikel hinzufügen</h1>
 <table style="text-align: left; width: 100%;" border="1" cellpadding="2" cellspacing="2">
-    <form name="form" ng-submit="articles.add()" role="form">
+    <form name="form" ng-submit="allergics.add()" role="form">
         <div class="form-actions">
             <button type="submit" ng-disabled="form.$invalid || dataLoading" class="btn btn-danger">Speichern</button>
             <img ng-if="dataLoading" src=""/>
@@ -37,12 +49,12 @@
         <tr>
             <td>Name<span class="required">*</span><br>
             </td>
-            <td><input name="name" type="text" ng-model="articles.newUser.name" width="100%"> </td>
+            <td><input name="name" type="text" ng-model="allergics.newUser.name" width="100%"> </td>
         </tr>
         <tr>
             <td>Preis<span class="required">*</span><br>
             </td>
-            <td><input name="price" type="text" ng-model="articles.newUser.price" width="100%"> </td>
+            <td><input name="price" type="text" ng-model="allergics.newUser.price" width="100%"> </td>
         </tr>
         <tr>
             <td>Bild<br>
@@ -55,14 +67,15 @@
             <td rowspan="1">Gruppierung<br>
             </td>
             <td>
-                <!--<div ng-dropdown-multiselect="" options="articles.group_multipleSelect_Data" selected-model="articles.group_multipleSelect_Selected" extra-settings="articles.group_multipleSelect_Settings"></div>-->
+                <!--<div ng-dropdown-multiselect="" options="ngDialogData.allergicData" selected-model="ngDialogData.allergicDataSelected" extra-settings="ngDialogData.allergicSettings"></div>-->
+                <div ng-dropdown-multiselect="" options="articles.allergic_multipleSelect_Data" selected-model="articles.allergic_multipleSelect_Selected" extra-settings="articles.allergic_multipleSelect_Settings"></div>
             </td>
         </tr>
         <tr>
             <td rowspan="1">Allergene<br>
             </td>
             <td>
-                <!--<div ng-dropdown-multiselect="" options="articles.allergic_multipleSelect_Data" selected-model="articles.allergic_multipleSelect_Selected" extra-settings="articles.allergic_multipleSelect_Settings"></div>-->
+                <div ng-dropdown-multiselect="" options="articles.allergic_multipleSelect_Data" selected-model="articles.allergic_multipleSelect_Selected" extra-settings="articles.allergic_multipleSelect_Settings"></div>
             </td>
         </tr>
         </tbody>

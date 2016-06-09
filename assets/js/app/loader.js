@@ -10,7 +10,7 @@ require('ng-dropdown-multiselect');
 require('ng-dialog');
 require('angular-cache');
 require('simplestorage.js');
-
+//require('ng-sanitize');
 
 var application = angular.module('application', [ 'angular-cache','ngDialog', 'angularjs-dropdown-multiselect','ngResource', 'ngRoute', 'pascalprecht.translate', 'cfp.hotkeys','formly', 'formlyBootstrap'])
 ;
@@ -40,6 +40,8 @@ application
   .controller('UsersListCtrl', require('./page/users'))
   .controller('UsersSingleListCtrl', require('./page/users'))
   .controller('UsersAddCtrl', require('./page/users'))
+  //.controller('ArticlesCtrl', require('./page/allergics'))
+
 
   ;
 
