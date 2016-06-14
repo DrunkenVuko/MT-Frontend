@@ -32,8 +32,8 @@
 -->
 
 <div class="outterBox" ng-app="application">
-<h3>Auswahl: {{articles.allergic_multipleSelect_Data}}</h3>
-<h3>Selected: {{articles.allergic_multipleSelect_Selected}}</h3>
+<h3>Auswahl: {{ngDialogData.allergicData}}</h3>
+<h3>Selected: {{ngDialogData.allergicDataSelected}}</h3>
 <h1>Artikel hinzufügen</h1>
 <table style="text-align: left; width: 100%;" border="1" cellpadding="2" cellspacing="2">
     <form name="form" ng-submit="allergics.add()" role="form">
@@ -68,7 +68,7 @@
             </td>
             <td>
                 <!--<div ng-dropdown-multiselect="" options="ngDialogData.allergicData" selected-model="ngDialogData.allergicDataSelected" extra-settings="ngDialogData.allergicSettings"></div>-->
-                <div ng-dropdown-multiselect="" options="articles.allergic_multipleSelect_Data" selected-model="articles.allergic_multipleSelect_Selected" extra-settings="articles.allergic_multipleSelect_Settings"></div>
+                <div ng-dropdown-multiselect="" options="ngDialogData.allergicData" selected-model="ngDialogData.allergicDataSelected" extra-settings="ngDialogData.allergicSettings"></div>
             </td>
         </tr>
         <tr>

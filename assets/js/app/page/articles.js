@@ -50,11 +50,11 @@ module.exports = [
             scrollable: true,
             smartButtonMaxItems: 3,
             smartButtonTextConverter: function(itemText, originalItem) {
-                if (itemText === 'Jhon') {
-                    return 'Jhonny!';
-                }
-
-                return itemText;
+                // if (itemText === 'Jhon') {
+                //     return 'Jhonny!';
+                // }
+                //
+                // return itemText;
             }
         };
 
@@ -171,6 +171,7 @@ module.exports = [
                 template: 'views/article/addArticles.html',
                 //controller: 'ArticlesCtrl',
                 //controllerAs: 'AllergicsValueCtrl'
+                scope: self.user,
                 data: {
                     allergicData: simpleStorage.get('Allergic'),
                     allergicDataSelected: '',
@@ -227,7 +228,7 @@ module.exports = [
         }
 
         function getAllergics() {
-            return self.allergic_multipleSelect_Data;
+            return simpleStorage.get('Allergic');
         }
     }];
 

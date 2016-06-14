@@ -61,8 +61,9 @@
 <button type="button"
         ng-dialog="views/article/addArticles.html"
         ng-dialog-class="ngdialog-theme-flat"
-        ng-dialog-controller="AllergicsValueCtrl"
-        ng-dialog-close-previous>
+        ng-dialog-controller="ArticlesCtrl"
+        ng-dialog-close-previous
+        ng-init="articles.openAdd()">
     Open modal text
 </button>
 
@@ -77,7 +78,8 @@
         <thead>
         <tr>
             <th colspan="9"> Globale Suche </th>
-            <th colspan="1"><button ng-click=articles.goToAdd()>Hinzufügen</button></th>
+            <!--<th colspan="1"><button ng-click=articles.goToAdd()>Hinzufügen</button></th>-->
+            <th colspan="1"><button ng-click=articles.openAdd()>Hinzufügen</button></th>
         </tr>
         <tr>
             <th colspan="10">
