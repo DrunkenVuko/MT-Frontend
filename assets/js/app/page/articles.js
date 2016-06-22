@@ -11,69 +11,19 @@ module.exports = [
 
         //simpleStorage.set('1', 'hello');
 
-        self.aaa =[
-            {id: 1, label: 'David'},
-            {id: 2, label: 'Jhon'},
-            {id: 3, label: 'Lisa'},
-            {id: 4, label: 'Nicole'},
-            {id: 5, label: 'Danny'}];
-
-
-for(var i = 0; i < self.aaa.length; i++)
-{
-    simpleStorage.set(self.aaa[i].id, self.aaa[i].label);
-
-}
-
-
         self.details = {};
-        self.x = 'Hello';
 
-        //self.username = localStorage.getItem('username');
-
-        self.save = function(){
-            var username = self.test1.val();
-            localStorage.setItem('username', username);
+        var newArticle = {
+            name : '',
+            price : '',
+            img : '',
+            allergics : [],
+            group : '2'
         };
-
-        // Cache ****************************************
-        self.keys= [];
-        self.cache = $cacheFactory('testCache');
-
-        self.addItem = function(itemKey, itemValue){
-            self.keys.push(itemKey);
-            self.cache.put(itemKey, itemValue);
-            console.log(self.keys);
-        };
-
-        self.getItem = function(itemKey){
-            self.currentItem = self.cache.get(itemKey);
-            var httpCache = $cacheFactory.get('$http');
-
-            var cachedResponse = httpCache.get('article/');
-            console.log("****************************************");
-
-
-
-
-        };
-
-        self.removeItem = function(itemKey){
-            self.keys = self.keys.filter(function(key){
-                return(key !== itemKey);
-            });
-            self.cache.remove(itemKey);
-        };
-
 
         // Allergene
         self.allergic_multipleSelect_Selected = [];
-        self.allergic_multipleSelect_Data = [
-            {id: 1, label: 'David'},
-            {id: 2, label: 'Jhon'},
-            {id: 3, label: 'Lisa'},
-            {id: 4, label: 'Nicole'},
-            {id: 5, label: 'Danny'}];
+        self.allergic_multipleSelect_Data = [];
 
         self.allergic_multipleSelect_Settings = {
             enableSearch: true,
@@ -89,36 +39,32 @@ for(var i = 0; i < self.aaa.length; i++)
         };
 
 
+        CommonRequest.allergics.getAll({
+            'x-access-token' : simpleStorage.get('secToken')
 
+        },  {}, function(response) {
+            if (response && response.message) {
+                self.list = response.message;
+                console.log('self.allergics.getAll wird ausgeführt und lokal gespeichert');
+                // Get all names from Server and save it local via 'Allergic'
+                var tempArr = [];
+                for(var i = 0; i < self.list.length; i++)
+                {
+                    var temp = {id : self.list[i].shortName, label: self.list[i].longName};
+                    tempArr[i] = temp;
+                    temp = '';
 
-        // // Gruppierungen
-        // self.group_multipleSelect_Selected = [];
-        // self.group_multipleSelect_Data = [
-        //     {id: 1, label: 'Vorspeise'},
-        //     {id: 2, label: 'Hauptspeise'},
-        //     {id: 3, label: 'Dessert'},
-        //     {id: 4, label: 'Spirituosen'},
-        //     {id: 5, label: 'etc'}];
-        //
-        // self.group_multipleSelect_Settings = {
-        //     enableSearch: true,
-        //     scrollable: true,
-        //     smartButtonMaxItems: 2,
-        //     smartButtonTextConverter: function(itemText, originalItem) {
-        //         if (itemText === 'Jhon') {
-        //             return 'Jhonny!';
-        //         }
-        //
-        //         return itemText;
-        //     }
-        // };
+                    // Lösung für Error: [filter:notarray] Expected array but received: {"id":"WZ","label":"Weizen"}
+                    self.allergic_multipleSelect_Data.push({id: self.list[i].shortName, label: self.list[i].longName});
+                }
+                console.log(self.allergic_multipleSelect_Data);
+                // simpleStorage.set('Allergic', tempArr, {TTL: 100000});
 
-        // CommonRequest.articles.getAll({'x-access-token' : getCookie('token')}, {}, function(response) {
-        //     if (response && response.message) {
-        //         self.list = response.message;
-        //         console.log('articles.getAll wird ausgeführt');
-        //     }
-        // });
+            }
+        }, function(response) {
+            console.log('error', response);
+        });
+
         CommonRequest.articles.getAll({}, {}, function(response) {
             if (response && response.message) {
                 console.log(response.messages);
@@ -126,17 +72,12 @@ for(var i = 0; i < self.aaa.length; i++)
                 console.log('articles.getAll wird ausgeführt');
             }
         });
-        // CommonRequest.articles.getArticleById({'x-access-token' : getCookie('token'), articleId : getCookie('tempArticleID')}, {}, function(response) {
-        //     if (response && response.message) {
-        //         console.log('article.getArticleById wird ausgeführt');
-        //         self.tempArticle = response.message;
-        //     }
-        // });
+
         self.updateArticle = function() {
             CommonRequest.users.changeProfile({
-                articleId : getCookie('tempArticleID')
+                articleId : simpleStorage.get('secToken')
             },  {
-                'x-access-token': getCookie('token'),
+                'x-access-token': simpleStorage.get('secToken'),
                 'name': self.tempArticle.name,
                 'price': self.tempArticle.price,
                 'allergics': self.tempArticle.allergics,
@@ -146,8 +87,9 @@ for(var i = 0; i < self.aaa.length; i++)
                 console.log('error', response);
             });
         };
+        
         self.add = function() {
-            CommonRequest.users.addArticle({
+            CommonRequest.articles.addArticle({
 
             }, {
                 'name': self.newArticle.name,
@@ -156,12 +98,14 @@ for(var i = 0; i < self.aaa.length; i++)
                 'img': self.newArticle.img,
                 'group': self.newArticle.group
             }, function(response) {
+                console.log(response.message);
                 console.log('error', response);
             });
         };
+        
         self.getAll = function () {
             CommonRequest.articles.getAll({
-                'x-access-token' : getCookie('token')
+                'x-access-token' : simpleStorage.get('secToken')
 
             },  {}, function(response) {
                 if (response && response.message) {
@@ -173,12 +117,13 @@ for(var i = 0; i < self.aaa.length; i++)
             });
         };
         self.goToAdd = function() {
+            getAllAllergics();
             document.location.href = ('/articles/add');
         };
 
         self.getById = function (articleID) {
             CommonRequest.articles.getArticleById({
-                'x-access-token' : getCookie('token'), articleId : articleID
+                'x-access-token' : simpleStorage.get('secToken'), articleId : articleID
 
             },  {}, function(response) {
                 self.tempArticle = response.message;
@@ -189,17 +134,61 @@ for(var i = 0; i < self.aaa.length; i++)
                 console.log('error', response);
             });
         };
-        self.openAdd = function clickToOpen() {
-            ngDialog.open({
-                controller: 'ArticlesCtrl',
-                template: 'views/article/addArticles.html'
-            });
-        };
 
         self.reload = function()
         {
             window.location.reload();
         }
+        /*##################################################################################
+         ####################### Allergics ##################################################
+         ##################################################################################*/
+        //{_id: "5744761e555738a40e2bf399", longName: "Roggen", shortName: "RG", __v: 0, $$hashKey: "object:49"}
+
+        function getAllAllergics() {
+            CommonRequest.allergics.getAll({
+                'x-access-token' : simpleStorage.get('secToken')
+
+            },  {}, function(response) {
+                if (response && response.message) {
+                    self.list = response.message;
+                    console.log('self.allergics.getAll wird ausgeführt und lokal gespeichert');
+                    // Get all names from Server and save it local via 'Allergic'
+                    var tempArr = [];
+                    for(var i = 0; i < self.list.length; i++)
+                    {
+                        var temp = {id : self.list[i].shortName, label: self.list[i].longName};
+                        tempArr[i] = temp;
+                        temp = '';
+                        self.allergic_multipleSelect_Data =  {id: self.list[i].shortName, label: self.list[i].longName}
+
+                    }
+                    // simpleStorage.set('Allergic', tempArr, {TTL: 100000});
+
+                }
+            }, function(response) {
+                console.log('error', response);
+            });
+        };
+
+        self.myEventListeners = {
+            onItemSelect: onItemSelect
+        };
+
+        // MultiSelect Drop down select - Event
+        function onItemSelect(property) {
+            var temp = [];
+            for(var i = 0; i < property.length; i++)
+            {
+                console.log(property.id);
+                temp.push(property.id);
+            }
+
+            console.log(property);
+            //self.newArticle.allergics.push(self.allergic_multipleSelect_Selected.id);
+            console.log(temp);
+        }
+
+
     }];
 
 
