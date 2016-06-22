@@ -30,7 +30,7 @@ module.exports = [
       }
     });
 
-    CommonRequest.users.getUserById({'x-access-token' : simpleStorage.get('secToken'), userId : getCookie('tempID')}, {}, function(response) {
+    CommonRequest.users.getUserById({'x-access-token' : simpleStorage.get('secToken'), userId : simpleStorage.get('userID')}, {}, function(response) {
       if (response && response.message) {
         console.log('users.getUserByIdl wird ausgeführt');
         console.log(response.message);
@@ -40,7 +40,7 @@ module.exports = [
 
     self.updateProfile = function() {
       CommonRequest.users.changeProfile({
-        userId : getCookie('tempID')
+        userId : simpleStorage.get('userID')
       },  {
         'x-access-token': simpleStorage.get('secToken'),
         'username' : self.tempUser.username,
@@ -81,11 +81,15 @@ module.exports = [
         user: self.goran, password: self.goran2
       }, function (response) {
         if (response && response.message) {
-          console.log(response);
-          simpleStorage.set('secToken', response.token, {TTL: 10000000}); // 2,7Std / Sekunden
+          console.log(response.userID);
+          simpleStorage.set('userID', response.userID, {TTL: 10000000});
+          simpleStorage.set('secToken', response.token); // 2,7Std / Sekunden
+
           //document.cookie = 'token=' + response.token;
           document.location.href = ('/users/');
           console.log('Der Sicherheitstoken', simpleStorage.get('secToken'));
+          console.log('Die UserID', simpleStorage.get('userID'));
+
         }
       });
     };

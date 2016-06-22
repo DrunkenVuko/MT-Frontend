@@ -51,7 +51,8 @@
             <td rowspan="1">Gruppierung<br>
             </td>
             <td>
-                <!--<div ng-dropdown-multiselect="" options="articles.group_multipleSelect_Data" selected-model="articles.group_multipleSelect_Selected" extra-settings="articles.group_multipleSelect_Settings"></div>-->
+                <div ng-dropdown-multiselect="" options="articles.groups_multipleSelect_Data" selected-model="articles.groups_multipleSelect_Selected" extra-settings="articles.groups_multipleSelect_Settings"
+                     events="articles.myEventListenersAllergics"></div>
             </td>
         </tr>
         <tr>
@@ -59,7 +60,7 @@
             </td>
             <td>
                 <div ng-dropdown-multiselect="" options="articles.allergic_multipleSelect_Data" selected-model="articles.allergic_multipleSelect_Selected" extra-settings="articles.allergic_multipleSelect_Settings"
-                     events="articles.myEventListeners"></div>
+                     events="articles.myEventListenersAllergics"></div>
             </td>
         </tr>
         <button ng-click=articles.add()>Hinzufügen</button>

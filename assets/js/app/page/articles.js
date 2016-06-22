@@ -27,7 +27,7 @@ module.exports = [
 
         self.allergic_multipleSelect_Settings = {
             enableSearch: true,
-            scrollable: true,
+            scrollable: false,
             smartButtonMaxItems: 3,
             smartButtonTextConverter: function(itemText, originalItem) {
                 if (itemText === 'Jhon') {
@@ -38,32 +38,16 @@ module.exports = [
             }
         };
 
+        // Allergene
+        self.groups_multipleSelect_Selected = [];
+        self.groups_multipleSelect_Data = [];
 
-        CommonRequest.allergics.getAll({
-            'x-access-token' : simpleStorage.get('secToken')
+        self.groups_multipleSelect_Settings = {
+            enableSearch: true,
+            scrollable: false,
+            smartButtonMaxItems: 1,
+        };
 
-        },  {}, function(response) {
-            if (response && response.message) {
-                self.list = response.message;
-                console.log('self.allergics.getAll wird ausgeführt und lokal gespeichert');
-                // Get all names from Server and save it local via 'Allergic'
-                var tempArr = [];
-                for(var i = 0; i < self.list.length; i++)
-                {
-                    var temp = {id : self.list[i].shortName, label: self.list[i].longName};
-                    tempArr[i] = temp;
-                    temp = '';
-
-                    // Lösung für Error: [filter:notarray] Expected array but received: {"id":"WZ","label":"Weizen"}
-                    self.allergic_multipleSelect_Data.push({id: self.list[i].shortName, label: self.list[i].longName});
-                }
-                console.log(self.allergic_multipleSelect_Data);
-                // simpleStorage.set('Allergic', tempArr, {TTL: 100000});
-
-            }
-        }, function(response) {
-            console.log('error', response);
-        });
 
         CommonRequest.articles.getAll({}, {}, function(response) {
             if (response && response.message) {
@@ -116,10 +100,6 @@ module.exports = [
                 console.log('error', response);
             });
         };
-        self.goToAdd = function() {
-            getAllAllergics();
-            document.location.href = ('/articles/add');
-        };
 
         self.getById = function (articleID) {
             CommonRequest.articles.getArticleById({
@@ -140,42 +120,49 @@ module.exports = [
             window.location.reload();
         }
         /*##################################################################################
-         ####################### Allergics ##################################################
+         ####################### DropDown ##################################################
          ##################################################################################*/
-        //{_id: "5744761e555738a40e2bf399", longName: "Roggen", shortName: "RG", __v: 0, $$hashKey: "object:49"}
 
-        function getAllAllergics() {
-            CommonRequest.allergics.getAll({
-                'x-access-token' : simpleStorage.get('secToken')
+        self.goToAdd = function() {
+            document.location.href = ('/articles/add');
+            CommonRequest.groups.getDropDown({
+                'userID': simpleStorage.get('userID'),
+                'x-access-token': simpleStorage.get('secToken')
 
-            },  {}, function(response) {
-                if (response && response.message) {
-                    self.list = response.message;
-                    console.log('self.allergics.getAll wird ausgeführt und lokal gespeichert');
-                    // Get all names from Server and save it local via 'Allergic'
-                    var tempArr = [];
-                    for(var i = 0; i < self.list.length; i++)
-                    {
-                        var temp = {id : self.list[i].shortName, label: self.list[i].longName};
-                        tempArr[i] = temp;
-                        temp = '';
-                        self.allergic_multipleSelect_Data =  {id: self.list[i].shortName, label: self.list[i].longName}
+            }, {}, function (response) {
+                console.log("Response.message_1", response.message_1);
+                console.log("Response.message_2", response.message_2);
 
-                    }
-                    // simpleStorage.set('Allergic', tempArr, {TTL: 100000});
+                self.listGroup = response.message_1;
+                self.listAllergic = response.message_2;
 
+                console.log('self.groups.getDropDown wird ausgeführt und lokal gespeichert');
+                for (var i = 0; i < self.listAllergic.length; i++) {
+                    self.allergic_multipleSelect_Data.push({
+                        id: self.listAllergic[i].shortName,
+                        label: self.listAllergic[i].longName
+                    });
                 }
-            }, function(response) {
+
+                for (var n = 0; n < self.listGroup.length; n++) {
+                    self.groups_multipleSelect_Data.push({
+                        id: self.listGroup[n].shortID,
+                        label: self.listGroup[n].name
+                    });
+                }
+
+                // simpleStorage.set('Allergic', tempArr, {TTL: 100000});
+            }, function (response) {
                 console.log('error', response);
             });
         };
 
-        self.myEventListeners = {
-            onItemSelect: onItemSelect
+        self.myEventListenersAllergics = {
+            onItemSelect: onItemSelectAllergics
         };
 
         // MultiSelect Drop down select - Event
-        function onItemSelect(property) {
+        function onItemSelectAllergics(property) {
             var temp = [];
             for(var i = 0; i < property.length; i++)
             {
@@ -187,10 +174,8 @@ module.exports = [
             //self.newArticle.allergics.push(self.allergic_multipleSelect_Selected.id);
             console.log(temp);
         }
-
-
     }];
-
+/*#######################################################################################*/
 
 function getCookie(cname) {
     var name = cname + '=';

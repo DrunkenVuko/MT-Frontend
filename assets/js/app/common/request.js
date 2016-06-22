@@ -75,6 +75,30 @@ module.exports = ['$resource', '$http', 'CommonConfig', function($resource, $htt
         method: 'PUT',
         url: 'allergics//:allergicId'
       }
+    }),
+    groups : generateResource('groups', 'backend', null, {
+      // die standard operationen (get post put delete) werden automatisch erzeugt
+      getGroupsById : {
+        method : 'GET',
+        url : 'groups//:groupId'
+      },
+      getAll : {
+        method : 'GET',
+        url : 'groups/',
+        cache: true
+      },
+      addGroups : {
+        method : 'POST',
+        url : 'groups/add/'
+      },
+      changeGroups : {
+        method: 'PUT',
+        url: 'groups/:groupId'
+      },
+      getDropDown : {
+        method: 'GET',
+        url: 'groups/dropDown/:userID'
+      }
     })
     // articles : generateResource('articles', 'backend', null, {
     //   getUserById : {
