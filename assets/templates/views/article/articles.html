@@ -57,11 +57,11 @@
 <!--<p> GetItem: <input type="text" ng-model="articles.getKey"> </p>-->
 <!--<p> <button ng-click="articles.getItem(articles.getKey)">Hinzufügen</button> </p>-->
 
-<button ng-click=articles.test()>Hinzufügen</button>
+
 <h1 ng-class="{ 'color-red' : !articles.list, 'color-lightgreen' : articles.list }">Artikel</h1>
 
 <div class="" ng-if="!articles.list">
-    User werden geladen ...
+    Artikel werden geladen ...
 </div>
 <body>
 <div class="table-container">
@@ -69,7 +69,8 @@
         <thead>
         <tr>
             <th colspan="9"> Globale Suche </th>
-            <th colspan="1"><button ng-click=articles.goToAdd()>Hinzufügen</button></th>
+            <th colspan="1"><a href="/articles/add" class="btn btn-gradient" onclick="articles.goToAdd()"><i class="fa fa-plus"> Hinzufügen</i></a>
+            </th>
         </tr>
         <tr>
             <th colspan="10">
@@ -90,7 +91,7 @@
             <th width="80">{{article.group}}</th>
             <th width="260" colspan="6">{{article.name}}</th>
             <th width="70">{{article.price}}€</th>
-            <th width="100">{{article.allergics.toString()}}</th>
+            <th width="100"><div ng-repeat="al in article.allergics">{{al.id}}</div></th>
             <td><form name="form" ng-submit="users.getById(user._id)" role="form">
                 <div class="form-actions">
                     <button type="submit" ng-disabled="form.$invalid || dataLoading" class="btn btn-danger">Edit</button>

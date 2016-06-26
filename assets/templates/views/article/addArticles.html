@@ -1,8 +1,7 @@
-<link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+<!--<link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />-->
 <link rel="stylesheet" type="text/css" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
 <script src="angular-dropdownMultiselect.js"></script>
 
-// Cache
 <script src="/js/plugins/angular-cache-2.1.0.min.js"></script>
 
 
@@ -15,17 +14,16 @@
     }
 
 </style>
-<h3>Auswahl: {{articles.allergic_multipleSelect_Data}}</h3>
-<h3>Selected: {{articles.allergic_multipleSelect_Selected}}</h3>
 
+<!--<div class="" ng-if="articles.goToAdd()">-->
+    <!--Inhalte werden geladen ...-->
+<!--</div>-->
+
+<!--Load Data...-->
+<div data-ng-init="articles.goToAdd()"> </div>
 <h1>Artikel hinzufügen</h1>
 <table style="text-align: left; width: 100%;" border="1" cellpadding="2" cellspacing="2">
-    <form name="form" ng-submit="articles.add()" role="form">
-        <div class="form-actions">
-            <button type="submit" ng-disabled="form.$invalid || dataLoading" class="btn btn-danger">Speichern</button>
-            <img ng-if="dataLoading" src=""/>
-        </div>
-
+    <form name="form" role="form">
         <tbody>
         <tr>
             <td colspan="5" rowspan="1">Artikeldetails</td>
@@ -52,7 +50,7 @@
             </td>
             <td>
                 <div ng-dropdown-multiselect="" options="articles.groups_multipleSelect_Data" selected-model="articles.groups_multipleSelect_Selected" extra-settings="articles.groups_multipleSelect_Settings"
-                     events="articles.myEventListenersAllergics"></div>
+                     events="articles.myEventListenersGroups"></div>
             </td>
         </tr>
         <tr>
@@ -63,8 +61,7 @@
                      events="articles.myEventListenersAllergics"></div>
             </td>
         </tr>
-        <button ng-click=articles.add()>Hinzufügen</button>
-
+        <a class="btn btn-gradient" onclick="articles.add()"><i class="fa-floppy-o"> Hinzufügen</i>
         </tbody>
     </form>
 </table>

@@ -13,12 +13,12 @@ module.exports = [
 
         self.details = {};
 
-        var newArticle = {
+        self.newArticle = {
             name : '',
             price : '',
             img : '',
             allergics : [],
-            group : '2'
+            group : ''
         };
 
         // Allergene
@@ -43,9 +43,10 @@ module.exports = [
         self.groups_multipleSelect_Data = [];
 
         self.groups_multipleSelect_Settings = {
-            enableSearch: true,
+            enableSearch: false,
             scrollable: false,
             smartButtonMaxItems: 1,
+            selectionLimit: 1
         };
 
 
@@ -73,14 +74,23 @@ module.exports = [
         };
         
         self.add = function() {
+            var temp = [];
+            for(var i = 0; i < self.allergic_multipleSelect_Selected.length; i++)
+            {
+                console.log("For: " , self.allergic_multipleSelect_Selected.id);
+                temp.push(self.allergic_multipleSelect_Selected);
+            }
+            console.log("Temp: ", temp);
+
             CommonRequest.articles.addArticle({
 
             }, {
                 'name': self.newArticle.name,
                 'price': self.newArticle.price,
-                'allergics': self.newArticle.allergics,
+                'allergics': self.allergic_multipleSelect_Selected,
                 'img': self.newArticle.img,
-                'group': self.newArticle.group
+                'group': self.newArticle.group,
+                'usrID': simpleStorage.get('userID')
             }, function(response) {
                 console.log(response.message);
                 console.log('error', response);
@@ -124,7 +134,6 @@ module.exports = [
          ##################################################################################*/
 
         self.goToAdd = function() {
-            document.location.href = ('/articles/add');
             CommonRequest.groups.getDropDown({
                 'userID': simpleStorage.get('userID'),
                 'x-access-token': simpleStorage.get('secToken')
@@ -161,18 +170,17 @@ module.exports = [
             onItemSelect: onItemSelectAllergics
         };
 
-        // MultiSelect Drop down select - Event
         function onItemSelectAllergics(property) {
-            var temp = [];
-            for(var i = 0; i < property.length; i++)
-            {
-                console.log(property.id);
-                temp.push(property.id);
-            }
 
-            console.log(property);
-            //self.newArticle.allergics.push(self.allergic_multipleSelect_Selected.id);
-            console.log(temp);
+            console.log("ID: ", property.id);
+        }
+
+
+        self.myEventListenersGroups= {
+            onItemSelect: onItemSelectGroups
+        };
+        function onItemSelectGroups(property) {
+            self.newArticle.group = property.id;
         }
     }];
 /*#######################################################################################*/
