@@ -57,6 +57,7 @@
 <!--<p> GetItem: <input type="text" ng-model="articles.getKey"> </p>-->
 <!--<p> <button ng-click="articles.getItem(articles.getKey)">Hinzufügen</button> </p>-->
 
+<div data-ng-init="articles.getAll()"> </div>
 
 <h1 ng-class="{ 'color-red' : !articles.list, 'color-lightgreen' : articles.list }">Artikel</h1>
 

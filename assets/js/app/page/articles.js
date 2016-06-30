@@ -18,7 +18,7 @@ module.exports = [
             price : '',
             img : '',
             allergics : [],
-            group : ''
+            group : []
         };
 
         // Allergene
@@ -49,15 +49,6 @@ module.exports = [
             selectionLimit: 1
         };
 
-
-        CommonRequest.articles.getAll({}, {}, function(response) {
-            if (response && response.message) {
-                console.log(response.messages);
-                self.list = response.message;
-                console.log('articles.getAll wird ausgeführt');
-            }
-        });
-
         self.updateArticle = function() {
             CommonRequest.users.changeProfile({
                 articleId : simpleStorage.get('secToken')
@@ -83,6 +74,7 @@ module.exports = [
             console.log("Temp: ", temp);
 
             CommonRequest.articles.addArticle({
+                'x-access-token': simpleStorage.get('secToken')
 
             }, {
                 'name': self.newArticle.name,
@@ -90,7 +82,7 @@ module.exports = [
                 'allergics': self.allergic_multipleSelect_Selected,
                 'img': self.newArticle.img,
                 'group': self.newArticle.group,
-                'usrID': simpleStorage.get('userID')
+                'userid': simpleStorage.get('userID')
             }, function(response) {
                 console.log(response.message);
                 console.log('error', response);
@@ -99,16 +91,16 @@ module.exports = [
         
         self.getAll = function () {
             CommonRequest.articles.getAll({
-                'x-access-token' : simpleStorage.get('secToken')
+                
 
-            },  {}, function(response) {
+            },  {
+                'x-access-token' : simpleStorage.get('secToken'),
+                'userid' : simpleStorage.get('userID')
+            }, function(response) {
                 if (response && response.message) {
                     self.list = response.message;
                     console.log('self.articles.getAll wird ausgeführt');
-                }
-            }, function(response) {
-                console.log('error', response);
-            });
+                }})
         };
 
         self.getById = function (articleID) {

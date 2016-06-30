@@ -51,7 +51,8 @@ module.exports = [
         'zip' : self.tempUser.zip,
         'city' : self.tempUser.city,
         'street' : self.tempUser.street,
-        'streetnumber' : self.tempUser.streetnumber
+        'streetnumber' : self.tempUser.streetnumber,
+        'Role': 'User'
       }, function(response) {
         console.log('error', response);
       });
