@@ -21,12 +21,15 @@
 
 <!--Load Data...-->
 <div data-ng-init="articles.goToAdd()"> </div>
+<h1>{{articles.groups_multipleSelect_Selected}}</h1>
+<h1>{{articles.allergic_multipleSelect_Selected}}</h1>
 <h1>Artikel hinzufügen</h1>
 <table style="text-align: left; width: 100%;" border="1" cellpadding="2" cellspacing="2">
     <form name="form" role="form">
         <tbody>
         <tr>
-            <td colspan="5" rowspan="1">Artikeldetails</td>
+            <td>Artikeldetails</td>
+            <th><a href="/articles/" class="btn btn-gradient" ng-click="articles.add()"><i class="fa fa-plus"> Hinzufügen</i></a>
         </tr>
         <tr>
             <td>Name<span class="required">*</span><br>
@@ -61,7 +64,6 @@
                      events="articles.myEventListenersAllergics"></div>
             </td>
         </tr>
-        <a class="btn btn-gradient" onclick="articles.add()"><i class="fa-floppy-o"> Hinzufügen</i>
         </tbody>
     </form>
 </table>

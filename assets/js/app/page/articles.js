@@ -45,8 +45,8 @@ module.exports = [
         self.groups_multipleSelect_Settings = {
             enableSearch: false,
             scrollable: false,
-            smartButtonMaxItems: 1,
-            selectionLimit: 1
+            smartButtonMaxItems: 3
+            //selectionLimit: 3
         };
 
         self.updateArticle = function() {
@@ -65,13 +65,20 @@ module.exports = [
         };
         
         self.add = function() {
+            // Pushe nur die _id hoch
             var temp = [];
             for(var i = 0; i < self.allergic_multipleSelect_Selected.length; i++)
             {
-                console.log("For: " , self.allergic_multipleSelect_Selected.id);
                 temp.push(self.allergic_multipleSelect_Selected);
             }
-            console.log("Temp: ", temp);
+
+            var temp2 = [];
+            for(var i = 0; i < self.groups_multipleSelect_Selected.length; i++)
+            {
+                temp2.push(self.groups_multipleSelect_Selected);
+            }
+            console.log("Temp2: ", temp2);
+            // Ende vom _id Push
 
             CommonRequest.articles.addArticle({
                 'x-access-token': simpleStorage.get('secToken')
@@ -80,7 +87,7 @@ module.exports = [
                 'price': self.newArticle.price,
                 'allergics': self.allergic_multipleSelect_Selected,
                 'img': self.newArticle.img,
-                'group': self.newArticle.group,
+                'group': self.groups_multipleSelect_Selected,
                 'userid': simpleStorage.get('userID')
             }, function(response) {
                 console.log(response.message);
@@ -89,10 +96,7 @@ module.exports = [
         };
         
         self.getAll = function () {
-            CommonRequest.articles.getAll({
-                
-
-            },  {
+            CommonRequest.articles.getAll({},  {
                 'x-access-token' : simpleStorage.get('secToken'),
                 'userid' : simpleStorage.get('userID')
             }, function(response) {
@@ -102,15 +106,24 @@ module.exports = [
                 }})
         };
 
-        self.getById = function (articleID) {
+        self.getById = function () {
             CommonRequest.articles.getArticleById({
-                'x-access-token' : simpleStorage.get('secToken'), articleId : articleID
+                'x-access-token' : simpleStorage.get('secToken'), articleId : simpleStorage.get('tempArticleID')
 
             },  {}, function(response) {
-                self.tempArticle = response.message;
+
+
+                // for (var i = 0; i < self.response.message.listAllergic.length; i++) {
+                //     self.allergic_multipleSelect_Data.push({
+                //         id: self.listAllergic[i].shortName,
+                //         label: self.listAllergic[i].longName
+                //     });
+                // }
+
+
+                self.newArticle = response.message;
                 console.log('article.getArticleById wird ausgeführt');
-                document.cookie = 'tempArticleID=' + response.message._id;
-                document.location.href = ('/articles/' + response.message._id);
+                console.log(response.message);
             }, function(response) {
                 console.log('error', response);
             });
@@ -119,6 +132,16 @@ module.exports = [
         self.reload = function()
         {
             window.location.reload();
+        }
+        
+        self.getArticleID = function()
+        {
+            return simpleStorage.get('tempArticleID');
+        }
+        self.saveArticleTempID = function(tempID)
+        {
+            simpleStorage.set('tempArticleID', tempID, {TTL: 100000});
+            self.getById();
         }
         /*##################################################################################
          ####################### DropDown ##################################################
@@ -139,15 +162,15 @@ module.exports = [
                 console.log('self.groups.getDropDown wird ausgeführt und lokal gespeichert');
                 for (var i = 0; i < self.listAllergic.length; i++) {
                     self.allergic_multipleSelect_Data.push({
-                        id: self.listAllergic[i].shortName,
+                        id: self.listAllergic[i]._id,
                         label: self.listAllergic[i].longName
                     });
                 }
 
                 for (var n = 0; n < self.listGroup.length; n++) {
                     self.groups_multipleSelect_Data.push({
-                        id: self.listGroup[n].shortID,
-                        label: self.listGroup[n].name
+                        id: self.listGroup[n]._id,
+                        label: self.listGroup[n].name,
                     });
                 }
 
@@ -171,7 +194,7 @@ module.exports = [
             onItemSelect: onItemSelectGroups
         };
         function onItemSelectGroups(property) {
-            self.newArticle.group = property.id;
+            console.log("ID: ", property.id);
         }
     }];
 /*#######################################################################################*/

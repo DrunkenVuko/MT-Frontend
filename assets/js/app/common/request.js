@@ -43,7 +43,7 @@ module.exports = ['$resource', '$http', 'CommonConfig', function($resource, $htt
         url : 'article/:articleId'
       },
       getAll : {
-        method : 'GET',
+        method : 'POST',
         url : 'article/',
         cache: true
       },

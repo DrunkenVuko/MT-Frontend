@@ -1,0 +1,71 @@
+<script src="bower_components/angular-formly/dist/formly.min.js"></script>
+<script src="bower_components/angular-formly-templates-bootstrap/dist/angular-formly-templates-bootstrap.min.js"></script>
+
+<script>
+    input[type=text] {
+        width: 100%;
+        display: block;
+        margin-bottom: 10px;
+        background-color: yellow;
+        border: 0px;
+    }
+
+</script>
+
+<div data-ng-init="articles.getById()"> </div>
+
+<h1 ng-class="{ 'color-red' : !articles.newArticle, 'color-lightgreen' : articles.newArticle }">{{articles.newArticle.firstname}} {{articles.newArticle.lastname}}</h1>
+
+<div class="" ng-if="!articles.newArticle">
+    User werden geladen ...
+</div>
+<h4>1.{{articles.newArticle}}</h4>
+<h1>2.{{}}</h1>
+<h1></h1>
+<!--<formly-form model="articles.newArticle" fields="articles.userFields">-->
+    <!--<button type="submit" class="btn btn-default" ng-click="vm.submit(vm.user)">Submit</button>-->
+<!--</formly-form>-->
+
+<table style="text-align: left; width: 100%;" border="1" cellpadding="2"
+       cellspacing="2">
+    <form name="form" ng-submit="articles.updateArticle()" role="form">
+    <tr>
+        <td colspan="5" rowspan="1">Artikel:</td>
+    </tr>
+    <tr>
+        <td colspan="1" rowspan="4"><img src="articles.newArticle.img" width="100%" height="100%"><br>
+        </td>
+        <td>Details<br>
+        </td>
+        <td><button ng-click=articles.updateArticle()>Speichern</button><br>
+        </td>
+    </tr>
+    <tr>
+        <td>Name<br>
+        </td>
+        <td><input name="name" type="text" ng-model="articles.newArticle.name" width="100%" ng-change="articles.updateArticle()"> </td>
+    </tr>
+    <tr>
+        <td>Preis<br>
+        </td>
+        <td><input name="price" type="text" ng-model="articles.newArticle.price" width="100%"> </td>
+    </tr>
+        <tr>
+            <td rowspan="1">Gruppierung<br>
+            </td>
+            <td>
+                <div ng-dropdown-multiselect="" options="articles.groups_multipleSelect_Data" selected-model="articles.groups_multipleSelect_Selected" extra-settings="articles.groups_multipleSelect_Settings"
+                     events="articles.myEventListenersGroups"></div>
+            </td>
+        </tr>
+        <tr>
+            <td rowspan="1">Allergene<br>
+            </td>
+            <td>
+                <div ng-dropdown-multiselect="" options="articles.allergic_multipleSelect_Data" selected-model="articles.allergic_multipleSelect_Selected" extra-settings="articles.allergic_multipleSelect_Settings"
+                     events="articles.myEventListenersAllergics"></div>
+            </td>
+        </tr>
+    </tbody>
+</form>
+</table>

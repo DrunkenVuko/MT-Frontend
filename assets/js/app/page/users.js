@@ -109,7 +109,7 @@ module.exports = [
     };
 
     self.goToAdd = function() {
-      document.location.href = ('/users/add');
+      document.location.href = ('/add/users/');
     };
 
     self.getById = function (theDesiredUserId) {

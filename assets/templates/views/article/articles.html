@@ -57,7 +57,7 @@
 <!--<p> GetItem: <input type="text" ng-model="articles.getKey"> </p>-->
 <!--<p> <button ng-click="articles.getItem(articles.getKey)">Hinzufügen</button> </p>-->
 
-
+<div data-ng-init="articles.getAll()"> </div>
 <h1 ng-class="{ 'color-red' : !articles.list, 'color-lightgreen' : articles.list }">Artikel</h1>
 
 <div class="" ng-if="!articles.list">
@@ -69,7 +69,7 @@
         <thead>
         <tr>
             <th colspan="9"> Globale Suche </th>
-            <th colspan="1"><a href="/articles/add" class="btn btn-gradient" onclick="articles.goToAdd()"><i class="fa fa-plus"> Hinzufügen</i></a>
+            <th colspan="1"><a href="/add/articles/" class="btn btn-gradient" onclick="articles.goToAdd()"><i class="fa fa-plus"> Hinzufügen</i></a>
             </th>
         </tr>
         <tr>
@@ -92,12 +92,8 @@
             <th width="260" colspan="6">{{article.name}}</th>
             <th width="70">{{article.price}}€</th>
             <th width="100"><div ng-repeat="al in article.allergics">{{al.id}}</div></th>
-            <td><form name="form" ng-submit="users.getById(user._id)" role="form">
-                <div class="form-actions">
-                    <button type="submit" ng-disabled="form.$invalid || dataLoading" class="btn btn-danger">Edit</button>
-                    <img ng-if="dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
-                </div>
-            </form></td>
+            <td><a href="/articles/{{article._id}}" class="btn btn-gradient" ng-click="articles.saveArticleTempID(article._id)"><i class="fa fa-plus"> Edit</i></a>
+            </td>
         </tr>
         </tbody>
     </table>

@@ -37,7 +37,7 @@ module.exports = ['$routeProvider', '$locationProvider', '$httpProvider', 'Commo
           templateUrl : 'views/login.html',
           resolve : independentPageResolver,
       })
-      .when('/users/add', {
+      .when('/add/users/', {
           controller : 'UsersAddCtrl as users',
           templateUrl : 'views/user/addUser.html',
           resolve : independentPageResolver,
@@ -49,7 +49,7 @@ module.exports = ['$routeProvider', '$locationProvider', '$httpProvider', 'Commo
       })
       .when('/users/:id', {
           controller : 'UsersSingleListCtrl as users',
-          templateUrl : 'views/user/usersList.html',
+          templateUrl : 'views/user/editUsers.html',
           resolve : independentPageResolver,
       })
       .when('/articles', {
@@ -57,9 +57,14 @@ module.exports = ['$routeProvider', '$locationProvider', '$httpProvider', 'Commo
           templateUrl : 'views/article/articles.html',
           resolve : independentPageResolver,
       })
-      .when('/articles/add', {
+      .when('/add/articles/', {
           controller : 'ArticlesCtrl as articles',
           templateUrl : 'views/article/addArticles.html',
+          resolve : independentPageResolver,
+      })
+      .when('/articles/:id', {
+          controller : 'ArticlesCtrl as articles',
+          templateUrl : 'views/article/editArticles.html',
           resolve : independentPageResolver,
       })
     // .when('/register', {
