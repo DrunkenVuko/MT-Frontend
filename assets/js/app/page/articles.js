@@ -100,10 +100,10 @@ module.exports = [
                 'x-access-token' : simpleStorage.get('secToken'),
                 'userid' : simpleStorage.get('userID')
             }, function(response) {
-                if (response && response.message) {
-                    self.list = response.message;
-                    console.log('self.articles.getAll wird ausgeführt');
-                }})
+
+                self.list = response.message;
+                console.log('self.articles.getAll wird ausgeführt');
+                })
         };
 
         self.getById = function () {

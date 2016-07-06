@@ -85,13 +85,13 @@
             <th>Allergene</th>
         </tr>
         </thead>
-        <tbody ng-if="articles.list" ng-repeat="article in articles.list | filter:filterAll">
+        <tbody ng-if="articles.list" ng-repeat="article in articles.list | filter:filterAll" ng-re>
         <tr>
             <th width="160"><img src="{{article.img}}" width="100%" max-width="100%"></th>
-            <th width="80">{{article.group}}</th>
+            <th width="80"><div ng-repeat="grp in article.group" ng-re> {{grp}}</div></th>
             <th width="260" colspan="6">{{article.name}}</th>
             <th width="70">{{article.price}}€</th>
-            <th width="100"><div ng-repeat="al in article.allergics">{{al.id}}</div></th>
+            <th width="80"><div ng-repeat="all in article.allergics" ng-re> {{all}}</div></th>
             <td><a href="/articles/{{article._id}}" class="btn btn-gradient" ng-click="articles.saveArticleTempID(article._id)"><i class="fa fa-plus"> Edit</i></a>
             </td>
         </tr>
