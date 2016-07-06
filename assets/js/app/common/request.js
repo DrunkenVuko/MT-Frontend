@@ -53,7 +53,7 @@ module.exports = ['$resource', '$http', 'CommonConfig', function($resource, $htt
       },
       changeArticle : {
         method: 'PUT',
-        url: 'article/:articleId'
+        url: 'article/:id'
       }
     }),
     allergics : generateResource('allergic', 'backend', null, {

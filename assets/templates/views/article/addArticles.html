@@ -4,54 +4,59 @@
 
 <script src="/js/plugins/angular-cache-2.1.0.min.js"></script>
 
+<link rel="stylesheet" type="text/css" href="http://codepen.io/victordarras/pen/hJHAm.css" />
+<script src="http://codepen.io/victordarras/pen/hJHAm.js"></script>
 
 <style>
-    div.outterBox {
-        max-width:500px;
-        margin: auto;
-        border: 1px solid #adacaa;
-        align-items:center;
+
+    h1 {
+        color: white;
+        font-family: "Andale Mono";
     }
 
+    i{
+        color: white;
+    }
 </style>
-
-<!--<div class="" ng-if="articles.goToAdd()">-->
-    <!--Inhalte werden geladen ...-->
-<!--</div>-->
 
 <!--Load Data...-->
 <div data-ng-init="articles.goToAdd()"> </div>
-<h1>{{articles.groups_multipleSelect_Selected}}</h1>
-<h1>{{articles.allergic_multipleSelect_Selected}}</h1>
+
+
+<!--<h1>{{articles.groups_multipleSelect_Selected}}</h1>-->
+<!--<h1>{{articles.allergic_multipleSelect_Selected}}</h1>-->
+
 <h1>Artikel hinzufügen</h1>
-<table style="text-align: left; width: 100%;" border="1" cellpadding="2" cellspacing="2">
-    <form name="form" role="form">
-        <tbody>
+<div class="table-container">
+    <table st-table="rowCollection" class="table table-striped">
+        <thead>
         <tr>
-            <td>Artikeldetails</td>
-            <th><a href="/articles/" class="btn btn-gradient" ng-click="articles.add()"><i class="fa fa-plus"> Hinzufügen</i></a>
+            <th colspan="4"> Artikeldetails </th>
+            <th colspan="2"><a href="/articles/" class="btn btn-gradient" ng-click="articles.add()"><i class="fa fa-plus"> Hinzufügen</i></a></th>
         </tr>
+        </thead>
+        <tbody>
         <tr>
             <td>Name<span class="required">*</span><br>
             </td>
-            <td><input name="name" type="text" ng-model="articles.newArticle.name" width="100%"> </td>
+            <td colspan="4"><input name="name" type="text" ng-model="articles.newArticle.name" width="100%"> </td>
         </tr>
         <tr>
             <td>Preis<span class="required">*</span><br>
             </td>
-            <td><input name="price" type="text" ng-model="articles.newArticle.price" width="100%"> </td>
+            <td colspan="4"><input name="price" type="text" ng-model="articles.newArticle.price" width="100%"> </td>
         </tr>
         <tr>
             <td>Bild<br>
             </td>
-            <td><div class="element-file"><label class="large" ><input type="file" class="file_input" name="file" /></label></div>
+            <td colspan="4"><div class="element-file"><label class="large" ><input type="file" class="file_input" name="file" /></label></div>
             </td>
         </tr>
 
         <tr>
             <td rowspan="1">Gruppierung<br>
             </td>
-            <td>
+            <td colspan="4">
                 <div ng-dropdown-multiselect="" options="articles.groups_multipleSelect_Data" selected-model="articles.groups_multipleSelect_Selected" extra-settings="articles.groups_multipleSelect_Settings"
                      events="articles.myEventListenersGroups"></div>
             </td>
@@ -59,7 +64,7 @@
         <tr>
             <td rowspan="1">Allergene<br>
             </td>
-            <td>
+            <td colspan="4">
                 <div ng-dropdown-multiselect="" options="articles.allergic_multipleSelect_Data" selected-model="articles.allergic_multipleSelect_Selected" extra-settings="articles.allergic_multipleSelect_Settings"
                      events="articles.myEventListenersAllergics"></div>
             </td>

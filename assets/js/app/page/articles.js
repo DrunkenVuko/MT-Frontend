@@ -13,6 +13,9 @@ module.exports = [
 
         self.details = {};
 
+        self.tempAllergics = [];
+
+
         self.newArticle = {
             name : '',
             price : '',
@@ -50,15 +53,31 @@ module.exports = [
         };
 
         self.updateArticle = function() {
-            CommonRequest.users.changeProfile({
-                articleId : simpleStorage.get('secToken')
+            // Pushe nur die _id hoch
+            var temp = [];
+            for(var i = 0; i < self.allergic_multipleSelect_Selected.length; i++)
+            {
+                temp.push(self.allergic_multipleSelect_Selected);
+            }
+
+            var temp2 = [];
+            for(var i = 0; i < self.groups_multipleSelect_Selected.length; i++)
+            {
+                temp2.push(self.groups_multipleSelect_Selected);
+            }
+            console.log("Temp2: ", temp2);
+            // Ende vom _id Push
+            
+            CommonRequest.articles.changeArticle({
+                id : simpleStorage.get('tempArticleID')
             },  {
                 'x-access-token': simpleStorage.get('secToken'),
-                'name': self.tempArticle.name,
-                'price': self.tempArticle.price,
-                'allergics': self.tempArticle.allergics,
-                'img': self.tempArticle.img,
-                'group': self.tempArticle.group
+                'name': self.newArticle.name,
+                'price': self.newArticle.price,
+                'allergics': self.allergic_multipleSelect_Selected,
+                'img': self.newArticle.img,
+                'group': self.groups_multipleSelect_Selected,
+                'userid': simpleStorage.get('userID'),
             }, function(response) {
                 console.log('error', response);
             });
@@ -112,18 +131,26 @@ module.exports = [
 
             },  {}, function(response) {
 
-
-                // for (var i = 0; i < self.response.message.listAllergic.length; i++) {
-                //     self.allergic_multipleSelect_Data.push({
-                //         id: self.listAllergic[i].shortName,
-                //         label: self.listAllergic[i].longName
-                //     });
-                // }
-
-
                 self.newArticle = response.message;
+                
+
+                // Umwandlung für Dropdown, somit werden die bereits ausgewählten Sachen angezeigt
+                for (var i = 0; i < response.message.allergics.length; i++) {
+                    self.allergic_multipleSelect_Selected.push({
+                        id: response.message.allergics[i]._id,
+                        label: response.message.allergics[i].longName
+                    });
+                }
+                for (var i = 0; i < response.message.group.length; i++) {
+                    self.groups_multipleSelect_Selected.push({
+                        id: response.message.group[i]._id,
+                        label: response.message.group[i].name
+                    });
+                }
+                console.log(self.allergic_multipleSelect_Selected);
+
                 console.log('article.getArticleById wird ausgeführt');
-                console.log(response.message);
+
             }, function(response) {
                 console.log('error', response);
             });
@@ -173,12 +200,12 @@ module.exports = [
                         label: self.listGroup[n].name,
                     });
                 }
-
                 // simpleStorage.set('Allergic', tempArr, {TTL: 100000});
             }, function (response) {
                 console.log('error', response);
             });
         };
+
 
         self.myEventListenersAllergics = {
             onItemSelect: onItemSelectAllergics

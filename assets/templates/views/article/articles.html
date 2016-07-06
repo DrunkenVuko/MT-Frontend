@@ -1,88 +1,80 @@
+
+
 <script src="http://pixelcrafts.com/soo/lib/angular/angular.min.js"></script>
 <script src="http://pixelcrafts.com/soo/lib/angular/ngDialog.min.js"></script>
 
-<link rel="stylesheet" href="http://pixelcrafts.com/soo/css/ngDialog-theme-default.css">
-<link rel="stylesheet" href="http://pixelcrafts.com/soo/css/ngDialog.css">
+
+<link rel="stylesheet" type="text/css" href="https://dl.dropboxusercontent.com/s/1y064hvghdwkayt/table.css" />
+<script src="http://codepen.io/victordarras/pen/hJHAm.js"></script>
+
+<!--<link rel="stylesheet" href="http://pixelcrafts.com/soo/css/ngDialog-theme-default.css">-->
+<!--<link rel="stylesheet" href="http://pixelcrafts.com/soo/css/ngDialog.css">-->
+
+<!--http://codepen.io/zavoloklom/full/IGkDz/
+<link rel="stylesheet" href="http://codepen.io/zavoloklom/pen/IGkDz.css">
+<link rel="stylesheet/less" type="text/css" href="http://codepen.io/zavoloklom/pen/IGkDz.less" />
+<script src="http://codepen.io/zavoloklom/pen/IGkDz.js"></script>-->
+
+<!--http://codepen.io/lukepeters/full/bfFur/-->
+<!--<link rel="stylesheet" href="http://codepen.io/lukepeters/pen/bfFur.css">-->
+
+<!--http://codepen.io/jordyvanraaij/full/jlAqp/-->
+<!--<link rel="stylesheet" href="http://codepen.io/jordyvanraaij/pen/jlAqp.css">-->
 
 <style>
-    /*
-    Max width before this PARTICULAR table gets nasty
-    This query will take effect for any screen smaller than 760px
-    and also iPads specifically.
-    */
-    @media
-    only screen and (max-width: 760px),
-    (min-device-width: 768px) and (max-device-width: 1024px)  {
 
-        /* Force table to not be like tables anymore */
-        table, thead, tbody, th, td, tr {
-            display: block;
-            text-align: center;
-        }
+    h1 {
+        color: white;
+        font-family: 'Helvetica Neue', Helvetica, Arial, serif;
+    }
 
-        /* Hide table headers (but not display: none;, for accessibility) */
-        thead tr {
-            position: absolute;
-            top: -9999px;
-            left: -9999px;
-        }
+    i{
+        color: white;
+    }
+    div.table-container {
+        width: 90%;
+        margin: auto;
+        border: 0px solid #73AD21;
+    }
 
-        tr { border: 1px solid #ccc; }
-
-        td {
-            /* Behave  like a "row" */
-            border: none;
-            border-bottom: 1px solid #eee;
-            position: relative;
-            padding-left: 50%;
-        }
-
-        td:before {
-            /* Now like a table header */
-            position: absolute;
-            /* Top/left values mimic padding */
-            top: 6px;
-            left: 6px;
-            width: 45%;
-            padding-right: 10px;
-            white-space: nowrap;
-        }
+    table.table.table-striped{
+        border: 0px solid #73AD21;
+        width: 100%;
+    }
+    table {
+        width: 100%;
     }
 </style>
 
-<!--<p> Key: <input type="text" ng-model="articles.test1"> </p>-->
-<!--<p> Value: <input type="text" ng-model="articles.test2"> </p>-->
-<!--<p> <button ng-click="articles.addItem(articles.test1, articles.test2)" >Hinzufügen</button> </p>-->
-<!--<hr/>-->
-<!--<p> GetItem: <input type="text" ng-model="articles.getKey"> </p>-->
-<!--<p> <button ng-click="articles.getItem(articles.getKey)">Hinzufügen</button> </p>-->
 
 <div data-ng-init="articles.getAll()"> </div>
-<h1 ng-class="{ 'color-red' : !articles.list, 'color-lightgreen' : articles.list }">Artikel</h1>
+<h1 ng-class="{ 'color-red' : !articles.list, 'color-white' : articles.list }">Artikelkatalog</h1>
 
 <div class="" ng-if="!articles.list">
     Artikel werden geladen ...
 </div>
+
 <body>
-<div class="table-container">
+<div class="table-container" bs-width="100%">
     <table st-table="rowCollection" class="table table-striped">
         <thead>
         <tr>
             <th colspan="9"> Globale Suche </th>
-            <th colspan="1"><a href="/add/articles/" class="btn btn-gradient" onclick="articles.goToAdd()"><i class="fa fa-plus"> Hinzufügen</i></a>
+            <th colspan="2"><a href="/add/articles/" class="btn btn-gradient" onclick="articles.goToAdd()"><i class="fa fa-plus"> Hinzufügen</i></a>
             </th>
         </tr>
         <tr>
-            <th colspan="10">
+            <th colspan="11">
                 <input st-search placeholder="global search" class="input-sm form-control" type="search" ng-model="filterAll"/>
             </th>
         </tr>
-        <tr colspan="10">
+        <tr colspan="9">
             <th>Bild</th>
             <th>Gruppierung</th>
             <th colspan="6">Name</th>
             <th>Preis</th>
             <th>Allergene</th>
+            <th></th>
         </tr>
         </thead>
         <tbody ng-if="articles.list" ng-repeat="article in articles.list | filter:filterAll" ng-re>
@@ -92,8 +84,8 @@
             <th width="260" colspan="6">{{article.name}}</th>
             <th width="70">{{article.price}}€</th>
             <th width="80"><div ng-repeat="all in article.allergics" ng-re> {{all}}</div></th>
-            <td><a href="/articles/{{article._id}}" class="btn btn-gradient" ng-click="articles.saveArticleTempID(article._id)"><i class="fa fa-plus"> Edit</i></a>
-            </td>
+            <th><a href="/articles/{{article._id}}" class="btn btn-gradient" ng-click="articles.saveArticleTempID(article._id)"><i class="fa fa-pencil-square-o" aria-hidden="true"> Edit</i></a>
+            </th>
         </tr>
         </tbody>
     </table>
