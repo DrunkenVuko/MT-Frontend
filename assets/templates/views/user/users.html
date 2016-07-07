@@ -139,8 +139,7 @@
 <div ng-if="users.simpleStorage.get('secToken') == null">
     {{users.checkToken()}}
 </div>
-<div ng-if="users.simpleStorage.get('secToken') != null">
-    {{users.checkToken()}}
+
 
 <header>
         <nav>
@@ -167,7 +166,7 @@
 
 
 
-<h1 ng-class="{ 'color-red' : !users.list, 'color-white' : users.list }">Users (all PW: "temp")</h1 ng-class="{ 'color-red' : !users.list, 'color-white' : users.list }">
+<h1 ng-class="{ 'color-red' : !users.list, 'color-white' : users.list }">Benutzer</h1>
 
 <div class="" ng-if="!users.list">
     User werden geladen ...
@@ -224,7 +223,7 @@
 </body>
 
 </div>
-</div>
+
 </div>
 <!--<form name="form" ng-submit="users.temp()" role="form">-->
 <!--<div class="form-actions">-->
