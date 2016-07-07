@@ -17,6 +17,10 @@
     }
 
 </style>
+<!--Check Token -> Pass    else    -> Redirect-->
+<div ng-if="articles.simpleStorage.get('secToken') == null">
+    {{articles.checkTokenArticle()}}
+</div>
 
     <div data-ng-init="articles.getById()"> </div>
 

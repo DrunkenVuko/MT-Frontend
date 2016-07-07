@@ -229,12 +229,21 @@ module.exports = [
 
         self.checkToken = function()
         {
-            if(simpleStorage.get('secToken') == null)
-            {
+            if(simpleStorage.get('secToken') == null) {
                 document.location.href = ('/users/authenticate');
-                console.log("Done");
+                console.log("Umleitung zu Login");
             }
         }
+        
+        self.checkTokenArticle = function()
+        {
+            if(simpleStorage.get('tempArticleID') == null)
+            {
+                document.location.href = ('/articles');
+                console.log("Umleitung zu Artikel");
+            }
+        }
+
     }];
 /*#######################################################################################*/
 
