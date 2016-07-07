@@ -1,144 +1,94 @@
-/**
- * Created by Vuko on 24.05.16.
- */
 module.exports = [
-    'CommonRequest', 'ngDialog',
+    'CommonRequest',
     function(
-        CommonRequest, ngDialog
+        CommonRequest
     ) {
         'use strict';
         var self = this;
-
         self.details = {};
-        self.x = "Hello";
+        var simpleStorage = require('simpleStorage.js');
 
-        // Allergene
-        self.allergic_multipleSelect_Selected = [];
-        self.allergic_multipleSelect_Data = [
-            {id: 1, label: "David"},
-            {id: 2, label: "Jhon"},
-            {id: 3, label: "Lisa"},
-            {id: 4, label: "Nicole"},
-            {id: 5, label: "Danny"}];
 
-        self.allergic_multipleSelect_Settings = {
-            enableSearch: true,
-            scrollable: true,
-            smartButtonMaxItems: 3,
-            smartButtonTextConverter: function(itemText, originalItem) {
-                if (itemText === 'Jhon') {
-                    return 'Jhonny!';
-                }
-
-                return itemText;
-            }
+            
+        self.newAllergic = {
+            longName : '',
+            shortName : '',
         };
-        
 
-        // CommonRequest.articles.getAll({'x-access-token' : getCookie('token')}, {}, function(response) {
-        //     if (response && response.message) {
-        //         self.list = response.message;
-        //         console.log('articles.getAll wird ausgeführt');
-        //     }
-        // });
-        CommonRequest.articles.getAll({}, {}, function(response) {
-            if (response && response.message) {
-                console.log(response.messages);
-                self.list = response.message;
-                console.log('articles.getAll wird ausgeführt');
-            }
-        });
-        // CommonRequest.articles.getArticleById({'x-access-token' : getCookie('token'), articleId : getCookie('tempArticleID')}, {}, function(response) {
-        //     if (response && response.message) {
-        //         console.log('article.getArticleById wird ausgeführt');
-        //         self.tempArticle = response.message;
-        //     }
-        // });
-        self.updateArticle = function() {
-            CommonRequest.users.changeProfile({
-                articleId : getCookie('tempArticleID')
+
+        self.updateAllergic = function() {
+            CommonRequest.allergics.changeAllergic({
             },  {
-                "x-access-token": getCookie('token'),
-                "name": self.tempArticle.name,
-                "price": self.tempArticle.price,
-                "allergics": self.tempArticle.allergics,
-                "img": self.tempArticle.img,
-                "group": self.tempArticle.group
+                'x-access-token': simpleStorage.get('secToken'),
+                'longName' : self.tempAllergics.longName,
+                'shortName' : self.tempAllergics.shortName,
+                'userid' : simpleStorage.get('userID'),
+                'id' : simpleStorage.get('tempAllergicID')
             }, function(response) {
                 console.log('error', response);
             });
         };
-        self.add = function() {
-            CommonRequest.users.addArticle({
 
+        self.add = function() {
+            CommonRequest.allergics.addAllergic({
+                'x-access-token': simpleStorage.get('secToken')
             }, {
-                "name": self.newArticle.name,
-                "price": self.newArticle.price,
-                "allergics": self.newArticle.allergics,
-                "img": self.newArticle.img,
-                "group": self.newArticle.group
+                'longName' : self.newAllergic.longName,
+                'shortName' : self.newAllergic.shortName,
+                'userid': simpleStorage.get('userID')
             }, function(response) {
                 console.log('error', response);
             });
         };
+
         self.getAll = function () {
-            CommonRequest.articles.getAll({
-                'x-access-token' : getCookie('token')
+            CommonRequest.allergics.getAll({
+                'x-access-token' : simpleStorage.get('secToken')
 
             },  {}, function(response) {
                 if (response && response.message) {
                     self.list = response.message;
-                    console.log('self.articles.getAll wird ausgeführt');
+                    console.log('self.getAll wird ausgeführt');
                 }
             }, function(response) {
                 console.log('error', response);
             });
         };
+
         self.goToAdd = function() {
-            document.location.href = ('/articles/add');
+            //document.location.href = ('/add/allergics/');
         };
 
-        self.getById = function (articleID) {
-            CommonRequest.articles.getArticleById({
-                'x-access-token' : getCookie('token'), articleId : articleID
+        self.getById = function () {
+            CommonRequest.allergics.getAllergicById({
+                'x-access-token' : simpleStorage.get('secToken'),
+                'userid' : simpleStorage.get('userID'),
+                'id' : simpleStorage.get('tempAllergicID')
 
             },  {}, function(response) {
-                self.tempArticle = response.message;
-                console.log('article.getArticleById wird ausgeführt');
-                document.cookie = 'tempArticleID=' + response.message._id;
-                document.location.href = ('/articles/' + response.message._id);
+                self.tempAllergics = response.message;
+                console.log('self.getById wird ausgeführt');
+                console.log(response.message);
             }, function(response) {
                 console.log('error', response);
             });
         };
-        self.openAdd = function clickToOpen() {
-            ngDialog.open({
-                controller: 'ArticlesCtrl',
-                template: 'views/article/addArticles.html'
-            });
-        };
 
-        self.reload = function()
+        self.saveAllergicTempID = function(tempID)
         {
-            window.location.reload();
+            simpleStorage.set('tempAllergicID', tempID, {TTL: 100000});
+            self.getById();
+        }
+        
+        self.checkToken = function()
+        {
+            if(simpleStorage.get('secToken') == null)
+            {
+                document.location.href = ('/allergics/authenticate');
+                console.log("Done");
+            }
         }
     }];
 
 
-function getCookie(cname) {
-    var name = cname + '=';
-    var ca = document.cookie.split(';');
-    for(var i = 0; i <ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0)===' ') {
-            c = c.substring(1);
-        }
-        if (c.indexOf(name) === 0) {
-            return c.substring(name.length,c.length);
-        }
-    }
-    return '';
-}
-function delCookie(cname) {
-    document.cookie = cname + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-}
+

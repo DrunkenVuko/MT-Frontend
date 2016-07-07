@@ -67,6 +67,36 @@ module.exports = ['$routeProvider', '$locationProvider', '$httpProvider', 'Commo
           templateUrl : 'views/article/editArticles.html',
           resolve : independentPageResolver,
       })
+      .when('/groups', {
+          controller : 'GroupsCtrl as groups',
+          templateUrl : 'views/group/groups.html',
+          resolve : independentPageResolver,
+      })
+      .when('/add/groups/', {
+          controller : 'GroupsCtrl as groups',
+          templateUrl : 'views/group/addGroups.html',
+          resolve : independentPageResolver,
+      })
+      .when('/groups/:id', {
+          controller : 'GroupsCtrl as groups',
+          templateUrl : 'views/group/editGroups.html',
+          resolve : independentPageResolver,
+      })
+      .when('/allergics', {
+          controller : 'AllergicCtrl as allergics',
+          templateUrl : 'views/allergic/allergics.html',
+          resolve : independentPageResolver,
+      })
+      .when('/add/allergics/', {
+          controller : 'AllergicCtrl as allergics',
+          templateUrl : 'views/allergic/addAllergics.html',
+          resolve : independentPageResolver,
+      })
+      .when('/allergics/:id', {
+          controller : 'AllergicCtrl as allergics',
+          templateUrl : 'views/allergic/editAllergics.html',
+          resolve : independentPageResolver,
+      })
     // .when('/register', {
     //     controller : 'PageRegisterCtrl as register',
     //     templateUrl : 'views/register.html',

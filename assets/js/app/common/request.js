@@ -60,7 +60,7 @@ module.exports = ['$resource', '$http', 'CommonConfig', function($resource, $htt
       // die standard operationen (get post put delete) werden automatisch erzeugt
       getAllergicById : {
         method : 'GET',
-        url : 'allergics//:allergicId'
+        url : 'allergics/:id'
       },
       getAll : {
         method : 'GET',
@@ -71,9 +71,9 @@ module.exports = ['$resource', '$http', 'CommonConfig', function($resource, $htt
         method : 'POST',
         url : 'allergics/add/'
       },
-      changeArticle : {
+      changeAllergic : {
         method: 'PUT',
-        url: 'allergics//:allergicId'
+        url: 'allergics/:id'
       }
     }),
     groups : generateResource('groups', 'backend', null, {
