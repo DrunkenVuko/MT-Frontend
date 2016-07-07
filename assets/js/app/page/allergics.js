@@ -18,8 +18,8 @@ module.exports = [
 
         self.updateAllergic = function() {
             CommonRequest.allergics.changeAllergic({
-            },  {
                 'x-access-token': simpleStorage.get('secToken'),
+            },  {
                 'longName' : self.tempAllergics.longName,
                 'shortName' : self.tempAllergics.shortName,
                 'userid' : simpleStorage.get('userID'),
@@ -56,7 +56,7 @@ module.exports = [
         };
 
         self.goToAdd = function() {
-            //document.location.href = ('/add/allergics/');
+            document.location.href = ('/allergics/');
         };
 
         self.getById = function () {

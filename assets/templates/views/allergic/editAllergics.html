@@ -44,12 +44,7 @@
         <thead>
         <tr>
             <th colspan="3"> Globale Suche </th>
-            <th colspan="1"><button ng-click=allergics.goToAdd()>Hinzufügen</button></th>
-        </tr>
-        <tr>
-            <td colspan="4">
-                <input st-search placeholder="global search" class="input-sm form-control" type="search" ng-model="filterAll"/>
-            </td>
+            <th colspan="1"><button ng-click=allergics.goToAdd()>Speichern</button></th>
         </tr>
         <tr>
             <th colspan="3">Kürzel</th>
@@ -57,7 +52,7 @@
         </tr>
         <tr>
             <td colspan="3"> <input name="shortName" type="text" ng-model="allergics.tempAllergics.shortName" width="100%" ng-change="allergics.updateAllergic()"></td>
-            <td colspan="2"> <input name="shortName" type="text" ng-model="allergics.tempAllergics.longName" width="100%"></td>
+            <td colspan="2"> <input name="shortName" type="text" ng-model="allergics.tempAllergics.longName" width="100%" ng-change="allergics.updateAllergic()"></td>
         </tr>
         </thead>
     </table>
