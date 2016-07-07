@@ -1,4 +1,150 @@
-<h1>"User: frank  PW: temp</h1>
+<style>
+    @import url(http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic);
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+
+    body {
+        background-color: #2e7bcf;
+        -webkit-font-smoothing: antialiased;
+        font-family: Roboto;
+    }
+
+    hgroup {
+        text-align:center;
+        margin-top: 4em;
+    }
+
+    h1, h3 { font-weight: 300;
+        position: relative;
+        width: 100px;
+        top: 30%;
+        left: 35%;
+        color: white;
+        font-family: "Courier New"
+
+    }
+
+
+    h3 { color: #4a89dc;
+    }
+
+    form {
+        width: 380px;
+        margin: 4em auto;
+        padding: 3em 2em 2em 2em;
+        background: #fafafa;
+        border: 1px solid #ebebeb;
+        box-shadow: rgba(0,0,0,0.14902) 0px 1px 1px 0px,rgba(0,0,0,0.09804) 0px 1px 2px 0px;
+    }
+
+
+    input {
+        font-size: 18px;
+        padding: 10px 10px 10px 5px;
+        -webkit-appearance: none;
+        display: block;
+        background: #fafafa;
+        color: #636363;
+        width: 100%;
+        border: none;
+        border-radius: 0;
+        border-bottom: 1px solid #757575;
+    }
+
+    input:focus { outline: none; }
+
+
+    /* Label */
+
+    label {
+        color: #999;
+        font-size: 18px;
+        font-weight: normal;
+    }
+
+
+    /* active */
+
+    input:focus ~ label, input.used ~ label {
+        top: -20px;
+        transform: scale(.75); left: -2px;
+        /* font-size: 14px; */
+        color: #4a89dc;
+    }
+
+
+    /* active */
+
+    input:focus ~ .bar:before, input:focus ~ .bar:after { width: 50%; }
+
+    /* active */
+
+    input:focus ~ .highlight {
+        animation: inputHighlighter 0.3s ease;
+    }
+
+
+    /* Animations */
+
+    @keyframes inputHighlighter {
+        from { background: #4a89dc; }
+        to 	{ width: 0; background: transparent; }
+    }
+
+    .ripples.is-active .ripplesCircle {
+        animation: ripples .4s ease-in;
+    }
+
+
+    /* Ripples animation */
+
+    @keyframes ripples {
+        0% { opacity: 0; }
+
+        25% { opacity: 1; }
+
+        100% {
+            width: 200%;
+            padding-bottom: 200%;
+            opacity: 0;
+        }
+    }
+
+    footer { text-align: center; }
+
+    footer p {
+        color: #888;
+        font-size: 13px;
+        letter-spacing: .4px;
+    }
+
+    footer a {
+        color: #4a89dc;
+        text-decoration: none;
+        transition: all .2s ease;
+    }
+
+    footer a:hover {
+        color: #666;
+        text-decoration: underline;
+    }
+
+    footer img {
+        width: 80px;
+        transition: all .2s ease;
+    }
+
+    footer img:hover { opacity: .83; }
+
+    footer img:focus , footer a:focus { outline: none; }
+</style>
+
+
+<h1>Anmeldung</h1>
 <div>
     <form name="form" ng-submit="users.login()" role="form">
         <div class="form-group">

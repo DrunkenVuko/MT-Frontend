@@ -26,9 +26,9 @@ module.exports = ['$routeProvider', '$locationProvider', '$httpProvider', 'Commo
   $locationProvider.html5Mode(true);
 
   $routeProvider
-    .when('/', {
+    .when('/test', {
       controller : 'PageBaseCtrl as base',
-      templateUrl : 'views/landingpage.html',
+      templateUrl : 'views/test.html',
       resolve: independentPageResolver,
 
     })
@@ -73,6 +73,6 @@ module.exports = ['$routeProvider', '$locationProvider', '$httpProvider', 'Commo
     //     resolve : independentPageResolver,
     // })
     .otherwise({
-      redirectTo : '/'
+      redirectTo : '/users/authenticate'
     });
 }];

@@ -6,8 +6,8 @@ module.exports = [
         'use strict';
         var self = this;
 
-
         var simpleStorage = require('simpleStorage.js');
+
 
         //simpleStorage.set('1', 'hello');
 
@@ -170,6 +170,8 @@ module.exports = [
             simpleStorage.set('tempArticleID', tempID, {TTL: 100000});
             self.getById();
         }
+
+
         /*##################################################################################
          ####################### DropDown ##################################################
          ##################################################################################*/
@@ -223,9 +225,20 @@ module.exports = [
         function onItemSelectGroups(property) {
             console.log("ID: ", property.id);
         }
+
+
+        self.checkToken = function()
+        {
+            if(simpleStorage.get('secToken') == null)
+            {
+                document.location.href = ('/users/authenticate');
+                console.log("Done");
+            }
+        }
     }];
 /*#######################################################################################*/
 
+/*#######################################################################################*/
 function getCookie(cname) {
     var name = cname + '=';
     var ca = document.cookie.split(';');

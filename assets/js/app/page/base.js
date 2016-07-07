@@ -8,4 +8,15 @@ module.exports = ['CommonBrowser', function(CommonBrowser) {
   self.getDimensions = CommonBrowser.getAbsoluteClientRect;
 
   console.log('self.test', self.test);
+
+
+  
+
+
+
+
+
+
+
+
 }];

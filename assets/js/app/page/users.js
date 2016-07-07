@@ -126,6 +126,15 @@ module.exports = [
         console.log('error', response);
       });
     };
+    
+    self.checkToken = function()
+    {
+      if(simpleStorage.get('secToken') == null)
+      {
+        document.location.href = ('/users/authenticate');
+        console.log("Done");
+      }
+    }
   }];
 
 

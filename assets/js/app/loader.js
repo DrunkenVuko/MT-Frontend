@@ -12,6 +12,7 @@ require('angular-cache');
 require('simplestorage.js');
 
 
+
 var application = angular.module('application', [ 'angular-cache','ngDialog', 'angularjs-dropdown-multiselect','ngResource', 'ngRoute', 'pascalprecht.translate', 'cfp.hotkeys','formly', 'formlyBootstrap'])
 ;
 
