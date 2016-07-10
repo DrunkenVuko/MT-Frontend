@@ -169,13 +169,13 @@
             <a href="/users/"><span>Benutzer</span></a>
         </div>
         <div>
-            <a><span>Tab </span></a>
+            <a href="/allergics/"><span> </span>Allergics</a>
         </div>
         <div>
-            <a><span>Tab </span></a>
+            <a href="/groups/"><span> </span>Groups</a>
         </div>
         <div>
-            <a><span>Tab </span></a>
+            <a href="/test/"><span> </span>Test</a>
         </div>
         <div>
             <a href="/users/authenticate" ><span><i class="fa fa-user"></i> Logout </span></a>
@@ -219,7 +219,7 @@
             <td width="80"><div ng-repeat="grp in article.group" ng-re> {{grp}}</div></td>
             <td width="260" colspan="6">{{article.name}}</td>
             <td width="70">{{article.price}}€</td>
-            <td width="80"><div ng-repeat="all in article.allergics" ng-re> {{all}}</div></td>
+            <td width="80"><div style="float:left" style="font-size: small" ng-repeat="all in article.allergics" ng-re> {{all}}, </div></td>
             <td><a href="/articles/{{article._id}}" class="btn btn-gradient" ng-click="articles.saveArticleTempID(article._id)"><i class="fa fa-pencil-square-o" aria-hidden="true"> Edit</i></a>
             </td>
         </tr>

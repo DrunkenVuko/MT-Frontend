@@ -18,12 +18,13 @@ module.exports = [
 
         self.updateAllergic = function() {
             CommonRequest.allergics.changeAllergic({
-                'x-access-token': simpleStorage.get('secToken'),
+                'id' : simpleStorage.get('tempAllergicID')
             },  {
+                'x-access-token': simpleStorage.get('secToken'),
                 'longName' : self.tempAllergics.longName,
                 'shortName' : self.tempAllergics.shortName,
                 'userid' : simpleStorage.get('userID'),
-                'id' : simpleStorage.get('tempAllergicID')
+
             }, function(response) {
                 console.log('error', response);
             });
@@ -41,6 +42,12 @@ module.exports = [
             });
         };
 
+        self.waypointAdd = function()
+        {
+            self.add();
+            self.reloadPage();
+        }
+
         self.getAll = function () {
             CommonRequest.allergics.getAll({
                 'x-access-token' : simpleStorage.get('secToken')
@@ -55,9 +62,6 @@ module.exports = [
             });
         };
 
-        self.goToAdd = function() {
-            document.location.href = ('/allergics/');
-        };
 
         self.getById = function () {
             CommonRequest.allergics.getAllergicById({
@@ -87,6 +91,11 @@ module.exports = [
                 document.location.href = ('/allergics/authenticate');
                 console.log("Done");
             }
+        }
+
+        self.reloadPage = function()
+        {
+            window.location.reload();
         }
     }];
 
