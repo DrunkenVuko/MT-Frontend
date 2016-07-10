@@ -3,6 +3,10 @@
 
 <style>
 
+    div.areaContent.ng-scope {
+        background-color: steelblue;
+    }
+
     h1 {
         color: white;
     }
@@ -136,8 +140,8 @@
 </style>
 
 <!--Check Token -> Pass    else    -> Redirect-->
-<div ng-if="users.simpleStorage.get('secToken') == null">
-    {{users.checkToken()}}
+<div ng-if="groups.simpleStorage.get('secToken') == null">
+    {{groups.checkToken()}}
 </div>
 <div data-ng-init="groups.getAll()"> </div>
 
