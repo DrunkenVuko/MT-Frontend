@@ -80,7 +80,7 @@ module.exports = ['$resource', '$http', 'CommonConfig', function($resource, $htt
       // die standard operationen (get post put delete) werden automatisch erzeugt
       getGroupsById : {
         method : 'GET',
-        url : 'groups//:groupId'
+        url : 'groups/:id'
       },
       getAll : {
         method : 'GET',
@@ -93,7 +93,7 @@ module.exports = ['$resource', '$http', 'CommonConfig', function($resource, $htt
       },
       changeGroups : {
         method: 'PUT',
-        url: 'groups/:groupId'
+        url: 'groups/:id'
       },
       getDropDown : {
         method: 'GET',

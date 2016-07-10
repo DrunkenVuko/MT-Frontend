@@ -194,7 +194,7 @@
         <tr ng-repeat="allergic in allergics.list | filter:filterAll">
             <td colspan="2">{{allergic.shortName}}</td>
             <td colspan="2">{{allergic.longName}}</td>
-            <td><a href="/allergics/{{allergic._id}}" class="btn btn-gradient" ng-click="allergics.saveAllergicTempID(allergic._id)"><i class="fa fa-pencil-square-o" aria-hidden="true"> Edit</i></a>
+            <td><a href="/allergics/{{allergic._id}}" class="btn btn-gradient" ng-click="allergics.saveAllergicTempID(allergic._id)"><i style="color: grey"  class="fa fa-pencil-square-o" aria-hidden="true"> Edit</i></a>
         </tr>
         </tbody>
     </table>

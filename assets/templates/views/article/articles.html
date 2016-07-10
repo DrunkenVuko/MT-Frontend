@@ -220,7 +220,7 @@
             <td width="260" colspan="6">{{article.name}}</td>
             <td width="70">{{article.price}}€</td>
             <td width="80"><div style="float:left" style="font-size: small" ng-repeat="all in article.allergics" ng-re> {{all}}, </div></td>
-            <td><a href="/articles/{{article._id}}" class="btn btn-gradient" ng-click="articles.saveArticleTempID(article._id)"><i class="fa fa-pencil-square-o" aria-hidden="true"> Edit</i></a>
+            <td><a href="/articles/{{article._id}}" class="btn btn-gradient" ng-click="articles.saveArticleTempID(article._id)"><i style="color: grey" class="fa fa-pencil-square-o" aria-hidden="true"> Edit</i></a>
             </td>
         </tr>
         </tbody>

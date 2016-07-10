@@ -1,103 +1,48 @@
-<h1>User anlegen</h1>
-<table style="text-align: left; width: 100%;" border="1" cellpadding="2"
-       cellspacing="2">
-    <form name="form" ng-submit="users.add()" role="form">
-        <div class="form-actions">
-            <button type="submit" ng-disabled="form.$invalid || dataLoading" class="btn btn-danger">Speichern</button>
-            <img ng-if="dataLoading" src=""/>
-        </div>
 
-        <tbody>
-        <tr>
-            <td colspan="5" rowspan="1">Profile:</td>
-        </tr>
-        <tr>
-            <td colspan="1" rowspan="5">IMAGE<br>
-            </td>
-            <td>Account Settings<br>
-            </td>
-            <td><button ng-click=users.add()>Speichern</button><br>
-            </td>
-        </tr>
-        <tr>
-            <td>Benutzername<br>
-            </td>
-            <td><input name="username" type="text" ng-model="users.newUser.username" width="100%"> </td>
-        </tr>
-        <tr>
-            <td>Password<br>
-            </td>
-            <td><input name="password" type="password" ng-model="users.newUser.password" width="100%"> </td>
-        </tr>
-        <tr>
-            <td>eMail<br>
-            </td>
-            <td><input name="email" type="text" ng-model="users.newUser.email" width="100%"> </td>
-        </tr>
+<link rel="stylesheet" type="text/css" href="https://dl.dropboxusercontent.com/s/1y064hvghdwkayt/table.css" />
+<script src="http://codepen.io/victordarras/pen/hJHAm.js"></script>
 
+<style>
+
+    h1 {
+        color: white;
+        font-family: "Andale Mono";
+    }
+
+    i{
+        color: white;
+    }
+
+</style>
+<!--Check Token -> Pass    else    -> Redirect-->
+<div ng-if="groups.simpleStorage.get('secToken') == null">
+    {{groups.checkTokenArticle()}}
+</div>
+
+
+<h1>Gruppe anlegen</h1>
+<div class="table-container">
+    <table st-table="rowCollection" class="table table-striped" align="center">
+        <thead>
         <tr>
-            <td>Firmenname<br>
-            </td>
-            <td><input name="company" type="text" ng-model="users.newUser.company" width="100%"> </td>
+            <th colspan="6">  </th>
+            <th colspan="1"><a href="/groups/" class="btn btn-gradient" ng-click="groups.waypointAdd()"><i class="fa fa-save">  Speichern</i></a></th>
         </tr>
         <tr>
-            <td rowspan="1">1<br>
-            </td>
-            <td>Profile Setting</td>
-            <td><br>
-            </td>
+            <th colspan="2">Bild</th>
+            <th colspan="2">Kürzel</th>
+            <th colspan="2">Beschreibung</th>
+            <th colspan="2">Name</th>
         </tr>
         <tr>
-            <td>2<br>
-            </td>
-            <td>Vorname<br>
-            </td>
-            <td><input name="firstname" type="text" ng-model="users.newUser.firstname" width="100%"> </td>
+            <td colspan="2"> <input name="img" type="text" ng-model="groups.newGroups.img" width="100%"></td>
+            <td colspan="2"> <input name="shortid" type="text" ng-model="groups.newGroups.shortid" width="100%"></td>
+            <td colspan="2"> <input name="desc" type="text" ng-model="groups.newGroups.desc" width="100%"></td>
+            <td colspan="2"> <input name="name" type="text" ng-model="groups.newGroups.name" width="100%"></td>
         </tr>
-        <tr>
-            <td>3<br>
-            </td>
-            <td>Nachname<br>
-            </td>
-            <td><input name="lastname" type="text" ng-model="users.newUser.lastname" width="100%"></td>
-        </tr>
-        <tr>
-            <td>4<br>
-            </td>
-            <td>Geburtstag<br>
-            </td>
-            <td>Noch nicht implementiert<br>
-            </td>
-        </tr>
-        <tr>
-            <td>5<br>
-            </td>
-            <td>Straße<br>
-            </td>
-            <td><input name="street" type="text" ng-model="users.newUser.street" width="100%"> </td>
-        </tr>
-        <tr>
-            <td>6<br>
-            </td>
-            <td>Hausnummer<br>
-            </td>
-            <td><input name="streetnumber" type="text" ng-model="users.newUser.streetnumber" width="100%"> </td>
-        </tr>
-        <tr>
-            <td>7<br>
-            </td>
-            <td>PLZ<br>
-            </td>
-            <td><input name="zip" type="text" ng-model="users.newUser.zip" width="100%"> </td>
-        </tr>
-        <tr>
-            <td>8<br>
-            </td>
-            <td>Stadt<br>
-            </td>
-            <td><input name="city" type="text" ng-model="users.newUser.city" width="100%"><br>
-            </td>
-        </tr>
-        </tbody>
-    </form>
-</table>
+        </thead>
+    </table>
+
+</div>
+</div>
+
