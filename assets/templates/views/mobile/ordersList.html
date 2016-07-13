@@ -1,0 +1,20 @@
+<link rel="stylesheet" type="text/css" href="http://codepen.io/Vuko/pen/LkOAvy.css" />
+<div data-ng-init="order.getArticles()"> </div>
+
+<div class="container">
+    <header>
+        <a href="/m/orders/" class="back"><div class="back"><i class="fa fa-long-arrow-left"></i>Zurück</div></a>
+        <div class="name">{{order.getName()}}</div>
+        <div class="items-number">{{order.list.length}} items</div>
+    </header>
+
+    <ul class="items" ng-if="order.list" ng-repeat="groups in order.list | filter:filterAll" ng-re>
+        <li class="item-{{groups.id}}" ng-click="order.test(groups._id)">
+            <img class="round" src={{groups.data.img}} alt=""/>
+            <span>{{groups.data.name}}</span>
+            <div class="price">{{groups.data.price}}€</div>
+            <div class="buy"><i class="fa fa-cart-plus" aria-hidden="true"></i></div>
+        </li>
+    </ul>
+</div>
+<h1>{{order.articleList}}</h1>

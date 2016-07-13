@@ -1,46 +1,20 @@
-<!--<link rel="stylesheet" type="text/css" href="http://codepen.io/ivillamil/pen/jWjgzE.css" />-->
-<!--<link rel="stylesheet" type="text/css" href="http://codepen.io/stursby/pen/HdiJh.css" />-->
-
-<!--<h1>Hallo Tisch {{base.table}}</h1>-->
-
-<!--<div data-ng-init="order.getAll()"> </div>-->
-
-
-<!--<div class="table-users">-->
-    <!--<div class="header">Users</div>-->
-
-    <!--<table cellspacing="0">-->
-        <!--<tr>-->
-            <!--<th>Picture</th>-->
-            <!--<th>Name</th>-->
-            <!--<th width="230">Comments</th>-->
-        <!--</tr>-->
-
-        <!--<tr ng-if="order.list" ng-repeat="groups in order.list | filter:filterAll" ng-re>-->
-            <!--<td><img src={{groups.img}} alt="" width="150px" height="1s50px"/></td>-->
-            <!--<td>{{groups.name}}</td>-->
-            <!--<td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. </td>-->
-        <!--</tr>-->
-    <!--</table>-->
-<!--</div>-->
-
-
-<link rel="stylesheet" type="text/css" href="https://codepen.io/Vuko/pen/NAwrvp.css" />
+<link rel="stylesheet" type="text/css" href="http://codepen.io/Vuko/pen/LkOAvy.css" />
 <div data-ng-init="order.getAll()"> </div>
-
 
 <div class="container">
     <header>
-        <i class="fa fa-bars"></i>
-        <a href="#">Menu</a>
-        <div class="items-number">{{order.list.length}} items</div>
+        <div class="home">Willkommen Tisch X</div>
+        <a href="#"></a>
+        <span></span>
+        <i class="fa fa-book">Menü</i>
     </header>
 
     <ul class="items" ng-if="order.list" ng-repeat="groups in order.list | filter:filterAll" ng-re>
+        <a href="/m/orders/{{groups._id}}" class="btn btn-gradient" style="text-decoration: none">
+            <li class="item-{{groups.shortID}}" ng-click="order.saveGroupTempID(groups._id, groups.name)">
 
-            <li class="item-{{groups.shortID}}" ng-click="order.test(groups._id)">
-                <img class="round" src={{groups.img}} alt=""/>
-                <span>{{groups.name}}</span>
-            </li>
+                <img class="roundHome" src={{groups.img}} alt=""/>
+                <div class="roundSpan">{{groups.name}}</div>
+            </li></a>
     </ul>
 </div>

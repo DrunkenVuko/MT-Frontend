@@ -37,6 +37,35 @@ module.exports = [
         });
     };
 
+        self.getArticles = function () {
+            CommonRequest.groups.getArticlesViaGroup({
+                'id': simpleStorage.get('tempGroupID')
+            },  {
+                'x-access-token' : simpleStorage.get('secToken'),
+                'userid' : '57699490e8be70ec09ab94d6'
+            }, function(response) {
+                if (response && response.message) {
+                    self.list = response.message;
+                    //self.listID = response.message.id;
+                    console.log('self.getArticlesViaGroup wird ausgeführt');
+                }
+            }, function(response) {
+                console.log('error', response);
+            });
+        };
+
+        self.saveGroupTempID = function(tempID, tempName)
+        {
+            simpleStorage.set('tempGroupName', tempName, {TTL: 100000});
+            simpleStorage.set('tempGroupID', tempID, {TTL: 100000});
+            self.getArticles();
+        }
+        
+        self.getName = function()
+        {
+            return simpleStorage.get('tempGroupName')
+        }
+
         self.test = function(id){
             console.log("ID:", id);
         }

@@ -97,11 +97,16 @@ module.exports = ['$routeProvider', '$locationProvider', '$httpProvider', 'Commo
       templateUrl : 'views/allergic/editAllergics.html',
       resolve : independentPageResolver,
   })
-      .when('/m/orders/:id', {
+      .when('/m/orders/', {
           controller : 'OrderCtrl as order',
           templateUrl : 'views/mobile/orders.html',
           resolve : independentPageResolver,
       })
+      .when('/m/orders/:id', {
+      controller : 'OrderCtrl as order',
+      templateUrl : 'views/mobile/ordersList.html',
+      resolve : independentPageResolver,
+  })
     // .when('/register', {
     //     controller : 'PageRegisterCtrl as register',
     //     templateUrl : 'views/register.html',
