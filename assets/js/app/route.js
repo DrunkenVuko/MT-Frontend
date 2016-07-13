@@ -93,8 +93,13 @@ module.exports = ['$routeProvider', '$locationProvider', '$httpProvider', 'Commo
           resolve : independentPageResolver,
       })
       .when('/allergics/:id', {
-          controller : 'AllergicCtrl as allergics',
-          templateUrl : 'views/allergic/editAllergics.html',
+      controller : 'AllergicCtrl as allergics',
+      templateUrl : 'views/allergic/editAllergics.html',
+      resolve : independentPageResolver,
+  })
+      .when('/m/orders/:id', {
+          controller : 'OrderCtrl as order',
+          templateUrl : 'views/mobile/orders.html',
           resolve : independentPageResolver,
       })
     // .when('/register', {

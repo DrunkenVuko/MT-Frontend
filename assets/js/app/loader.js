@@ -43,7 +43,7 @@ application
   .controller('UsersAddCtrl', require('./page/users'))
   .controller('GroupsCtrl', require('./page/groups'))
   .controller('AllergicCtrl', require('./page/allergics'))
-
+  .controller('OrderCtrl', require('./page/order'))
   ;
 
 module.exports = application;

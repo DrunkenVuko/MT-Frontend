@@ -112,7 +112,18 @@ module.exports = [
     self.goToAdd = function() {
       document.location.href = ('/add/users/');
     };
-
+    
+    self.waypointAdd = function()
+    {
+      self.updateProfile();
+      self.reloadPage();
+    }
+    
+    self.reloadPage = function()
+    {
+      window.location.reload();
+    }
+    
     self.getById = function (theDesiredUserId) {
       CommonRequest.users.getUserById({
         'x-access-token' : simpleStorage.get('secToken'), userId : theDesiredUserId
@@ -120,8 +131,6 @@ module.exports = [
       },  {}, function(response) {
         self.tempUser = response.message;
         console.log('self.getById wird ausgeführt');
-        document.cookie = 'tempID=' + response.message._id;
-        document.location.href = ('/users/' + response.message._id);
       }, function(response) {
         console.log('error', response);
       });

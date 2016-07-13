@@ -168,7 +168,7 @@
 
 
 
-<h1 ng-class="{ 'color-red' : !users.list, 'color-white' : users.list }">Benutzer</h1>
+<h1 ng-class="{ 'color-red' : !users.list, 'color-white' : users.list }">Benutzerliste</h1>
 
 <div class="" ng-if="!users.list">
     User werden geladen ...
@@ -195,7 +195,8 @@
             <th>Plz</th>
             <th>Stadt</th>
             <th>Straße</th>
-            <th colspan="2">Nummer</th>
+            <th>Nummer</th>
+            <th>Ändern</th>
         </tr>
         </thead>
         <tbody>
@@ -209,12 +210,7 @@
             <td>{{user.city}}</td>
             <td>{{user.street}}</td>
             <td>{{user.streetnumber}}</td>
-            <td><form name="form" ng-submit="users.getById(user._id)" role="form">
-                <div class="form-actions">
-                    <button type="submit" ng-disabled="form.$invalid || dataLoading" class="btn btn-danger">Edit</button>
-                    <img ng-if="dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
-                </div>
-            </form></td>
+            <td><a href="/users/{{user._id}}" class="btn btn-gradient" onclick="users.getById(user._id)"><i style="color: grey" class="fa fa-pencil"></i></a></td>
         </tr>
         </tbody>
     </table>

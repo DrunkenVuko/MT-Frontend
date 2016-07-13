@@ -8,7 +8,7 @@
 
 
     body {
-        background-color: #2e7bcf;
+        background-color: steelblue;
         -webkit-font-smoothing: antialiased;
         font-family: Roboto;
     }
@@ -163,6 +163,6 @@
             <button type="submit" ng-disabled="form.$invalid || dataLoading" class="btn btn-danger">Login</button>
             <img ng-if="dataLoading" src=""/>
         </div>
-        <label> </label>
+        <label style="text-align: right"><a href="/add/users/" class="btn btn-gradient"><i class="fa fa-plus" >  Registrieren</i></a> </label>
     </form>
 </div>
