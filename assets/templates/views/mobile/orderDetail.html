@@ -1,0 +1,24 @@
+<link rel="stylesheet" type="text/css" href="http://codepen.io/Vuko/pen/LkOAvy.css" />
+<div data-ng-init="order.getById()"> </div>
+
+<div class="container">
+
+    <header>
+        <a href="/m/orders/{{order.getID()}}" class="back"><div class="back"><i class="fa fa-long-arrow-left"></i>Zurück</div></a>
+        <div class="name">{{order.newArticle.data.name}}</div>
+        <div class="items-number">{{order.newArticle.data.price}}€ </div>
+        <div class="shoppingCart" ng-click="order.test()"><i class="fa fa-shopping-basket" aria-hidden="true"></i></div>
+        <div class="buyDetail"><i class="fa fa-cart-plus fa-2x" aria-hidden="true"></i></div>
+    </header>
+
+    <ul class="items">
+        <a href="/m/orders/"><li class="item-{{order.newArticle.id}}" ng-click="order.test(groups._id)" style="height: 400px">
+            <div class="roundDetail">
+                <img src={{order.newArticle.data.img}} style="width:100%">
+                <div class="descDetail">
+                    <p>Beschreibung: {{order.newArticle.data.desc}}</p>
+                </div>
+            </div>
+        </li></a>
+    </ul>
+</div>

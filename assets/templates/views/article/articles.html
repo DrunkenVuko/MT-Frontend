@@ -4,7 +4,6 @@
 <script src="http://pixelcrafts.com/soo/lib/angular/ngDialog.min.js"></script>
 
 
-<link rel="stylesheet" type="text/css" href="https://dl.dropboxusercontent.com/s/1y064hvghdwkayt/table.css" />
 <script src="http://codepen.io/victordarras/pen/hJHAm.js"></script>
 
 <!--<link rel="stylesheet" href="http://pixelcrafts.com/soo/css/ngDialog-theme-default.css">-->
@@ -27,10 +26,12 @@
     }
     h1 {
         color: white;
+        text-align: center;
     }
 
     i{
         color: white;
+        text-align: right;
     }
 
     body {
@@ -155,6 +156,28 @@
             display: none;
         }
     }
+
+    th {
+        text-align: center;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </style>
 <!--Check Token -> Pass    else    -> Redirect-->
 <div ng-if="articles.simpleStorage.get('secToken') == null">
@@ -195,34 +218,36 @@
 <body>
 <div class="table-container" bs-width="100%">
     <table st-table="rowCollection" class="table table-striped">
-        <thead>
+        <thead style="background-color: steelblue; color: white;   font-family: OpenSans-Light, sans-serif, Arial">
         <tr>
-            <th colspan="9"> Globale Suche </th>
+            <th colspan="10"> Globale Suche </th>
             <th colspan="2"><a href="/add/articles/" class="btn btn-gradient" onclick="articles.goToAdd()"><i class="fa fa-plus"> Hinzufügen</i></a>
             </th>
         </tr>
         <tr>
-            <th colspan="11">
+            <th colspan="12">
                 <input st-search placeholder="global search" class="input-sm form-control" type="search" ng-model="filterAll"/>
             </th>
         </tr>
-        <tr colspan="9">
-            <th>Bild</th>
-            <th>Gruppierung</th>
-            <th colspan="6">Name</th>
-            <th>Preis</th>
-            <th>Allergene</th>
-            <th></th>
+        <tr>
+            <th colspan="3" width="20px">Bild</th>
+            <th colspan="1">Gruppierung</th>
+            <th colspan="2">Name</th>
+            <th colspan="1">Preis</th>
+            <th colspan="3">Beschreibung</th>
+            <th colspan="1">Allergene</th>
+            <th colspan="1">Edit</th>
         </tr>
         </thead>
         <tbody>
         <tr ng-if="articles.list" ng-repeat="article in articles.list | filter:filterAll" ng-re>
-            <td width="160"><img src="{{article.img}}" width="100%" max-width="100%"></td>
-            <td width="80"><div ng-repeat="grp in article.group" ng-re> {{grp}}</div></td>
-            <td width="260" colspan="6">{{article.name}}</td>
-            <td width="70">{{article.price}}€</td>
-            <td width="80"><div style="float:left" style="font-size: small" ng-repeat="all in article.allergics" ng-re> {{all}}, </div></td>
-            <td><a href="/articles/{{article._id}}" class="btn btn-gradient" ng-click="articles.saveArticleTempID(article._id)"><i style="color: grey" class="fa fa-pencil-square-o" aria-hidden="true"> Edit</i></a>
+            <td colspan="3"  width="300px"><img src="{{article.img}}" width="80%" max-width="81%"></td>
+            <td colspan="1"><div ng-repeat="grp in article.group" ng-re> {{grp}}</div></td>
+            <td colspan="2">{{article.name}}</td>
+            <td colspan="1">{{article.price}}€</td>
+            <td colspan="3">{{article.desc}}</td>
+            <td colspan="1"><div style="float:left" style="font-size: small" ng-repeat="all in article.allergics" ng-re> {{all}}, </div></td>
+            <td><a href="/articles/{{article._id}}" class="btn btn-gradient" ng-click="articles.saveArticleTempID(article._id)"><i style="color: grey" class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
             </td>
         </tr>
         </tbody>

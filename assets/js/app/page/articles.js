@@ -21,7 +21,8 @@ module.exports = [
             price : '',
             img : '',
             allergics : [],
-            group : []
+            group : [],
+            desc : ''
         };
 
         // Allergene
@@ -77,7 +78,8 @@ module.exports = [
                 'allergics': self.allergic_multipleSelect_Selected,
                 'img': self.newArticle.img,
                 'group': self.groups_multipleSelect_Selected,
-                'userid': simpleStorage.get('userID'),
+                'desc': self.newArticle.desc,
+                'userid': simpleStorage.get('userID')
             }, function(response) {
                 console.log('error', response);
             });
@@ -107,7 +109,8 @@ module.exports = [
                 'allergics': self.allergic_multipleSelect_Selected,
                 'img': self.newArticle.img,
                 'group': self.groups_multipleSelect_Selected,
-                'userid': simpleStorage.get('userID')
+                'userid': simpleStorage.get('userID'),
+                'desc' : self.newArticle.desc
             }, function(response) {
                 console.log(response.message);
                 console.log('error', response);

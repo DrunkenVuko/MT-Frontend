@@ -98,14 +98,19 @@ module.exports = ['$resource', '$http', 'CommonConfig', function($resource, $htt
       getDropDown : {
         method: 'GET',
         url: 'groups/dropDown/:userID'
-      },
+      }
+    }),
+    mobile : generateResource('mobile', 'backend', null, {
       // Mobile Web-App
       getArticlesViaGroup : {
         method: 'POST',
-        url: 'groups/mobile/:id'
+        url: 'mobile/menu/:id'
+      },
+      getArticleViaId : {
+        method: 'POST',
+        url : 'mobile/menu/d/:id'
       }
     })
-    
     // articles : generateResource('articles', 'backend', null, {
     //   getUserById : {
     //     method : 'POST',

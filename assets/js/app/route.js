@@ -107,6 +107,11 @@ module.exports = ['$routeProvider', '$locationProvider', '$httpProvider', 'Commo
       templateUrl : 'views/mobile/ordersList.html',
       resolve : independentPageResolver,
   })
+      .when('/m/orders/d/:id', {
+          controller : 'OrderCtrl as order',
+          templateUrl : 'views/mobile/orderDetail.html',
+          resolve : independentPageResolver,
+      })
     // .when('/register', {
     //     controller : 'PageRegisterCtrl as register',
     //     templateUrl : 'views/register.html',

@@ -169,7 +169,7 @@
     </thead>
     <tbody>
     <tr>
-        <td colspan="1" rowspan="5"><img src={{articles.newArticle.img}} width="100%" height="100%"><br>
+        <td colspan="1" rowspan="6"><img src={{articles.newArticle.img}} width="100%" height="100%"><br>
         </td>
     <tr>
         <td colspan="1">Name</td>
@@ -193,6 +193,10 @@
                      events="articles.myEventListenersAllergics"></div>
             </td>
         </tr>
+    <tr>
+        <td rowspan="1">Beschreibung</td>
+        <td colspan="4" rowspan="1"><textarea name="desc" type="text" ng-model="articles.newArticle.desc" width="100%" ng-change="articles.updateArticle()"> </textarea></td></td>
+    </tr>
     </tbody>
 </form>
 </table>
