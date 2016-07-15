@@ -6,6 +6,9 @@ module.exports = [
         'use strict';
         var self = this;
         var simpleStorage = require('simpleStorage.js');
+        var colorControl = false;
+
+        self.amount = 1;
 
         self.customers = [
         {
@@ -83,6 +86,7 @@ module.exports = [
             }, function(response) {
 
                 self.newArticle = response.message[0];
+                self.manipulatedPrice = convertNumber(self.newArticle.data.price);
 
                 console.log('article.getArticleById wird ausgeführt');
 
@@ -102,8 +106,44 @@ module.exports = [
             console.log("Gespeicherte Daten: ," , simpleStorage.get
             ("tempArticleID"));
         }
-        
+
+
+
+        self.add = function() {
+            CommonRequest.mobile.addTable({
+                'x-access-token': simpleStorage.get('secToken')
+            }, {
+                'tablenumber' : '1',
+                'articleid' : self.newArticle.data._id,
+                'amount' : self.amount,
+                'price' : self.newArticle.data.price,
+                'userid' : self.newArticle.data.usrID
+
+            }, function(response) {
+                console.log('error', response);
+            });
+        };
+
+
         self.test = function(id){
             console.log("ID:", id);
         }
+
+        self.up= function(){
+            self.amount = self.amount + 1.00;
+            self.manipulatedPrice = (self.amount * convertNumber(self.newArticle.data.price)).toFixed(2);
+        }
+
+        self.down= function(){
+            self.amount = self.amount - 1.00;
+            self.manipulatedPrice = (self.amount * convertNumber(self.newArticle.data.price)).toFixed(2);
+
+        }
+
+        function convertNumber(number)
+        {
+            return parseFloat(Math.round(number * 100) / 100).toFixed(2);
+        }
+        
+
 }];

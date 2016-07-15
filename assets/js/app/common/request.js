@@ -109,6 +109,10 @@ module.exports = ['$resource', '$http', 'CommonConfig', function($resource, $htt
       getArticleViaId : {
         method: 'POST',
         url : 'mobile/menu/d/:id'
+      },
+      addTable : {
+        method: 'POST',
+        url : 'mobile/menu/add'
       }
     })
     // articles : generateResource('articles', 'backend', null, {

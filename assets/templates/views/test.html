@@ -1,25 +1,114 @@
+     {{myForm.myAddress.$valid}}
+     {{myForm.myAddress.$dirty}}
+     {{myForm.myAddress.$touched}}
+
+
+
+<form name="myForm">
+
+        <div ng-if="myForm.myName.$dirty && myForm.myName2.$dirty"> <button type="submit" ng-click="base.test()">Button wird erst angezeigt wenn Formular richtig ist</button></div>
+
+    <label>
+        Enter your name:
+        <input type="text"
+               name="myName"
+               ng-model="name"
+               ng-minlength="5"
+               required />
+    </label>
+
+
+ <div ng-messages="myForm.myName.$error" style="color:maroon" role="alert">
+     <div ng-message="required">You did not enter a field</div>
+     <div ng-message="minlength">Your field is too short</div>
+     <div ng-message="maxlength">Your field is too long</div>
+     <div ng-message="null">Alles korrekt</div>
+ </div>
+
+
+
+
+
+    <input type="email"
+           name="myName2"
+           ng-model="email"
+           ng-minlength="5"
+           ng-maxlength="20"
+           required />
+
+
+    <div ng-messages="myForm.myName2.$error" style="color:maroon" role="alert">
+        <div ng-message="required">You did not enter a field</div>
+        <div ng-message="minlength">Your field is too short</div>
+        <div ng-message="maxlength">Your field is too long</div>
+        <div ng-message="email">No Email</div>
+    </div>
+
+</form>
+
+
+
 <style>
-    #container {
-        display: flex;                   /* establish flex container */
-        flex-direction: row;             /* default value; can be omitted */
-        flex-wrap: nowrap;               /* default value; can be omitted */
-        justify-content: space-between;  /* switched from default (flex-start, see below) */
+    html, body {
+        width: 100%;
+        height: 100%;
     }
 
-    #container > div {
-        width: 100px;
-        height: 100px;
+    body {
+        font: 1.2em/1.4 'Oswald', sans-serif;
+        color: #fff;
+        text-align: right;
     }
 
-   #form-control .input-number {
-        width: 20px;
+    .rolldown-list {
+        text-align: left;
+        padding: 0;
+        margin: 0;
     }
+
+    .rolldown-list li {
+        padding: 1em;
+        margin-bottom: .125em;
+        display: block;
+        list-style: none;
+        text-transform: uppercase;
+    }
+
+
+    .rolldown-list li:nth-child(2n) {
+        background-color: #4d4d4d;
+    }
+
+    .rolldown-list li:nth-child(2n+1) {
+        background-color: #333333;
+    }
+
+    #myList {
+        position: absolute;
+        width: 50%;
+        left: 50%;
+        margin-left: -25%;
+    }
+
+
+    #btnReload:hover {
+        background: #ddd;
+    }
+
+
+
+
 </style>
 
+     <ul class="rolldown-list" id="myList">
+         <li>One</li>
+         <li>Two</li>
+         <li>Three</li>
+         <li>Four</li>
+         <li>Five</li>
+         <li>Six</li>
+         <li>Seven</li>
+         <li>Eight</li>
+     </ul>
 
-
-<div class="container">
-
-    <i class="fa fa-plus-square-o" aria-hidden="true" style="float: left"></i><input type="text" name="num" class="form-control input-number" value="1" width="50px" style="float: left"><i class="fa fa-minus-square-o" aria-hidden="true" style="float: left"></i>
-
-</div>
+     <button id="btnReload">Reload</button>

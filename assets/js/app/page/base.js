@@ -7,8 +7,12 @@ module.exports = ['CommonBrowser', function(CommonBrowser) {
 
   self.table = 2;
 
+  self.test = function()
+  {
+    console.log("Durchgeführt");
+  }
 
 
 
-
+  
 }];

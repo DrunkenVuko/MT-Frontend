@@ -1,21 +1,71 @@
 <link rel="stylesheet" type="text/css" href="http://codepen.io/Vuko/pen/LkOAvy.css" />
+<link rel="stylesheet" type="text/css" href="https://codepen.io/Vuko/pen/NAXNWw.css" />
+
+<style>
+    /* Content handing */
+
+    #content {
+        background-color: white;
+    }
+    /*#contentWrap {*/
+        /*margin-top: -11%;*/
+        /*margin-left: -12%;*/
+        /*background-color: #222;*/
+        /*width: 125%;*/
+        /*margin-bottom: -11%;*/
+    /*}*/
+    .sideMenu.left {
+        opacity: .5;
+        -webkit-transform: translatex(-40px);
+        transform: translatex(-40px);
+        -webkit-transition: 0.33s cubic-bezier(0.7, 0.15, 0.36, 1);
+        transition: 0.33s cubic-bezier(0.7, 0.15, 0.36, 1);
+        width: 276px;
+        left: -2%;
+        text-align: -webkit-center;
+    }
+    .sideMenu > ul > li a:hover {
+        color: #ffffff;
+        text-indent: 250px;
+    }
+
+    .marked {
+        background-color: #3f3f3f;
+    }
+</style>
+
 <div data-ng-init="order.getArticles()"> </div>
 
+<input type='checkbox' id='sideToggle1' hidden>
+<aside class='sideMenu left'>
+    <h2>Navigation</h2>
+    <ul>
+        <li><a href='/m/home/' data-value='Sonderkarte'>Sonderkarte</a></li>
+        <li class="marked"><a href='/m/orders/' data-value='Speisekarte'>Speisekarte</a></li>
+        <li><a href='#' data-value='Rechnung'>Rechnung</a></li>
+        <li><a href='#' data-value='Kellnerruf'>Kellnerruf</a></li>
+    </ul>
+</aside>
+
+
+<div id='contentWrap'>
 <div class="container">
     <header>
-        <a href="/m/orders/" class="back"><div class="back"><i class="fa fa-long-arrow-left"></i>Zurück</div></a>
+        <label class='menuBtn' for='sideToggle1'>&minus;</label>
         <div class="name">{{order.getName()}}</div>
         <div class="items-number">{{order.list.length}} items</div>
-        <div class="shoppingCart" ng-click="order.test()"><i class="fa fa-shopping-basket" aria-hidden="true"></i></div>
     </header>
+    <ul class="items">
+        <a href="/m/orders/" class="back" style="text-decoration: none"><li class="item-1" style="height: 50px; text-align: center; padding-left: 41%" >Zurück</li></a>
+    </ul>
     <ul class="items" ng-if="order.list" ng-repeat="groups in order.list | filter:filterAll" ng-re>
         <a href="/m/orders/d/{{groups.data._id}}" class="btn btn-gradient" style="text-decoration: none">
         <li class="item-{{groups.id}}" ng-click="order.saveArticleTempID(groups.data._id)">
             <img class="round" src={{groups.data.img}} alt=""/>
             <span>{{groups.data.name}}</span>
             <div class="price">{{groups.data.price}}€</div>
-            <div class="buy"><i class="fa fa-cart-plus" aria-hidden="true"></i></div>
         </li>
         </a>
     </ul>
+</div>
 </div>

@@ -10,10 +10,10 @@ require('ng-dropdown-multiselect');
 require('ng-dialog');
 require('angular-cache');
 require('simplestorage.js');
+require('angular-bootstrap');
+require('angular-messages');
 
-
-
-var application = angular.module('application', [ 'angular-cache','ngDialog', 'angularjs-dropdown-multiselect','ngResource', 'ngRoute', 'pascalprecht.translate', 'cfp.hotkeys','formly', 'formlyBootstrap'])
+var application = angular.module('application', [ 'ngMessages', 'angular-cache','ngDialog', 'angularjs-dropdown-multiselect','ngResource', 'ui.bootstrap', 'ngRoute', 'pascalprecht.translate', 'cfp.hotkeys','formly', 'formlyBootstrap'])
 ;
 
 require('./common/filters')(application);
