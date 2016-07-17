@@ -2,32 +2,6 @@
 <link rel="stylesheet" type="text/css" href="https://codepen.io/Vuko/pen/NAXNWw.css" />
 <!-- 1. Design  -  2. Nav-->
 
-<style>
-    /* Content handing */
-
-    #content {
-        background-color: white;
-    }
-
-    .sideMenu.left {
-        opacity: .5;
-        -webkit-transform: translatex(-40px);
-        transform: translatex(-40px);
-        -webkit-transition: 0.33s cubic-bezier(0.7, 0.15, 0.36, 1);
-        transition: 0.33s cubic-bezier(0.7, 0.15, 0.36, 1);
-        width: 276px;
-        left: -2%;
-        text-align: -webkit-center;
-    }
-    .sideMenu > ul > li a:hover {
-        color: #ffffff;
-        text-indent: 250px;
-    }
-
-    .marked {
-        background-color: #3f3f3f;
-    }
-</style>
 
 <div data-ng-init="order.getAll()"> </div>
 
@@ -42,25 +16,23 @@
     </ul>
 </aside>
 
-
 <div id='contentWrap'>
 <div class="container">
     <header>
         <label class='menuBtn' for='sideToggle1'>&minus;</label>
-        <div class="home">Willkommen Tisch X</div>
-        <a href="#"></a>
-        <span></span>
-        <i class="fa fa-book">Menü</i>
+        <div class="headline_1">Willkommen Tisch X</div>
     </header>
-<body>
-    <ul class="items" ng-if="order.list" ng-repeat="groups in order.list | filter:filterAll" ng-re>
-        <a href="/m/orders/{{groups._id}}" class="btn btn-gradient" style="text-decoration: none">
-            <li class="item-{{groups.shortID}}" ng-click="order.saveGroupTempID(groups._id, groups.name)">
-
-                <img class="roundHome" src={{groups.img}} alt=""/>
-                <div class="roundSpan">{{groups.name}}</div>
-            </li></a>
-    </ul>
+    <body>
+    <div class="container">
+        <div class="items" ng-if="order.list" ng-repeat="groups in order.list | filter:filterAll" ng-re ng-class="'color' + ($index % 2)" style="margin-top: 0%">
+            <a href="/m/orders/{{groups._id}}" class="btn btn-gradient" style="text-decoration: none">
+                <div class="values" ng-click="order.saveGroupTempID(groups._id, groups.name)">
+                    <img class="img_1" src={{groups.img}} alt=""/>
+                    <div class="name_1">{{groups.name}}</div>
+                </div>
+            </a>
+        </div>
+    </div>
+    </body>
 </div>
 </div>
-</body>

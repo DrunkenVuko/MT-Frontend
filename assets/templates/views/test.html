@@ -1,3 +1,4 @@
+<!--
      {{myForm.myAddress.$valid}}
      {{myForm.myAddress.$dirty}}
      {{myForm.myAddress.$touched}}
@@ -45,63 +46,42 @@
     </div>
 
 </form>
+-->
 
 
-
-<style>
-    html, body {
-        width: 100%;
-        height: 100%;
-    }
-
-    body {
-        font: 1.2em/1.4 'Oswald', sans-serif;
-        color: #fff;
-        text-align: right;
-    }
-
-    .rolldown-list {
-        text-align: left;
-        padding: 0;
-        margin: 0;
-    }
-
-    .rolldown-list li {
-        padding: 1em;
-        margin-bottom: .125em;
-        display: block;
-        list-style: none;
-        text-transform: uppercase;
-    }
+<link rel="stylesheet" type="text/css" href="https://codepen.io/Vuko/pen/NAXNWw.css" />
+<link rel="stylesheet" type="text/css" href="http://codepen.io/Vuko/pen/LkOAvy.css" />
 
 
-    .rolldown-list li:nth-child(2n) {
-        background-color: #4d4d4d;
-    }
+<input type='checkbox' id='sideToggle1' hidden>
+<aside class='sideMenu left'>
+    <h2>Navigation</h2>
+    <ul>
+        <li><a href='/m/home/' data-value='Sonderkarte'>Sonderkarte</a></li>
+        <li class="marked"><a href='/m/orders/' data-value='Speisekarte'>Speisekarte</a></li>
+        <li><a href='/m/invoice' data-value='Rechnung'>Rechnung</a></li>
+        <li><a href='#' data-value='Kellnerruf'>Kellnerruf</a></li>
+    </ul>
+</aside>
 
-    .rolldown-list li:nth-child(2n+1) {
-        background-color: #333333;
-    }
-
-
-
-
-    #btnReload:hover {
-        background: #ddd;
-    }
-
-
-
-
-</style>
-
-
-
-
-
-     <ul class="rolldown-list" id="myList">
-         <li>One</li>
-         <li>Two</li>
-     </ul>
-
-     <button id="btnReload">Reload</button>
+<div id='contentWrap'>
+        <div class="container">
+            <header>
+                <label class='menuBtn' for='sideToggle1'>&minus;</label>
+            </header>
+    <body>
+        <div class="container">
+            <div class="items" ng-if="base.list" ng-repeat="groups in base.list | filter:filterAll" ng-re ng-class="'color' + ($index % 2)" style="margin-top: 0%">
+                <a href="/m/orders/d/{{groups.data._id}}" class="btn btn-gradient" ng-click="order.saveArticleTempID(groups.data._id)">
+                    <div class="values">
+                        <img class="img_1" src={{groups.data.img}} alt=""/>
+                        <div class="name_1">{{groups.data.name}}</div>
+                        <div class="line_1"></div>
+                        <div class="price_1">{{groups.data.price}}€</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </body>
+    </div>
+</div>

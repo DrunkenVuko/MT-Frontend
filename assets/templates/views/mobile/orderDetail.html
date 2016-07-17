@@ -1,28 +1,5 @@
-<link rel="stylesheet" type="text/css" href="http://codepen.io/Vuko/pen/LkOAvy.css" />
 <link rel="stylesheet" type="text/css" href="https://codepen.io/Vuko/pen/NAXNWw.css" />
-
-<style>
-    /* Content handing */
-
-    .sideMenu.left {
-        opacity: .5;
-        -webkit-transform: translatex(-40px);
-        transform: translatex(-40px);
-        -webkit-transition: 0.33s cubic-bezier(0.7, 0.15, 0.36, 1);
-        transition: 0.33s cubic-bezier(0.7, 0.15, 0.36, 1);
-        width: 276px;
-        left: -2%;
-        text-align: -webkit-center;
-    }
-    .sideMenu > ul > li a:hover {
-        color: #ffffff;
-        text-indent: 250px;
-    }
-
-    .marked {
-        background-color: #3f3f3f;
-    }
-</style>
+<link rel="stylesheet" type="text/css" href="http://codepen.io/Vuko/pen/LkOAvy.css" />
 
 <div data-ng-init="order.getById()"> </div>
 
@@ -36,36 +13,44 @@
         <li><a href='#' data-value='Kellnerruf'>Kellnerruf</a></li>
     </ul>
 </aside>
-
-
 <div id='contentWrap'>
-<div class="container">
-
-    <header>
-        <label class='menuBtn' for='sideToggle1'>&minus;</label>
-        <div class="name">{{order.newArticle.data.name}}</div>
-        <div class="items-number">{{order.manipulatedPrice}}€</div>
-        <div class="buyDetail"><a href="/m/orders/" class="btn btn-gradient" ng-click="order.add()"><i class="fa fa-cart-plus fa-2x" aria-hidden="true"></i></a></div>
-
-    </header>
-<body>
-<ul class="items">
-    <div class="backButton"><a href="/m/orders/{{order.newArticle.id}}" class="back" style="text-decoration: none"><div class="back">Zurück</div></a></div></ul>
-    <ul class="items">
-        <li class="item-{{order.newArticle.id}}" ng-click="order.test(groups._id)" style="height: 500px">
-            <div class="roundDetail">
-                <img src={{order.newArticle.data.img}} style="width:100%">
-                <div class="descDetail">
-                    <p>{{order.newArticle.data.desc}}</p>
+    <div class="container">
+        <header>
+            <label class='menuBtn' for='sideToggle1'>&minus;</label>
+            <div class="headline_2">{{order.newArticle.data.name}}</div>
+            <div class="price_2">{{order.manipulatedPrice}}€</div>
+        </header>
+        <body>
+        <div class="container">
+            <div class="halfitems" style="background-color: #E4E4E4;">
+                <a href="/m/orders/{{order.newArticle.id}}" class="btn btn-gradient" ng-click="order.saveArticleTempID(groups.data._id)">
+                <div class="values">
+                    <img class="img_1" src="http://www.friedrich-grafling.com/bilder/back.jpg" />
+                    <div class="name_2">Zurück</div>
                 </div>
+            </a>
+                <a href="/m/orders/" class="btn btn-gradient" ng-click="order.add()">
+                    <div class="buy_3" style="background-color: #E4E4E4;">
+                        <div class="sortBuy_3"> <i class="fa fa-cart-plus fa-3x" aria-hidden="true"></i></div>
+                        <div class="name_3">Bestellen</div>
+                    </div>
+                </a>
             </div>
-<div>
-            <input class="amountController" type="text" ng-value="order.amount">
-            <label class="minusController" ng-click="order.down()">-</label>
-            <label class="plusController" ng-click="order.up()">+</label>
+            <div class="details">
+                <a href="/m/orders/d/{{groups.data._id}}" class="btn btn-gradient" ng-click="order.saveArticleTempID(groups.data._id)">
+                    <div class="values">
+                        <img class="img_3" src={{order.newArticle.data.img}} alt=""/>
+                        <div class="desc_3">{{order.newArticle.data.desc}}</div>
+                        <div class="line_1"></div>
+                        <div class="allergics_3">Allergene: {{order.allergics}}</div>
+                    </div>
+                </a>
+
+                <input class="amount_3" type="text" ng-value="order.amount">
+                <label class="minus_3" ng-click="order.down()"><i class="fa fa-minus-square-o fa-lg" aria-hidden="true"></label>
+                <label class="plus_3" ng-click="order.up()"><i class="fa fa-plus-square-o fa-lg" aria-hidden="true"></i></label>
+            </div>
 </div>
-        </li>
-    </ul>
-</div>
+        </body>
+        </div>
     </div>
-</body>

@@ -73,6 +73,16 @@ module.exports = [
 
             }, function(response) {
 
+                self.allergics = "";
+                for (var i = 0; i < response.message[0].data.allergics.length; i++)
+                {
+                    self.allergics += response.message[0].data.allergics[i].label;
+                    if(i < response.message[0].data.allergics.length-1)
+                    {
+                        self.allergics += ", ";
+                    }
+                }
+
                 self.newArticle = response.message[0];
                 console.log(response.message );
                 self.manipulatedPrice = convertNumber(self.newArticle.data.price);

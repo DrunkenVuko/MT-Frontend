@@ -1,56 +1,5 @@
-<link rel="stylesheet" type="text/css" href="http://codepen.io/Vuko/pen/LkOAvy.css" />
 <link rel="stylesheet" type="text/css" href="https://codepen.io/Vuko/pen/NAXNWw.css" />
-
-<style>
-    /* Content handing */
-
-    #content {
-        background-color: white;
-    }
-    /*#contentWrap {*/
-        /*margin-top: -11%;*/
-        /*margin-left: -12%;*/
-        /*background-color: #222;*/
-        /*width: 125%;*/
-        /*margin-bottom: -11%;*/
-    /*}*/
-    .sideMenu.left {
-        opacity: .5;
-        -webkit-transform: translatex(-40px);
-        transform: translatex(-40px);
-        -webkit-transition: 0.33s cubic-bezier(0.7, 0.15, 0.36, 1);
-        transition: 0.33s cubic-bezier(0.7, 0.15, 0.36, 1);
-        width: 276px;
-        left: -2%;
-        text-align: -webkit-center;
-    }
-    .sideMenu > ul > li a:hover {
-        color: #ffffff;
-        text-indent: 250px;
-    }
-
-    .marked {
-        background-color: #3f3f3f;
-    }
-
-     .color0 {
-         background-color: #4d4d4d;
-     }
-
-    .color1 {
-        background-color: #333333;
-    }
-
-    .values {
-        position: relative;
-        height: 111px;
-        border-radius: 6px;
-        margin-top: -1%;
-        z-index: -1;
-    }
-
-
-</style>
+<link rel="stylesheet" type="text/css" href="http://codepen.io/Vuko/pen/LkOAvy.css" />
 
 <div data-ng-init="order.getArticles()"> </div>
 
@@ -65,26 +14,32 @@
     </ul>
 </aside>
 
-
 <div id='contentWrap'>
-<div class="container">
-    <header>
-        <label class='menuBtn' for='sideToggle1'>&minus;</label>
-        <div class="name">{{order.getName()}}</div>
-        <div class="items-number">{{order.list.length}} items</div>
-    </header>
-    <ul class="items">
-        <a href="/m/orders/" class="back" style="text-decoration: none"><li class="item-1" style="height: 50px; text-align: center; padding-left: 41%" >Zurück</li></a>
-    </ul>
-    <ul class="items" ng-if="order.list" ng-repeat="groups in order.list | filter:filterAll" ng-re ng-class="'color' + ($index % 2)" style="margin-top: 0%">
-        <a href="/m/orders/d/{{groups.data._id}}" class="btn btn-gradient" ng-click="order.saveArticleTempID(groups.data._id)">
-            <li class="values">
-            <img class="round" src={{groups.data.img}} alt=""/>
-            <div class="blockName">{{groups.data.name}}</div>
-            <div class="price">{{groups.data.price}}€</div>
+    <div class="container">
+        <header>
+            <label class='menuBtn' for='sideToggle1'>&minus;</label>
+            <div class="headline_2"> {{order.getName()}}</div>
+        </header>
+        <body>
+        <div class="container">
+            <div class="items" style="background-color: #E4E4E4;">
+                <a href="/m/orders/" class="btn btn-gradient" ng-click="order.saveArticleTempID(groups.data._id)">
+                    <div class="values">
+                        <img class="img_1" src="http://www.friedrich-grafling.com/bilder/back.jpg" />
+                        <div class="name_2">Zurück</div>
+                    </div>
+                </a>
+            </div>
+            <div class="items" ng-if="order.list" ng-repeat="groups in order.list | filter:filterAll" ng-re ng-class="'color' + ($index % 2)" style="margin-top: 0%">
+                <a href="/m/orders/d/{{groups.data._id}}" class="btn btn-gradient" ng-click="order.saveArticleTempID(groups.data._id)">
+                    <div class="values">
+                        <img class="img_1" src={{groups.data.img}} alt=""/>
+                        <div class="name_2">{{groups.data.name}}</div>
+                        <div class="price_1">{{groups.data.price}}€</div>
+                    </div>
+                </a>
+            </div>
         </div>
-    </li>
-        </a>
-    </ul>
-</div>
+        </body>
+    </div>
 </div>

@@ -1,72 +1,7 @@
-<link rel="stylesheet" type="text/css" href="http://codepen.io/Vuko/pen/LkOAvy.css" />
 <link rel="stylesheet" type="text/css" href="https://codepen.io/Vuko/pen/NAXNWw.css" />
-<!-- 2. Nav-->
-
-<style>
-    /* Content handing */
-
-    #content {
-        background-color: white;
-    }
-    
-    .sideMenu.left {
-        opacity: .5;
-        -webkit-transform: translatex(-40px);
-        transform: translatex(-40px);
-        -webkit-transition: 0.33s cubic-bezier(0.7, 0.15, 0.36, 1);
-        transition: 0.33s cubic-bezier(0.7, 0.15, 0.36, 1);
-        width: 276px;
-        left: -2%;
-        text-align: -webkit-center;
-    }
-    .sideMenu > ul > li a:hover {
-        color: #ffffff;
-        text-indent: 250px;
-    }
-
-
-    #contentWrap {
-        min-height: 100%;
-        position: absolute;
-        z-index: 1;
-        background: #FFF;
-        -webkit-transition: 0.33s cubic-bezier(0.7, 0.15, 0.36, 1);
-        transition: 0.33s cubic-bezier(0.7, 0.15, 0.36, 1);
-        background-color: #222;
-        width: 98%;
-        left: 4%;
-        top: 2%;
-    }
-
-    header {
-        height: 100px;
-        width: 382px;
-        text-align: -webkit-center;
-        color: black;
-    }
-
-    .invoiceBody {
-        background: white;
-        width: 94%;
-        position: absolute;
-        height: 82%;
-        top: 13.6%;
-    }
-
-    hr {
-        display: block;
-        margin-top: 0.5em;
-        margin-bottom: 0.5em;
-        margin-left: auto;
-        margin-right: auto;
-        border-style: inset;
-        border-width: 1px;
-    }
-</style>
+<link rel="stylesheet" type="text/css" href="http://codepen.io/Vuko/pen/LkOAvy.css" />
 
 <div data-ng-init="order.getInvoiceByID()"> </div>
-
-
 <input type='checkbox' id='sideToggle1' hidden>
 <aside class='sideMenu left'>
     <h2>Navigation</h2>
@@ -78,18 +13,18 @@
     </ul>
 </aside>
 
-
-
 <div id='contentWrap'>
-    <header>
-        <label class='menuBtn' for='sideToggle1' style="left: 6px; top: 5px; position: absolute">&minus;</label>
-        <div class="home"> Aktuelle Rechnung</div>
-    </header>
-<div class="invoiceBody">
+    <div class="container">
+        <header>
+            <label class='menuBtn' for='sideToggle1' style="left: 6px; top: 5px; position: absolute">&minus;</label>
+            <div class="headline_1"> Aktuelle Rechnung</div>
+        </header>
+<body>
+<div class="container">
 
     <table st-table="rowCollection" class="table table-striped" align="center">
         <thead>
-        <tr>
+        <tr class="reiter">
             <th>Artikel</th>
             <th>Anzahl</th>
             <th>Preis</th>
@@ -104,8 +39,8 @@
     <hr>
     <table>
         <tr>
-            <td width="199px">Summe: </td>
-            <td width="10px">{{order.price}}€ </td>
+            <td class="invoiceamount" width="270px">Summe: </td>
+            <td class="invoiceamount" width="10px">{{order.price}}€ </td>
         </tr>
 </table>
 </div>
