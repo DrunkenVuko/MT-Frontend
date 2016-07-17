@@ -45,19 +45,18 @@
         <label class='menuBtn' for='sideToggle1'>&minus;</label>
         <div class="name">{{order.newArticle.data.name}}</div>
         <div class="items-number">{{order.manipulatedPrice}}€</div>
-        <div class="shoppingCart" ng-click="order.test()"><i class="fa fa-shopping-basket" aria-hidden="true"></i></div>
-        <div class="buyDetail"><a href="" class="btn btn-gradient" ng-click="order.add()"><i class="fa fa-cart-plus fa-2x" aria-hidden="true"></i></a></div>
+        <div class="buyDetail"><a href="/m/orders/" class="btn btn-gradient" ng-click="order.add()"><i class="fa fa-cart-plus fa-2x" aria-hidden="true"></i></a></div>
 
     </header>
 <body>
 <ul class="items">
-    <div class="backButton"><a href="/m/orders/" class="back" style="text-decoration: none"><div class="back">Zurück</div></a></div></ul>
+    <div class="backButton"><a href="/m/orders/{{order.newArticle.id}}" class="back" style="text-decoration: none"><div class="back">Zurück</div></a></div></ul>
     <ul class="items">
         <li class="item-{{order.newArticle.id}}" ng-click="order.test(groups._id)" style="height: 500px">
             <div class="roundDetail">
                 <img src={{order.newArticle.data.img}} style="width:100%">
                 <div class="descDetail">
-                    <p>Beschreibung: {{order.newArticle.data.desc}}</p>
+                    <p>{{order.newArticle.data.desc}}</p>
                 </div>
             </div>
 <div>
@@ -68,5 +67,5 @@
         </li>
     </ul>
 </div>
-</div>
+    </div>
 </body>

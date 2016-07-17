@@ -8,25 +8,11 @@ module.exports = [
         var simpleStorage = require('simpleStorage.js');
         var colorControl = false;
 
-        self.amount = 1;
-
-        self.customers = [
-        {
-            'id' : '1',
-            'name' : '1'
-        },
-        {
-            'id' : '2',
-            'name' : '2'
-        },
-        {
-            'id' : '3',
-            'name' : '3'
-        },
-    ]
+          self.amount = 1;
 
 
-    self.getAll = function () {
+
+        self.getAll = function () {
         CommonRequest.groups.getAll({
             'x-access-token' : simpleStorage.get('secToken')
 
@@ -49,19 +35,7 @@ module.exports = [
             }, function(response) {
                 if (response && response.message) {
 
-                    self.listA = {};
-                    self.listB = {};
-                    self.list = [];
-                    
-                    // for(var i = 0; i < response.message.length; i++)
-                    // {
-                    //     self.listA = response.message[i].data;
-                    //     i++;
-                    //     self.listB = response.message[i].data;
-                    //     self.list.push({first: self.listB, second :self.listA});
-                    //
-                    // }
-self.list = response.message;
+                self.list = response.message;
 
                     //self.listID = response.message.id;
                     console.log('self.getArticlesViaGroup wird ausgeführt');
@@ -97,16 +71,13 @@ self.list = response.message;
                 'x-access-token' : simpleStorage.get('secToken'),
                 'userid' : '57699490e8be70ec09ab94d6'
 
-
             }, function(response) {
 
                 self.newArticle = response.message[0];
+                console.log(response.message );
                 self.manipulatedPrice = convertNumber(self.newArticle.data.price);
 
                 console.log('article.getArticleById wird ausgeführt');
-
-            }, function(response) {
-                console.log('error', response);
             });
         };
 
@@ -120,6 +91,7 @@ self.list = response.message;
             simpleStorage.set('tempArticleID', tempID, {TTL: 100000});
             console.log("Gespeicherte Daten: ," , simpleStorage.get
             ("tempArticleID"));
+            self.getById();
         }
 
 

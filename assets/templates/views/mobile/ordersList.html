@@ -76,14 +76,15 @@
     <ul class="items">
         <a href="/m/orders/" class="back" style="text-decoration: none"><li class="item-1" style="height: 50px; text-align: center; padding-left: 41%" >Zurück</li></a>
     </ul>
-    <div class="values" ng-if="order.list" ng-repeat="groups in order.list | filter:filterAll" ng-re ng-class="'color' + ($index % 2)" style="margin-top: 0%">
-        <a href="/m/orders/d/{{groups.data._id}}" class="btn btn-gradient">
-        <div ng-click="">
+    <ul class="items" ng-if="order.list" ng-repeat="groups in order.list | filter:filterAll" ng-re ng-class="'color' + ($index % 2)" style="margin-top: 0%">
+        <a href="/m/orders/d/{{groups.data._id}}" class="btn btn-gradient" ng-click="order.saveArticleTempID(groups.data._id)">
+            <li class="values">
             <img class="round" src={{groups.data.img}} alt=""/>
             <div class="blockName">{{groups.data.name}}</div>
             <div class="price">{{groups.data.price}}€</div>
         </div>
+    </li>
         </a>
-    </div>
+    </ul>
 </div>
 </div>
