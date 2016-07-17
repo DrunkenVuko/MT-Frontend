@@ -104,7 +104,8 @@ module.exports = [
                 'articleid' : self.newArticle.data._id,
                 'amount' : self.amount,
                 'price' : self.newArticle.data.price,
-                'userid' : self.newArticle.data.usrID
+                'userid' : self.newArticle.data.usrID,
+                'name' : self.newArticle.data.name
 
             }, function(response) {
                 console.log('error', response);
@@ -131,6 +132,22 @@ module.exports = [
         {
             return parseFloat(Math.round(number * 100) / 100).toFixed(2);
         }
-        
 
+        self.getInvoiceByID = function () {
+            CommonRequest.mobile.getTableViaId({
+                'id' : '57699490e8be70ec09ab94d6'
+
+            },  {
+                'x-access-token' : simpleStorage.get('secToken'),
+                'table' : '1'
+
+            }, function(response) {
+
+                self.invoice = response.message;
+                self.price = convertNumber(response.price);
+                console.log(response.message );
+
+                console.log('order.getInvoiceById wird ausgeführt');
+            });
+        };
 }];

@@ -113,7 +113,12 @@ module.exports = ['$resource', '$http', 'CommonConfig', function($resource, $htt
       addTable : {
         method: 'POST',
         url : 'mobile/menu/add'
-      }
+      },
+      // Invoice
+      getTableViaId : {
+        method: 'POST',
+        url : 'mobile/table/:id'
+      },
     })
     // articles : generateResource('articles', 'backend', null, {
     //   getUserById : {
