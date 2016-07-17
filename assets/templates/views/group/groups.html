@@ -199,7 +199,7 @@
         <tbody>
         <tr ng-repeat="group in groups.list | filter:filterAll">
             <td colspan="3"><img src="{{group.img}}" style="width:128px;height:80px;"> </td>
-            <td colspan="1">{{group.shortID}}</td>
+            <td colspan="1">{{group.shortid}}</td>
             <td colspan="2">{{group.name}}</td>
             <td colspan="3">{{group.desc}}</td>
             <td><a href="/groups/{{group._id}}" class="btn btn-gradient" ng-click="groups.saveGroupTempID(group._id)"><i style="color: grey" class="fa fa-pencil-square-o" aria-hidden="true"> Edit</i></a>

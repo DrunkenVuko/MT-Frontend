@@ -11,7 +11,7 @@ module.exports = [
 
 
         self.newGroup = {
-            shortID : '',
+            shortid : '',
             desc : '',
             name : '',
             img : ''
@@ -24,7 +24,7 @@ module.exports = [
             },  {
                 'x-access-token': simpleStorage.get('secToken'),
                 'img' : self.tempGroups.img,
-                'shortID' : self.tempGroups.shortID,
+                'shortid' : self.tempGroups.shortid,
                 'desc' : self.tempGroups.desc,
                 'name' : self.tempGroups.name,
                 'userid' : simpleStorage.get('userid')
@@ -39,7 +39,7 @@ module.exports = [
                 'x-access-token': simpleStorage.get('secToken')
             }, {
                 'img' : self.newGroups.img,
-                'shortID' : self.newGroups.shortID,
+                'shortid' : self.newGroups.shortid,
                 'desc' : self.newGroups.desc,
                 'name' : self.newGroups.name,
                 'userid' : simpleStorage.get('userid')
