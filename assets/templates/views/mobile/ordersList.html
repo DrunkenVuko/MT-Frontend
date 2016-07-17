@@ -32,6 +32,24 @@
     .marked {
         background-color: #3f3f3f;
     }
+
+     .color0 {
+         background-color: #4d4d4d;
+     }
+
+    .color1 {
+        background-color: #333333;
+    }
+
+    .values {
+        position: relative;
+        height: 111px;
+        border-radius: 6px;
+        margin-top: -1%;
+        z-index: -1;
+    }
+
+
 </style>
 
 <div data-ng-init="order.getArticles()"> </div>
@@ -58,14 +76,14 @@
     <ul class="items">
         <a href="/m/orders/" class="back" style="text-decoration: none"><li class="item-1" style="height: 50px; text-align: center; padding-left: 41%" >Zurück</li></a>
     </ul>
-    <ul class="items" ng-if="order.list" ng-repeat="groups in order.list | filter:filterAll" ng-re>
-        <a href="/m/orders/d/{{groups.data._id}}" class="btn btn-gradient" style="text-decoration: none">
-        <li class="item-{{groups.id}}" ng-click="order.saveArticleTempID(groups.data._id)">
+    <div class="values" ng-if="order.list" ng-repeat="groups in order.list | filter:filterAll" ng-re ng-class="'color' + ($index % 2)" style="margin-top: 0%">
+        <a href="/m/orders/d/{{groups.data._id}}" class="btn btn-gradient">
+        <div ng-click="">
             <img class="round" src={{groups.data.img}} alt=""/>
-            <span>{{groups.data.name}}</span>
+            <div class="blockName">{{groups.data.name}}</div>
             <div class="price">{{groups.data.price}}€</div>
-        </li>
+        </div>
         </a>
-    </ul>
+    </div>
 </div>
 </div>

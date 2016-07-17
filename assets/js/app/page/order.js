@@ -48,7 +48,21 @@ module.exports = [
                 'userid' : '57699490e8be70ec09ab94d6'
             }, function(response) {
                 if (response && response.message) {
-                    self.list = response.message;
+
+                    self.listA = {};
+                    self.listB = {};
+                    self.list = [];
+                    
+                    // for(var i = 0; i < response.message.length; i++)
+                    // {
+                    //     self.listA = response.message[i].data;
+                    //     i++;
+                    //     self.listB = response.message[i].data;
+                    //     self.list.push({first: self.listB, second :self.listA});
+                    //
+                    // }
+self.list = response.message;
+
                     //self.listID = response.message.id;
                     console.log('self.getArticlesViaGroup wird ausgeführt');
                 }
@@ -56,6 +70,7 @@ module.exports = [
                 console.log('error', response);
             });
         };
+        
 
         self.saveGroupTempID = function(tempID, tempName)
         {
