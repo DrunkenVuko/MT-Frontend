@@ -160,4 +160,13 @@ module.exports = [
                 console.log('order.getInvoiceById wird ausgeführt');
             });
         };
+
+        
+            self.qrcodeString = 'YOUR TEXT TO ENCODE';
+        self.size = 250;
+        self.correctionLevel = '';
+        self.typeNumber = 0;
+        self.inputMode = '';
+        self.image = true;
+      
 }];

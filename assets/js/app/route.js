@@ -83,10 +83,10 @@ module.exports = ['$routeProvider', '$locationProvider', '$httpProvider', 'Commo
           resolve : independentPageResolver,
       })
       .when('/allergics', {
-          controller : 'AllergicCtrl as allergics',
-          templateUrl : 'views/allergic/allergics.html',
-          resolve : independentPageResolver,
-      })
+      controller : 'AllergicCtrl as allergics',
+      templateUrl : 'views/allergic/allergics.html',
+      resolve : independentPageResolver,
+  })
       .when('/add/allergics/', {
           controller : 'AllergicCtrl as allergics',
           templateUrl : 'views/allergic/addAllergics.html',
@@ -97,6 +97,21 @@ module.exports = ['$routeProvider', '$locationProvider', '$httpProvider', 'Commo
       templateUrl : 'views/allergic/editAllergics.html',
       resolve : independentPageResolver,
   })
+      .when('/tables', {
+          controller : 'TableCtrl as tables',
+          templateUrl : 'views/table/tables.html',
+          resolve : independentPageResolver,
+      })
+      .when('/add/tables', {
+          controller : 'TableCtrl as tables',
+          templateUrl : 'views/table/addTables.html',
+          resolve : independentPageResolver,
+      })
+      .when('/print/tables/:id', {
+          controller : 'TableCtrl as tables',
+          templateUrl : 'views/table/printTables.html',
+          resolve : independentPageResolver,
+      })
       .when('/m/orders/', {
           controller : 'OrderCtrl as order',
           templateUrl : 'views/mobile/orders.html',

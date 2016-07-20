@@ -12,8 +12,8 @@ require('angular-cache');
 require('simplestorage.js');
 require('angular-bootstrap');
 require('angular-messages');
-
-var application = angular.module('application', [ 'ngMessages', 'angular-cache','ngDialog', 'angularjs-dropdown-multiselect','ngResource', 'ui.bootstrap', 'ngRoute', 'pascalprecht.translate', 'cfp.hotkeys','formly', 'formlyBootstrap'])
+require('angular-qr-master');
+var application = angular.module('application', [ 'ja.qr', 'ngMessages', 'angular-cache','ngDialog', 'angularjs-dropdown-multiselect','ngResource', 'ui.bootstrap', 'ngRoute', 'pascalprecht.translate', 'cfp.hotkeys','formly', 'formlyBootstrap'])
 ;
 
 require('./common/filters')(application);
@@ -43,7 +43,8 @@ application
   .controller('UsersAddCtrl', require('./page/users'))
   .controller('GroupsCtrl', require('./page/groups'))
   .controller('AllergicCtrl', require('./page/allergics'))
-  .controller('OrderCtrl', require('./page/order'))
+    .controller('OrderCtrl', require('./page/order'))
+    .controller('TableCtrl', require('./page/tables'))
   ;
 
 module.exports = application;

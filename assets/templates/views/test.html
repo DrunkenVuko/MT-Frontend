@@ -1,87 +1,93 @@
-<!--
-     {{myForm.myAddress.$valid}}
-     {{myForm.myAddress.$dirty}}
-     {{myForm.myAddress.$touched}}
+     <!--{{myForm.myAddress.$valid}}-->
+     <!--{{myForm.myAddress.$dirty}}-->
+     <!--{{myForm.myAddress.$touched}}-->
 
 
 
-<form name="myForm">
+<!--<form name="myForm">-->
 
-        <div ng-if="myForm.myName.$dirty && myForm.myName2.$dirty"> <button type="submit" ng-click="base.test()">Button wird erst angezeigt wenn Formular richtig ist</button></div>
+        <!--<div ng-if="myForm.myName.$dirty && myForm.myName2.$dirty"> <button type="submit" ng-click="base.test()">Button wird erst angezeigt wenn Formular richtig ist</button></div>-->
 
-    <label>
-        Enter your name:
-        <input type="text"
-               name="myName"
-               ng-model="name"
-               ng-minlength="5"
-               required />
-    </label>
-
-
- <div ng-messages="myForm.myName.$error" style="color:maroon" role="alert">
-     <div ng-message="required">You did not enter a field</div>
-     <div ng-message="minlength">Your field is too short</div>
-     <div ng-message="maxlength">Your field is too long</div>
-     <div ng-message="null">Alles korrekt</div>
- </div>
+    <!--<label>-->
+        <!--Enter your name:-->
+        <!--<input type="text"-->
+               <!--name="myName"-->
+               <!--ng-model="name"-->
+               <!--ng-minlength="5"-->
+               <!--required />-->
+    <!--</label>-->
 
 
+ <!--<div ng-messages="myForm.myName.$error" style="color:maroon" role="alert">-->
+     <!--<div ng-message="required">You did not enter a field</div>-->
+     <!--<div ng-message="minlength">Your field is too short</div>-->
+     <!--<div ng-message="maxlength">Your field is too long</div>-->
+     <!--<div ng-message="null">Alles korrekt</div>-->
+ <!--</div>-->
 
 
 
-    <input type="email"
-           name="myName2"
-           ng-model="email"
-           ng-minlength="5"
-           ng-maxlength="20"
-           required />
 
 
-    <div ng-messages="myForm.myName2.$error" style="color:maroon" role="alert">
-        <div ng-message="required">You did not enter a field</div>
-        <div ng-message="minlength">Your field is too short</div>
-        <div ng-message="maxlength">Your field is too long</div>
-        <div ng-message="email">No Email</div>
-    </div>
-
-</form>
--->
+    <!--<input type="email"-->
+           <!--name="myName2"-->
+           <!--ng-model="email"-->
+           <!--ng-minlength="5"-->
+           <!--ng-maxlength="20"-->
+           <!--required />-->
 
 
-<link rel="stylesheet" type="text/css" href="https://codepen.io/Vuko/pen/NAXNWw.css" />
-<link rel="stylesheet" type="text/css" href="http://codepen.io/Vuko/pen/LkOAvy.css" />
+    <!--<div ng-messages="myForm.myName2.$error" style="color:maroon" role="alert">-->
+        <!--<div ng-message="required">You did not enter a field</div>-->
+        <!--<div ng-message="minlength">Your field is too short</div>-->
+        <!--<div ng-message="maxlength">Your field is too long</div>-->
+        <!--<div ng-message="email">No Email</div>-->
+    <!--</div>-->
+
+<!--</form>-->
+
+     <script type="text/javascript" src="grid.js"></script>
+     <script type="text/javascript" src="version.js"></script>
+     <script type="text/javascript" src="detector.js"></script>
+     <script type="text/javascript" src="formatinf.js"></script>
+     <script type="text/javascript" src="errorlevel.js"></script>
+     <script type="text/javascript" src="bitmat.js"></script>
+     <script type="text/javascript" src="datablock.js"></script>
+     <script type="text/javascript" src="bmparser.js"></script>
+     <script type="text/javascript" src="datamask.js"></script>
+     <script type="text/javascript" src="rsdecoder.js"></script>
+     <script type="text/javascript" src="gf256poly.js"></script>
+     <script type="text/javascript" src="gf256.js"></script>
+     <script type="text/javascript" src="decoder.js"></script>
+     <script type="text/javascript" src="qrcode.js"></script>
+     <script type="text/javascript" src="findpat.js"></script>
+     <script type="text/javascript" src="alignpat.js"></script>
+     <script type="text/javascript" src="databr.js"></script>
 
 
-<input type='checkbox' id='sideToggle1' hidden>
-<aside class='sideMenu left'>
-    <h2>Navigation</h2>
-    <ul>
-        <li><a href='/m/home/' data-value='Sonderkarte'>Sonderkarte</a></li>
-        <li class="marked"><a href='/m/orders/' data-value='Speisekarte'>Speisekarte</a></li>
-        <li><a href='/m/invoice' data-value='Rechnung'>Rechnung</a></li>
-        <li><a href='#' data-value='Kellnerruf'>Kellnerruf</a></li>
-    </ul>
-</aside>
 
-<div id='contentWrap'>
-        <div class="container">
-            <header>
-                <label class='menuBtn' for='sideToggle1'>&minus;</label>
-            </header>
-    <body>
-        <div class="container">
-            <div class="items" ng-if="base.list" ng-repeat="groups in base.list | filter:filterAll" ng-re ng-class="'color' + ($index % 2)" style="margin-top: 0%">
-                <a href="/m/orders/d/{{groups.data._id}}" class="btn btn-gradient" ng-click="order.saveArticleTempID(groups.data._id)">
-                    <div class="values">
-                        <img class="img_1" src={{groups.data.img}} alt=""/>
-                        <div class="name_1">{{groups.data.name}}</div>
-                        <div class="line_1"></div>
-                        <div class="price_1">{{groups.data.price}}€</div>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </body>
-    </div>
+
+     <body >
+     <div id="main">
+         <div id="mainbody">
+             <p style="font-size:25px;text-align:center;">Create QR Code</p>
+             <table border="0" align="center">
+                 <tr><td>
+                     <input type="url" ng-model="base.temp" id="url"/>
+                     <p style="font-size:20px;text-align:center;">Enter URL or text:</p>
+                     <textarea cols="40" rows="3" id="data"></textarea>
+                 </td></tr>
+                 <tr><td align="center">
+                     <div class="button" ng-click="base.create()">Create</div>
+                 </td></tr>
+                 <tr><td align="center">
+                     <div id="qrimage">
+                     </div>
+                 </td></tr>
+
+             </table>
 </div>
+     </div>
+     </body>
+
+

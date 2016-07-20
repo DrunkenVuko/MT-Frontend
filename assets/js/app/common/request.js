@@ -100,6 +100,25 @@ module.exports = ['$resource', '$http', 'CommonConfig', function($resource, $htt
         url: 'groups/dropDown/:userID'
       }
     }),
+    tables : generateResource('tables', 'backend', null, {
+      // die standard operationen (get post put delete) werden automatisch erzeugt
+      getAll : {
+        method : 'POST',
+        url : 'tables/'
+      },      
+      getTablesById : {
+        method : 'POST',
+        url : 'tables/:id'
+      },
+      addTables : {
+        method : 'POST',
+        url : 'tables/add/'
+      },
+      changeTables : {
+        method: 'PUT',
+        url: 'tables/:id'
+      }
+    }),
     mobile : generateResource('mobile', 'backend', null, {
       // Mobile Web-App
       getArticlesViaGroup : {
