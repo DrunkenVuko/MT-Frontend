@@ -1,93 +1,48 @@
-     <!--{{myForm.myAddress.$valid}}-->
-     <!--{{myForm.myAddress.$dirty}}-->
-     <!--{{myForm.myAddress.$touched}}-->
+
+     {{myForm.myAddress.$valid}}
+     {{myForm.myAddress.$dirty}}
+     {{myForm.myAddress.$touched}}
 
 
 
-<!--<form name="myForm">-->
+     <form name="myForm">
 
-        <!--<div ng-if="myForm.myName.$dirty && myForm.myName2.$dirty"> <button type="submit" ng-click="base.test()">Button wird erst angezeigt wenn Formular richtig ist</button></div>-->
+         <div ng-if="myForm.myName.$dirty && myForm.myName2.$dirty"> <button type="submit" ng-click="base.test()">Button wird erst angezeigt wenn Formular richtig ist</button></div>
 
-    <!--<label>-->
-        <!--Enter your name:-->
-        <!--<input type="text"-->
-               <!--name="myName"-->
-               <!--ng-model="name"-->
-               <!--ng-minlength="5"-->
-               <!--required />-->
-    <!--</label>-->
-
-
- <!--<div ng-messages="myForm.myName.$error" style="color:maroon" role="alert">-->
-     <!--<div ng-message="required">You did not enter a field</div>-->
-     <!--<div ng-message="minlength">Your field is too short</div>-->
-     <!--<div ng-message="maxlength">Your field is too long</div>-->
-     <!--<div ng-message="null">Alles korrekt</div>-->
- <!--</div>-->
+         <label>
+             Enter your name:
+             <input type="text"
+                    name="myName"
+                    ng-model="name"
+                    ng-minlength="5"
+                    required />
+         </label>
 
 
-
-
-
-    <!--<input type="email"-->
-           <!--name="myName2"-->
-           <!--ng-model="email"-->
-           <!--ng-minlength="5"-->
-           <!--ng-maxlength="20"-->
-           <!--required />-->
-
-
-    <!--<div ng-messages="myForm.myName2.$error" style="color:maroon" role="alert">-->
-        <!--<div ng-message="required">You did not enter a field</div>-->
-        <!--<div ng-message="minlength">Your field is too short</div>-->
-        <!--<div ng-message="maxlength">Your field is too long</div>-->
-        <!--<div ng-message="email">No Email</div>-->
-    <!--</div>-->
-
-<!--</form>-->
-
-     <script type="text/javascript" src="grid.js"></script>
-     <script type="text/javascript" src="version.js"></script>
-     <script type="text/javascript" src="detector.js"></script>
-     <script type="text/javascript" src="formatinf.js"></script>
-     <script type="text/javascript" src="errorlevel.js"></script>
-     <script type="text/javascript" src="bitmat.js"></script>
-     <script type="text/javascript" src="datablock.js"></script>
-     <script type="text/javascript" src="bmparser.js"></script>
-     <script type="text/javascript" src="datamask.js"></script>
-     <script type="text/javascript" src="rsdecoder.js"></script>
-     <script type="text/javascript" src="gf256poly.js"></script>
-     <script type="text/javascript" src="gf256.js"></script>
-     <script type="text/javascript" src="decoder.js"></script>
-     <script type="text/javascript" src="qrcode.js"></script>
-     <script type="text/javascript" src="findpat.js"></script>
-     <script type="text/javascript" src="alignpat.js"></script>
-     <script type="text/javascript" src="databr.js"></script>
+         <div ng-messages="myForm.myName.$error" style="color:maroon" role="alert">
+             <div ng-message="required">You did not enter a field</div>
+             <div ng-message="minlength">Your field is too short</div>
+             <div ng-message="maxlength">Your field is too long</div>
+             <div ng-message="null">Alles korrekt</div>
+         </div>
 
 
 
 
-     <body >
-     <div id="main">
-         <div id="mainbody">
-             <p style="font-size:25px;text-align:center;">Create QR Code</p>
-             <table border="0" align="center">
-                 <tr><td>
-                     <input type="url" ng-model="base.temp" id="url"/>
-                     <p style="font-size:20px;text-align:center;">Enter URL or text:</p>
-                     <textarea cols="40" rows="3" id="data"></textarea>
-                 </td></tr>
-                 <tr><td align="center">
-                     <div class="button" ng-click="base.create()">Create</div>
-                 </td></tr>
-                 <tr><td align="center">
-                     <div id="qrimage">
-                     </div>
-                 </td></tr>
 
-             </table>
-</div>
-     </div>
-     </body>
+         <input type="email"
+                name="myName2"
+                ng-model="email"
+                ng-minlength="5"
+                ng-maxlength="20"
+                required />
 
 
+         <div ng-messages="myForm.myName2.$error" style="color:maroon" role="alert">
+             <div ng-message="required">You did not enter a field</div>
+             <div ng-message="minlength">Your field is too short</div>
+             <div ng-message="maxlength">Your field is too long</div>
+             <div ng-message="email">No Email</div>
+         </div>
+
+     </form>

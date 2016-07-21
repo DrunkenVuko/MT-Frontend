@@ -9,7 +9,7 @@
 <aside class='sideMenu left'>
     <h2>Navigation</h2>
     <ul>
-        <li><a href='/m/home'>Home</a></li>
+        <li><a href="{{order.getUrl()}}">Home</a></li>
         <li class="marked"><a href='/m/orders/' data-value='Speisekarte'>Speisekarte</a></li>
         <li><a href='/m/invoice' data-value='Rechnung'>Rechnung</a></li>
         <li><a href='#' data-value='Kellnerruf'>Kellnerruf</a></li>
@@ -20,7 +20,7 @@
 <div class="container">
     <header>
         <label class='menuBtn' for='sideToggle1'>&minus;</label>
-        <div class="headline_1">Willkommen Tisch X</div>
+        <div class="headline_1">Willkommen Tisch {{order.getTable()[0]}}</div>
     </header>
     <body>
     <div class="container">

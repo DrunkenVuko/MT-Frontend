@@ -164,6 +164,7 @@
 <!--</formly-form>-->
 <div data-ng-init="groups.getById()"> </div>
 <h1>{{groups.tempGroups.name}} bearbeiten</h1>
+<form name="myForm">
 
 <body>
 
@@ -182,9 +183,30 @@
         </tr>
         <tr>
             <td colspan="2"><img src="{{groups.tempGroups.img}}"></td>
-            <td colspan="2"> <input name="shortid" type="text" ng-model="groups.tempGroups.shortid" width="100%" ng-change="groups.updateGroup()"></td>
-            <td colspan="2"> <input name="desc" type="text" ng-model="groups.tempGroups.desc" width="100%" ng-change="groups.updateGroup()"></td>
-            <td colspan="2"> <input name="name" type="text" ng-model="groups.tempGroups.name" width="100%" ng-change="groups.updateGroup()"></td>
+            <td colspan="2">
+                <input name="shortid" type="text" ng-model="groups.tempGroups.shortid" width="100%" ng-change="groups.updateGroup()" ng-minlength="1" ng-maxlength="2" required />
+                <div ng-messages="myForm.shortid.$error" style="color:maroon" role="alert">
+                    <div ng-message="required">*Pflichtfeld</div>
+                    <div ng-message="minlength">Die Eingabe ist zu kurz.</div>
+                    <div ng-message="maxlength">Die Eingabe ist zu lang.</div>
+                </div>
+            </td>
+            <td colspan="2">
+                <input name="desc" type="text" ng-model="groups.tempGroups.desc" width="100%" ng-change="groups.updateGroup()" ng-minlength="3" ng-maxlength="40" required/>
+                <div ng-messages="myForm.desc.$error" style="color:maroon" role="alert">
+                    <div ng-message="required">*Pflichtfeld</div>
+                    <div ng-message="minlength">Die Eingabe ist zu kurz.</div>
+                    <div ng-message="maxlength">Die Eingabe ist zu lang.</div>
+                </div>
+            </td>
+            <td colspan="2">
+                <input name="name" type="text" ng-model="groups.tempGroups.name" width="100%" ng-change="groups.updateGroup()" ng-minlength="3" ng-maxlength="26" required/>
+                <div ng-messages="myForm.name.$error" style="color:maroon" role="alert">
+                    <div ng-message="required">*Pflichtfeld</div>
+                    <div ng-message="minlength">Die Eingabe ist zu kurz.</div>
+                    <div ng-message="maxlength">Die Eingabe ist zu lang.</div>
+                </div>
+            </td>
         </tr>
         </thead>
     </table>
@@ -193,7 +215,7 @@
 </div>
 <div ng-show="isLoading" class="loading-indicator"></div>
 </body>
-
+</form>
 
 
 </div>

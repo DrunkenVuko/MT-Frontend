@@ -10,6 +10,9 @@
     color: blue;
     background: #dfac20;
 }</style>
+
+<div data-ng-init="order.getDataForUsage()"> </div>
+
 <!--<div data-ng-init="order.getInvoiceByID()"> </div>-->
 <input type='checkbox' id='sideToggle1' hidden>
 <aside class='sideMenu left'>
@@ -21,12 +24,11 @@
         <li><a href='#' data-value='Kellnerruf'>Kellnerruf</a></li>
     </ul>
 </aside>
-
 <div id='contentWrap'>
     <div class="container">
         <header>
             <label class='menuBtn' for='sideToggle1' style="left: 6px; top: 5px; position: absolute">&minus;</label>
-            <div class="headline_1">Willkommen Tisch 12</div>
+            <div class="headline_1">Willkommen Tisch {{order.getTable()[0]}}</div>
         </header>
         <body>
         <div class="container">

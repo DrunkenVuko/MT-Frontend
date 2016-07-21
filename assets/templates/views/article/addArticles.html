@@ -9,6 +9,12 @@
 
 <style>
 
+    .name_2 {
+    position: relative;
+    left: 97px;
+    top: 32px;
+    width: 93%;
+    }
     h1 {
         color: white;
         font-family: "Andale Mono";
@@ -46,24 +52,37 @@
 
 
 <h1>Artikel hinzufügen</h1>
+<form name="myForm">
 <div class="table-container">
     <table st-table="rowCollection" class="table table-striped">
         <thead>
         <tr>
             <th colspan="4"> Artikeldetails </th>
-            <th colspan="2"><a href="/articles/" class="btn btn-gradient" ng-click="articles.add()"><i class="fa fa-plus"> Hinzufügen</i></a></th>
+            <th colspan="2"><div ng-if="myForm.name.$dirty && myForm.price.$valid && myForm.desc.$valid && myForm.name.$valid && myForm.price.$valid && myForm.desc.$valid"><a href="/articles/" class="btn btn-gradient" ng-click="articles.add()"><i class="fa fa-plus"> Hinzufügen</i></a></div></th>
         </tr>
         </thead>
         <tbody>
         <tr>
             <td>Name<span class="required">*</span><br>
             </td>
-            <td colspan="4"><input name="name" type="text" ng-model="articles.newArticle.name" width="100%"> </td>
+            <td colspan="4"><input name="name" type="text" ng-model="articles.newArticle.name" width="100%" ng-minlength="4" ng-maxlength="25" required/>
+                <div ng-messages="myForm.name.$error" style="color:maroon" role="alert">
+                    <div ng-message="required">*Pflichtfeld</div>
+                    <div ng-message="minlength">Die Eingabe ist zu kurz.</div>
+                    <div ng-message="maxlength">Die Eingabe ist zu lang.</div>
+                </div>
+            </td>
         </tr>
         <tr>
             <td>Preis<span class="required">*</span><br>
             </td>
-            <td colspan="4"><input name="price" type="text" ng-model="articles.newArticle.price" width="100%"> </td>
+            <td colspan="4"><input name="price" type="text" ng-model="articles.newArticle.price" width="100%" ng-minlength="4" ng-maxlength="8" required>
+                <div ng-messages="myForm.price.$error" style="color:maroon" role="alert">
+                    <div ng-message="required">*Pflichtfeld</div>
+                    <div ng-message="minlength">Die Eingabe ist zu kurz.</div>
+                    <div ng-message="maxlength">Die Eingabe ist zu lang.</div>
+                </div>
+            </td>
         </tr>
         <tr>
             <td>Bild<br>
@@ -75,8 +94,8 @@
             <td rowspan="1">Gruppierung<br>
             </td>
             <td colspan="4">
-                <div ng-dropdown-multiselect="" options="articles.groups_multipleSelect_Data" selected-model="articles.groups_multipleSelect_Selected" extra-settings="articles.groups_multipleSelect_Settings"
-                     events="articles.myEventListenersGroups"></div>
+                <div name ="gruppe" ng-dropdown-multiselect="" options="articles.groups_multipleSelect_Data" selected-model="articles.groups_multipleSelect_Selected" extra-settings="articles.groups_multipleSelect_Settings"
+                     events="articles.myEventListenersGroups"> </div>
             </td>
         </tr>
         <tr>
@@ -84,15 +103,21 @@
             </td>
             <td colspan="4">
                 <div ng-dropdown-multiselect="" options="articles.allergic_multipleSelect_Data" selected-model="articles.allergic_multipleSelect_Selected" extra-settings="articles.allergic_multipleSelect_Settings"
-                     events="articles.myEventListenersAllergics"></div>
+                     events="articles.myEventListenersAllergics">
+                </div>
             </td>
         </tr>
         <tr>
             <td rowspan="1">Beschreibung</td>
-            <td colspan="4" rowspan="1"><textarea name="desc" type="text" ng-model="articles.newArticle.desc" width="100%"> </textarea></td></td>
+            <td colspan="4" rowspan="1"><textarea name="desc" type="text" ng-model="articles.newArticle.desc" width="100%" ng-maxlength="280" required> </textarea>
+                <div ng-messages="myForm.desc.$error" style="color:maroon" role="alert">
+                    <div ng-message="required">*Pflichtfeld</div>
+                    <div ng-message="maxlength">Die Eingabe ist zu lang.</div>
+                </div>
+            </td>
         </tr>
         </tbody>
-    </form>
 </table>
 </div>
+</form>
 </body>

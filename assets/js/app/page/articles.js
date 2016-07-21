@@ -69,6 +69,8 @@ module.exports = [
             console.log("Temp2: ", temp2);
             // Ende vom _id Push
             
+            self.newArticle.price = self.newArticle.price.replace(/,/g, '.');
+
             CommonRequest.articles.changeArticle({
                 id : simpleStorage.get('tempArticleID')
             },  {
@@ -100,6 +102,8 @@ module.exports = [
             }
             console.log("Temp2: ", temp2);
             // Ende vom _id Push
+
+            self.newArticle.price = self.newArticle.price.replace(/,/g, '.');
 
             CommonRequest.articles.addArticle({
                 'x-access-token': simpleStorage.get('secToken')

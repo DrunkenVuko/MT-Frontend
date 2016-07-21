@@ -159,6 +159,7 @@
     <!--</formly-form>-->
 <div data-ng-init="articles.goToAdd()"> </div>
 <h1>{{articles.newArticle.name}} bearbeiten</h1>
+<form name="myForm">
 <div class="table-container">
     <table st-table="rowCollection" class="table table-striped">
         <thead>
@@ -173,11 +174,24 @@
         </td>
     <tr>
         <td colspan="1">Name</td>
-        <td colspan="4"><input name="name" type="text" ng-model="articles.newArticle.name" width="100%" ng-change="articles.updateArticle()"> </td>
+        <td colspan="4">
+            <input name="name" type="text" ng-model="articles.newArticle.name" width="100%" ng-change="articles.updateArticle()" ng-minlength="4" ng-maxlength="25" required>
+            <div ng-messages="myForm.name.$error" style="color:maroon" role="alert">
+                <div ng-message="required">*Pflichtfeld</div>
+                <div ng-message="minlength">Die Eingabe ist zu kurz.</div>
+                <div ng-message="maxlength">Die Eingabe ist zu lang.</div>
+            </div>
+        </td>
     </tr>
     <tr>
         <td colspan="1">Preis</td>
-        <td colspan="4"><input name="price" type="text" ng-model="articles.newArticle.price" width="100%"> </td>
+        <td colspan="4"><input name="price" type="text" ng-model="articles.newArticle.price" width="100%" ng-minlength="4" ng-maxlength="8" required>
+            <div ng-messages="myForm.price.$error" style="color:maroon" role="alert">
+                <div ng-message="required">*Pflichtfeld</div>
+                <div ng-message="minlength">Die Eingabe ist zu kurz.</div>
+                <div ng-message="maxlength">Die Eingabe ist zu lang.</div>
+            </div>
+        </td>
     </tr>
         <tr>
             <td rowspan="1">Gruppierung</td>
@@ -195,9 +209,15 @@
         </tr>
     <tr>
         <td rowspan="1">Beschreibung</td>
-        <td colspan="4" rowspan="1"><textarea name="desc" type="text" ng-model="articles.newArticle.desc" width="100%" ng-change="articles.updateArticle()"> </textarea></td></td>
+        <td colspan="4" rowspan="1">
+            <textarea name="desc" type="text" ng-model="articles.newArticle.desc" width="100%" ng-change="articles.updateArticle()" ng-maxlength="280" required> </textarea>
+            <div ng-messages="myForm.desc.$error" style="color:maroon" role="alert">
+                <div ng-message="required">*Pflichtfeld</div>
+                <div ng-message="maxlength">Die Eingabe ist zu lang.</div>
+            </div>
+        </td>
     </tr>
     </tbody>
-</form>
 </table>
+</form>
 </div>

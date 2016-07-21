@@ -11,6 +11,33 @@ module.exports = [
           self.amount = 1;
 
 
+self.getDataForUsage = function ()
+{
+    var x = location.href.toString();
+
+    var milo = parseInt(x.search("milo")) + 4;
+    var rada = parseInt(x.search("rada"));
+
+    var tableNumber = [];
+    for(var i = milo; i < rada; i++)
+    {
+        tableNumber.push(x[i]);
+    }
+    console.log("_____________________");
+
+    var userNumber = "";
+    for(var i = 29; i < (milo - 4); i++)
+    {
+        userNumber += x[i];
+    }
+
+    simpleStorage.set('tempUser', userNumber, {TTL: 100000});
+    simpleStorage.set('tempTable', tableNumber, {TTL: 100000});
+    simpleStorage.set('tempURL', x, {TTL: 1000000});
+
+}
+
+
 
         self.getAll = function () {
         CommonRequest.groups.getAll({
@@ -31,7 +58,7 @@ module.exports = [
                 'id': simpleStorage.get('tempGroupID')
             },  {
                 'x-access-token' : simpleStorage.get('secToken'),
-                'userid' : '57699490e8be70ec09ab94d6'
+                'userid' : simpleStorage.get("tempUser")
             }, function(response) {
                 if (response && response.message) {
 
@@ -62,14 +89,17 @@ module.exports = [
         {
             return simpleStorage.get('tempGroupName')
         }
-
+        self.getUrl = function()
+        {
+            return simpleStorage.get('tempURL')
+        }
         self.getById = function () {
             CommonRequest.mobile.getArticleViaId({
                 'id' : simpleStorage.get('tempArticleID')
 
             },  {
                 'x-access-token' : simpleStorage.get('secToken'),
-                'userid' : '57699490e8be70ec09ab94d6'
+                'userid' : simpleStorage.get("tempUser")
 
             }, function(response) {
 
@@ -96,6 +126,17 @@ module.exports = [
         {
             return simpleStorage.get('tempArticleID');
         }
+        
+        self.getUser = function()
+        {
+            return simpleStorage.get('tempUser');
+        }       
+        
+        self.getTable = function()
+        {
+            return simpleStorage.get('tempTable');
+        }
+        
         self.saveArticleTempID = function(tempID)
         {
             simpleStorage.set('tempArticleID', tempID, {TTL: 100000});
@@ -105,16 +146,15 @@ module.exports = [
         }
 
 
-
         self.add = function() {
             CommonRequest.mobile.addTable({
                 'x-access-token': simpleStorage.get('secToken')
             }, {
-                'tablenumber' : '1',
+                'tablenumber' : simpleStorage.get("tempTable"),
                 'articleid' : self.newArticle.data._id,
                 'amount' : self.amount,
                 'price' : self.newArticle.data.price,
-                'userid' : self.newArticle.data.usrID,
+                'userid' : simpleStorage.get("tempUser"),
                 'name' : self.newArticle.data.name
 
             }, function(response) {
@@ -145,11 +185,11 @@ module.exports = [
 
         self.getInvoiceByID = function () {
             CommonRequest.mobile.getTableViaId({
-                'id' : '57699490e8be70ec09ab94d6'
+                'id' : simpleStorage.get("tempUser")
 
             },  {
                 'x-access-token' : simpleStorage.get('secToken'),
-                'table' : '1'
+                'table' : simpleStorage.get("tempTable"),
 
             }, function(response) {
 
@@ -160,13 +200,5 @@ module.exports = [
                 console.log('order.getInvoiceById wird ausgeführt');
             });
         };
-
-        
-            self.qrcodeString = 'YOUR TEXT TO ENCODE';
-        self.size = 250;
-        self.correctionLevel = '';
-        self.typeNumber = 0;
-        self.inputMode = '';
-        self.image = true;
       
 }];

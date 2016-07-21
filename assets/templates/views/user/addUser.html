@@ -141,40 +141,79 @@
 
 <h1>Neuen Benutzer anlegen</h1>
 
-<h4>{{users.newUser}}</h4>
 <!--<formly-form model="users.newUser" fields="users.userFields">-->
 <!--<button type="submit" class="btn btn-default" ng-click="vm.submit(vm.user)">Submit</button>-->
 <!--</formly-form>-->
+<form name="myForm">
 
 <table style="text-align: left; width: 100%;" border="1" cellpadding="2"
        cellspacing="2">
-    <form name="form" role="form">
         <tbody>
         <tr>
             <th colspan="2">Account Settings<br>
             </th>
-            <th><a href="/users/authenticate" class="btn btn-gradient" ng-click="users.add()"><i class="fa fa-plus" >  Registrieren</i></a></th>
+            <th>
+                <div ng-if="myForm.username.$dirty && myForm.email.$dirty && myForm.pass.$dirty && myForm.company.$dirty
+                         && myForm.firstname.$dirty && myForm.lastname.$dirty && myForm.street.$dirty && myForm.streetnumber.$dirty
+                         && myForm.zip.$dirty && myForm.city.$dirty
+                         && myForm.username.$valid && myForm.email.$valid && myForm.pass.$valid && myForm.company.$valid
+                         && myForm.firstname.$valid && myForm.lastname.$valid && myForm.street.$valid && myForm.streetnumber.$valid
+                         && myForm.zip.$valid && myForm.city.$valid">
+                    <a href="/users/authenticate" class="btn btn-gradient" ng-click="users.add()">
+                        <i class="fa fa-plus" >  Registrieren</i>
+                    </a>
+                </div>
+            </th>
         </tr>
         <tr>
             <td colspan="1" rowspan="4"><img src="/images/hat.png" width="100%" height="100%"><br></td>
             <td>Benutzername<br>
             </td>
-            <td><input name="username" type="text" ng-model="users.newUser.username" width="100%" > </td>
+            <td>
+                <input name="username" type="text" ng-model="users.newUser.username" width="100%" ng-minlength="4" ng-maxlength="12" required/>
+                <div ng-messages="myForm.username.$error" style="color:maroon" role="alert">
+                    <div ng-message="required">*Pflichtfeld</div>
+                    <div ng-message="minlength">Die Eingabe ist zu kurz.</div>
+                    <div ng-message="maxlength">Die Eingabe ist zu lang.</div>
+                </div>
+            </td>
         </tr>
         <tr>
             <td>eMail<br>
             </td>
-            <td><input name="email" type="text" ng-model="users.newUser.email" width="100%"> </td>
+            <td>
+                <input name="email" type="text" ng-model="users.newUser.email" width="100%" ng-minlength="8" ng-maxlength="18" required/>
+                <div ng-messages="myForm.email.$error" style="color:maroon" role="alert">
+                    <div ng-message="required">*Pflichtfeld</div>
+                    <div ng-message="minlength">Die Eingabe ist zu kurz.</div>
+                    <div ng-message="maxlength">Die Eingabe ist zu lang.</div>
+                    <div ng-message="email">Keine gültige eMail eingegeben.</div>
+                </div>
+            </td>
         </tr>
         <tr>
             <td>Passwort<br>
             </td>
-            <td><input name="pass" type="text" ng-model="users.newUser.password" width="100%"> </td>
+            <td>
+                <input name="pass" type="text" ng-model="users.newUser.password" width="100%" ng-minlength="6" ng-maxlength="12" required/>
+                <div ng-messages="myForm.pass.$error" style="color:maroon" role="alert">
+                    <div ng-message="required">*Pflichtfeld</div>
+                    <div ng-message="minlength">Die Eingabe ist zu kurz.</div>
+                    <div ng-message="maxlength">Die Eingabe ist zu lang.</div>
+                </div>
+            </td>
         </tr>
         <tr>
             <td>Firmenname<br>
             </td>
-            <td><input name="company" type="text" ng-model="users.newUser.company" width="100%"> </td>
+            <td>
+                <input name="company" type="text" ng-model="users.newUser.company" width="100%" ng-minlength="4" ng-maxlength="18" required/>
+                <div ng-messages="myForm.company.$error" style="color:maroon" role="alert">
+                    <div ng-message="required">*Pflichtfeld</div>
+                    <div ng-message="minlength">Die Eingabe ist zu kurz.</div>
+                    <div ng-message="maxlength">Die Eingabe ist zu lang.</div>
+                </div>
+            </td>
         </tr>
         <tr>
             <td rowspan="1"><br>
@@ -188,14 +227,28 @@
             </td>
             <td>Vorname<br>
             </td>
-            <td><input name="firstname" type="text" ng-model="users.newUser.firstname" width="100%"> </td>
+            <td>
+                <input name="firstname" type="text" ng-model="users.newUser.firstname" width="100%" ng-minlength="4" ng-maxlength="12" required/>
+                <div ng-messages="myForm.firstname.$error" style="color:maroon" role="alert">
+                    <div ng-message="required">*Pflichtfeld</div>
+                    <div ng-message="minlength">Die Eingabe ist zu kurz.</div>
+                    <div ng-message="maxlength">Die Eingabe ist zu lang.</div>
+                </div>
+            </td>
         </tr>
         <tr>
             <td><br>
             </td>
             <td>Nachname<br>
             </td>
-            <td><input name="lastname" type="text" ng-model="users.newUser.lastname" width="100%"></td>
+            <td>
+                <input name="lastname" type="text" ng-model="users.newUser.lastname" width="100%" ng-minlength="4" ng-maxlength="12" required/>
+                <div ng-messages="myForm.lastname.$error" style="color:maroon" role="alert">
+                    <div ng-message="required">*Pflichtfeld</div>
+                    <div ng-message="minlength">Die Eingabe ist zu kurz.</div>
+                    <div ng-message="maxlength">Die Eingabe ist zu lang.</div>
+                </div>
+            </td>
         </tr>
         <tr>
             <td><br>
@@ -210,30 +263,56 @@
             </td>
             <td>Straße<br>
             </td>
-            <td><input name="street" type="text" ng-model="users.newUser.street" width="100%"> </td>
+            <td>
+                <input name="street" type="text" ng-model="users.newUser.street" width="100%" ng-minlength="4" ng-maxlength="12" required/>
+                <div ng-messages="myForm.street.$error" style="color:maroon" role="alert">
+                    <div ng-message="required">*Pflichtfeld</div>
+                    <div ng-message="minlength">Die Eingabe ist zu kurz.</div>
+                    <div ng-message="maxlength">Die Eingabe ist zu lang.</div>
+                </div>
+            </td>
         </tr>
         <tr>
             <td><br>
             </td>
             <td>Hausnummer<br>
             </td>
-            <td><input name="streetnumber" type="text" ng-model="users.newUser.streetnumber" width="100%"> </td>
+            <td>
+                <input name="streetnumber" type="text" ng-model="users.newUser.streetnumber" width="100%" ng-minlength="1" ng-maxlength="3" required/>
+                <div ng-messages="myForm.streetnumber.$error" style="color:maroon" role="alert">
+                    <div ng-message="required">*Pflichtfeld</div>
+                    <div ng-message="minlength">Die Eingabe ist zu kurz.</div>
+                    <div ng-message="maxlength">Die Eingabe ist zu lang.</div>
+                </div>
+            </td>
         </tr>
         <tr>
             <td><br>
             </td>
             <td>PLZ<br>
             </td>
-            <td><input name="zip" type="text" ng-model="users.newUser.zip" width="100%"> </td>
+            <td>
+                <input name="zip" type="text" ng-model="users.newUser.zip" width="100%" ng-minlength="5" ng-maxlength="8" required/>
+                <div ng-messages="myForm.zip.$error" style="color:maroon" role="alert">
+                    <div ng-message="required">*Pflichtfeld</div>
+                    <div ng-message="minlength">Die Eingabe ist zu kurz.</div>
+                    <div ng-message="maxlength">Die Eingabe ist zu lang.</div>
+                </div>
+            </td>
         </tr>
         <tr>
             <td><br>
             </td>
             <td>Stadt<br>
             </td>
-            <td><input name="city" type="text" ng-model="users.newUser.city" width="100%"><br>
+            <td><input name="city" type="text" ng-model="users.newUser.city" width="100%" ng-minlength="3" ng-maxlength="12" required/>
+                <div ng-messages="myForm.city.$error" style="color:maroon" role="alert">
+                    <div ng-message="required">*Pflichtfeld</div>
+                    <div ng-message="minlength">Die Eingabe ist zu kurz.</div>
+                    <div ng-message="maxlength">Die Eingabe ist zu lang.</div>
+                </div>
             </td>
         </tr>
         </tbody>
-    </form>
 </table>
+</form>

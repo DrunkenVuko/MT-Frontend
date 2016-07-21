@@ -127,7 +127,7 @@ module.exports = ['$routeProvider', '$locationProvider', '$httpProvider', 'Commo
           templateUrl : 'views/mobile/orderDetail.html',
           resolve : independentPageResolver,
       })
-      .when('/m/home', {
+      .when('/m/home/:id', {
           controller : 'OrderCtrl as order',
           templateUrl : 'views/mobile/home.html',
           resolve : independentPageResolver,
