@@ -23,7 +23,7 @@ module.exports = ['$routeProvider', '$locationProvider', '$httpProvider', 'Commo
     };
   }]);
 
-  $locationProvider.html5Mode(true);
+  $locationProvider.html5Mode(false);
 
   $routeProvider
       .when('/test', {
