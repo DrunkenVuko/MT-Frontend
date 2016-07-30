@@ -1,5 +1,5 @@
 <style>
-    @import url(http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic);
+    @import url(https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic);
     * {
         margin: 0;
         padding: 0;
@@ -143,6 +143,7 @@
     footer img:focus , footer a:focus { outline: none; }
 </style>
 
+<base href="http://ec2-52-58-36-132.eu-central-1.compute.amazonaws.com" target="_blank">
 
 <h1>Anmeldung</h1>
 <div>
@@ -160,9 +161,13 @@
             <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block">Password is required</span>
         </div>
         <div class="form-actions">
-            <button type="submit" ng-disabled="form.$invalid || dataLoading" class="btn btn-danger">Login</button>
-            <img ng-if="dataLoading" src=""/>
+            <a href="/users/" class="btn btn-gradient" ng-click="users.login()">
+                <button type="submit" ng-disabled="form.$invalid || dataLoading" class="btn btn-danger">Login</button>
+                <img ng-if="dataLoading" src=""/>
+            </a>
         </div>
         <label style="text-align: right"><a href="/add/users/" class="btn btn-gradient"><i class="fa fa-plus" >  Registrieren</i></a> </label>
+        <label style="text-align: right"><a href="/m/home/579bdc6f892b4c4e9586c9familo1rada/" class="btn btn-gradient">User: 123456 - Tisch 1</a> </label>
+
     </form>
 </div>

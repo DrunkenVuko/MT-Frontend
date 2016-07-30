@@ -146,6 +146,8 @@
 <div class="" ng-if="!users.tempUser">
     User werden geladen ...
 </div>
+<div data-ng-init="users.getById()"> </div>
+
 <h4>{{users.tempUser}} bearbeiten</h4>
 <!--<formly-form model="users.tempUser" fields="users.userFields">-->
     <!--<button type="submit" class="btn btn-default" ng-click="vm.submit(vm.user)">Submit</button>-->
@@ -158,7 +160,7 @@
         <tr>
             <th colspan="2">Account Settings<br>
             </th>
-            <th><a href="/users/" class="btn btn-gradient"><i class="fa fa-floppy-o" ng-click="users.waypointAdd()">  Speichern</i></a></th>
+            <th><a href="/users" class="btn btn-gradient"><i class="fa fa-floppy-o" ng-click="users.waypointAdd()">  Speichern</i></a></th>
         </tr>
         <tr>
             <td colspan="1" rowspan="4"><img src="/images/hat.png" width="100%" height="100%"><br></td>

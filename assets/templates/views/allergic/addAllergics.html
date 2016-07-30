@@ -157,7 +157,7 @@
         </tr>
         <tr>
             <td colspan="3">
-                <input name="shortName" type="text" ng-model="allergics.newAllergic.shortName" width="100%" ng-minlength="4" ng-maxlength="5" required/>
+                <input name="shortName" type="text" ng-model="allergics.newAllergic.shortName" width="100%" ng-minlength="1" ng-maxlength="3" required/>
                 <div ng-messages="myForm.shortName.$error" style="color:maroon" role="alert">
                     <div ng-message="required">*Pflichtfeld</div>
                     <div ng-message="minlength">Die Eingabe ist zu kurz.</div>

@@ -12,8 +12,9 @@ require('angular-cache');
 require('simplestorage.js');
 require('angular-bootstrap');
 require('angular-messages');
-require('angular-qr-master');
-var application = angular.module('application', [ 'ja.qr', 'ngMessages', 'angular-cache','ngDialog', 'angularjs-dropdown-multiselect','ngResource', 'ui.bootstrap', 'ngRoute', 'pascalprecht.translate', 'cfp.hotkeys','formly', 'formlyBootstrap'])
+
+
+var application = angular.module('application', [ 'ngMessages', 'angular-cache','ngDialog', 'angularjs-dropdown-multiselect','ngResource', 'ui.bootstrap', 'ngRoute', 'pascalprecht.translate', 'cfp.hotkeys','formly', 'formlyBootstrap'])
 ;
 
 require('./common/filters')(application);

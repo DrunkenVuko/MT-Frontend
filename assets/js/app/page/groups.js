@@ -27,7 +27,7 @@ module.exports = [
                 'shortid' : self.tempGroups.shortid,
                 'desc' : self.tempGroups.desc,
                 'name' : self.tempGroups.name,
-                'userid' : simpleStorage.get('userid')
+                'userid' : simpleStorage.get('userID')
 
             }, function(response) {
                 console.log('error', response);
@@ -42,7 +42,7 @@ module.exports = [
                 'shortid' : self.newGroups.shortid,
                 'desc' : self.newGroups.desc,
                 'name' : self.newGroups.name,
-                'userid' : simpleStorage.get('userid')
+                'userid' : simpleStorage.get('userID')
             }, function(response) {
                 console.log('error', response);
             });
@@ -56,7 +56,9 @@ module.exports = [
 
         self.getAll = function () {
             CommonRequest.groups.getAll({
-                'x-access-token' : simpleStorage.get('secToken')
+                'x-access-token' : simpleStorage.get('secToken'),
+                'userid' : simpleStorage.get('userID')
+
 
             },  {}, function(response) {
                 if (response && response.message) {
@@ -72,12 +74,9 @@ module.exports = [
         self.getById = function () {
             CommonRequest.groups.getGroupsById({
                 'id' : simpleStorage.get('tempGroupID'),
-                    'x-access-token' : simpleStorage.get('secToken'),
+                'x-access-token' : simpleStorage.get('secToken'),
             },
             {
-
-                'userid' : simpleStorage.get('userid')
-
             }, function(response) {
                 self.tempGroups = response.message;
                 console.log('self.getById wird ausgeführt');
@@ -89,7 +88,7 @@ module.exports = [
 
         self.saveGroupTempID = function(tempID)
         {
-            simpleStorage.set('tempGroupID', tempID, {TTL: 100000});
+            simpleStorage.set('tempGroupID', tempID, {TTL: 10000});
             self.getById();
         }
 

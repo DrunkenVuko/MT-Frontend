@@ -1,9 +1,9 @@
 module.exports = ['$routeProvider', '$locationProvider', '$httpProvider', 'CommonConfigProvider', 'CommonUiProvider', function($routeProvider, $locationProvider, $httpProvider, CommonConfig, CommonUi) {
   'use strict';
 
-  var needsToBeLoggedIn = true;
+  var needsToBeLoggedIn = false;
   var independentPageResolver = function() {
-    needsToBeLoggedIn = true;
+    needsToBeLoggedIn = false;
   };
 
   $httpProvider.defaults.withCredentials = false;
@@ -26,12 +26,12 @@ module.exports = ['$routeProvider', '$locationProvider', '$httpProvider', 'Commo
   $locationProvider.html5Mode(true);
 
   $routeProvider
-    .when('/test', {
-      controller : 'PageBaseCtrl as base',
-      templateUrl : 'views/test.html',
-      resolve: independentPageResolver,
+      .when('/test', {
+          controller : 'PageBaseCtrl as base',
+          templateUrl : 'views/test.html',
+          resolve: independentPageResolver,
 
-    })
+      })
       .when('/users/authenticate', {
           controller : 'PageUsersLoginCtrl as users',
           templateUrl : 'views/login.html',

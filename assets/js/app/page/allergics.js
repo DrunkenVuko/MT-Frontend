@@ -23,7 +23,7 @@ module.exports = [
                 'x-access-token': simpleStorage.get('secToken'),
                 'longName' : self.tempAllergics.longName,
                 'shortName' : self.tempAllergics.shortName,
-                'userid' : simpleStorage.get('userID'),
+                'userid' : simpleStorage.get('userID')
 
             }, function(response) {
                 console.log('error', response);
@@ -36,7 +36,7 @@ module.exports = [
             }, {
                 'longName' : self.newAllergic.longName,
                 'shortName' : self.newAllergic.shortName,
-                'userid': simpleStorage.get('userID')
+                'userid' : simpleStorage.get('userID')
             }, function(response) {
                 console.log('error', response);
             });
@@ -50,7 +50,8 @@ module.exports = [
 
         self.getAll = function () {
             CommonRequest.allergics.getAll({
-                'x-access-token' : simpleStorage.get('secToken')
+                'x-access-token' : simpleStorage.get('secToken'),
+                'userid' : simpleStorage.get('userID')
 
             },  {}, function(response) {
                 if (response && response.message) {

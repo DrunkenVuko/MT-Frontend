@@ -21,22 +21,6 @@ module.exports = [
       password : ''
     };
 
-    CommonRequest.users.getAll({'x-access-token' : simpleStorage.get('secToken')}, {}, function(response) {
-      //delCookie('tempID');
-      if (response && response.message) {
-        self.list = response.message;
-        console.log('users.getAll wird ausgeführt');
-
-      }
-    });
-
-    CommonRequest.users.getUserById({'x-access-token' : simpleStorage.get('secToken'), userId : simpleStorage.get('userID')}, {}, function(response) {
-      if (response && response.message) {
-        console.log('users.getUserByIdl wird ausgeführt');
-        console.log(response.message);
-        self.tempUser = response.message;
-      }
-    });
 
     self.updateProfile = function() {
       CommonRequest.users.changeProfile({
@@ -87,7 +71,6 @@ module.exports = [
           simpleStorage.set('secToken', response.token); // 2,7Std / Sekunden
 
           //document.cookie = 'token=' + response.token;
-          document.location.href = ('/users/');
           console.log('Der Sicherheitstoken', simpleStorage.get('secToken'));
           console.log('Die UserID', simpleStorage.get('userID'));
 
@@ -123,12 +106,25 @@ module.exports = [
     {
       window.location.reload();
     }
-    
-    self.getById = function (theDesiredUserId) {
-      CommonRequest.users.getUserById({
-        'x-access-token' : simpleStorage.get('secToken'), userId : theDesiredUserId
 
-      },  {}, function(response) {
+    self.getUserID = function()
+    {
+      return simpleStorage.get('tempUserID');
+    }
+    self.saveUserTempID = function(tempID)
+    {
+      simpleStorage.set('tempUserID', tempID, {TTL: 100000});
+      self.getById();
+    }
+    
+    self.getById = function () {
+      CommonRequest.users.getUserById({
+        'userId' : self.getUserID(),
+        'x-access-token' : simpleStorage.get('secToken')
+
+      },  {
+
+      }, function(response) {
         self.tempUser = response.message;
         console.log('self.getById wird ausgeführt');
       }, function(response) {

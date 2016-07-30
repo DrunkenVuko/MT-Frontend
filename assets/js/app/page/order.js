@@ -35,14 +35,18 @@ self.getDataForUsage = function ()
     simpleStorage.set('tempTable', tableNumber, {TTL: 100000});
     simpleStorage.set('tempURL', x, {TTL: 1000000});
 
+    console.log("userNumber", userNumber);
+    console.log("tableNumber", tableNumber);
+    console.log("tempURL", x);
+
 }
 
 
 
         self.getAll = function () {
         CommonRequest.groups.getAll({
-            'x-access-token' : simpleStorage.get('secToken')
-
+            'x-access-token' : simpleStorage.get('secToken'),
+            'userid' : simpleStorage.get('userID')
         },  {}, function(response) {
             if (response && response.message) {
                 self.list = response.message;
@@ -154,7 +158,7 @@ self.getDataForUsage = function ()
                 'articleid' : self.newArticle.data._id,
                 'amount' : self.amount,
                 'price' : self.newArticle.data.price,
-                'userid' : simpleStorage.get("tempUser"),
+                'userid' : self.getUser(),
                 'name' : self.newArticle.data.name
 
             }, function(response) {

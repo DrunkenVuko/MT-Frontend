@@ -194,10 +194,13 @@
             <a href="/users/"><span>Benutzer</span></a>
         </div>
         <div>
-            <a href="/allergics/"><span> </span>Allergics</a>
+            <a href="/allergics/"><span> </span>Allergene</a>
         </div>
         <div>
-            <a href="/groups/"><span> </span>Groups</a>
+            <a href="/groups/"><span> </span>Artikelgruppen</a>
+        </div>
+        <div>
+            <a href="/tables/"><span> </span>Tische</a>
         </div>
         <div>
             <a href="/users/authenticate" ><span><i class="fa fa-user"></i> Logout </span></a>
@@ -238,7 +241,7 @@
         </thead>
         <tbody>
         <tr ng-if="articles.list" ng-repeat="article in articles.list | filter:filterAll" ng-re>
-            <td colspan="3"  width="300px"><img src="{{article.img}}" width="80%" max-width="81%"></td>
+            <td colspan="3"  width="300px"><img src="{{article.img}}" width="200px" max-width="250px" height="200px" max-height="250px"></td>
             <td colspan="1"><div ng-repeat="grp in article.group" ng-re> {{grp}}</div></td>
             <td colspan="2">{{article.name}}</td>
             <td colspan="1">{{article.price}}€</td>

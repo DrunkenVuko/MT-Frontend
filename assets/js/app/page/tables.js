@@ -29,6 +29,7 @@ module.exports = [
                 'id' : simpleStorage.get('userID'),
                 'x-access-token' : simpleStorage.get('secToken')
             }, function(response) {
+                simpleStorage.set('tempTableLength', response.message.length, {TTL: 10000});
 
                 self.list = response.message;
                 for (var i = 0; i < self.list.length; i++)
@@ -77,12 +78,12 @@ module.exports = [
 
 
         self.add = function() {
-            for(var i = 1; i <= self.amount; i++)
+            for(var i = simpleStorage.get('tempTableLength'); i < (simpleStorage.get('tempTableLength')+self.amount); i++)
             {
                 CommonRequest.tables.addTables({
                     'x-access-token': simpleStorage.get('secToken')
                 }, {
-                    "tablenumber" : i,
+                    "tablenumber" : i+1,
                     'userid' : simpleStorage.get('userID')
 
                 }, function(response) {
