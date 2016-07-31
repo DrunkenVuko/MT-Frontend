@@ -8,8 +8,8 @@
     <h2>Navigation</h2>
     <ul>
         <li><a href="{{order.getUrl()}}">Home</a></li>
-        <li class="marked"><a href='/m/orders/' data-value='Speisekarte'>Speisekarte</a></li>
-        <li><a href='/m/invoice' data-value='Rechnung'>Rechnung</a></li>
+        <li class="marked"><a href='/#/m/orders/' data-value='Speisekarte'>Speisekarte</a></li>
+        <li><a href='/#/m/invoice' data-value='Rechnung'>Rechnung</a></li>
         <li><a href='#' data-value='Kellnerruf'>Kellnerruf</a></li>
     </ul>
 </aside>
@@ -23,13 +23,13 @@
         <body>
         <div class="container">
             <div class="halfitems" style="background-color: #E4E4E4;">
-                <a href="/m/orders/{{order.newArticle.id}}" class="btn btn-gradient" ng-click="order.saveArticleTempID(groups.data._id)">
+                <a href="/#/m/orders/{{order.newArticle.id}}" class="btn btn-gradient" ng-click="order.saveArticleTempID(groups.data._id)">
                 <div class="values">
                     <img class="img_1" src="http://www.friedrich-grafling.com/bilder/back.jpg" />
                     <div class="name_2">Zurück</div>
                 </div>
             </a>
-                <a href="/m/orders/" class="btn btn-gradient" ng-click="order.add()">
+                <a href="/#/m/orders/" class="btn btn-gradient" ng-click="order.add()">
                     <div class="buy_3" style="background-color: #E4E4E4;">
                         <div class="sortBuy_3"> <i class="fa fa-cart-plus fa-3x" aria-hidden="true"></i></div>
                         <div class="name_3">Bestellen</div>
@@ -37,7 +37,7 @@
                 </a>
             </div>
             <div class="details">
-                <a href="/m/orders/d/{{groups.data._id}}" class="btn btn-gradient" ng-click="order.saveArticleTempID(groups.data._id)">
+                <a href="/#/m/orders/d/{{groups.data._id}}" class="btn btn-gradient" ng-click="order.saveArticleTempID(groups.data._id)">
                     <div class="values">
                         <img class="img_3" src={{order.newArticle.data.img}} alt=""/>
                         <div class="desc_3">{{order.newArticle.data.desc}}</div>

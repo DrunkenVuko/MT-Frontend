@@ -10,8 +10,8 @@
     <h2>Navigation</h2>
     <ul>
         <li><a href="{{order.getUrl()}}">Home</a></li>
-        <li class="marked"><a href='/m/orders/' data-value='Speisekarte'>Speisekarte</a></li>
-        <li><a href='/m/invoice' data-value='Rechnung'>Rechnung</a></li>
+        <li class="marked"><a href='/#/m/orders/' data-value='Speisekarte'>Speisekarte</a></li>
+        <li><a href='/#/m/invoice' data-value='Rechnung'>Rechnung</a></li>
         <li><a href='#' data-value='Kellnerruf'>Kellnerruf</a></li>
     </ul>
 </aside>
@@ -25,7 +25,7 @@
     <body>
     <div class="container">
         <div class="items" ng-if="order.list" ng-repeat="groups in order.list | filter:filterAll" ng-re ng-class="'color' + ($index % 2)" style="margin-top: 0%">
-            <a href="/m/orders/{{groups._id}}" class="btn btn-gradient" style="text-decoration: none">
+            <a href="/#/m/orders/{{groups._id}}" class="btn btn-gradient" style="text-decoration: none">
                 <div class="values" ng-click="order.saveGroupTempID(groups._id, groups.name)">
                     <img class="img_1" src={{groups.img}} alt=""/>
                     <div class="name_1">{{groups.name}}</div>

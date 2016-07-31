@@ -237,7 +237,7 @@ module.exports = [
         self.checkToken = function()
         {
             if(simpleStorage.get('secToken') == null) {
-                document.location.href = ('/users/authenticate');
+                document.location.href = ('/#/users/authenticate');
                 console.log("Umleitung zu Login");
             }
         }
@@ -246,7 +246,7 @@ module.exports = [
         {
             if(simpleStorage.get('tempArticleID') == null)
             {
-                document.location.href = ('/articles');
+                document.location.href = ('/#/articles');
                 console.log("Umleitung zu Artikel");
             }
         }

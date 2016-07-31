@@ -89,7 +89,7 @@ module.exports = [
         {
             if(simpleStorage.get('secToken') == null)
             {
-                document.location.href = ('/allergics/authenticate');
+                document.location.href = ('/#/allergics/authenticate');
                 console.log("Done");
             }
         }

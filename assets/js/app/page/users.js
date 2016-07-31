@@ -93,7 +93,7 @@ module.exports = [
     };
 
     self.goToAdd = function() {
-      document.location.href = ('/add/users/');
+      document.location.href = ('/#/add/users/');
     };
     
     self.waypointAdd = function()
@@ -136,7 +136,7 @@ module.exports = [
     {
       if(simpleStorage.get('secToken') == null)
       {
-        document.location.href = ('/users/authenticate');
+        document.location.href = ('/#/users/authenticate');
         console.log("Done");
       }
     }

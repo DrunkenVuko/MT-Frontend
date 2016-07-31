@@ -142,27 +142,26 @@
     <!--{{users.checkToken()}}-->
 <!--</div>-->
 
-<base href="http://ec2-52-58-36-132.eu-central-1.compute.amazonaws.com" target="_blank">
 
 <header>
     <nav>
         <div>
-            <a href="/articles/" ><span>Artikel </span></a>
+            <a href="/#/articles/" ><span>Artikel </span></a>
         </div>
         <div>
-            <a href="/users/"><span>Benutzer</span></a>
+            <a href="/#/users/"><span>Benutzer</span></a>
         </div>
         <div>
-            <a href="/allergics/"><span> </span>Allergene</a>
+            <a href="/#/allergics/"><span> </span>Allergene</a>
         </div>
         <div>
-            <a href="/groups/"><span> </span>Artikelgruppen</a>
+            <a href="/#/groups/"><span> </span>Artikelgruppen</a>
         </div>
         <div>
-            <a href="/tables/"><span> </span>Tische</a>
+            <a href="/#/tables/"><span> </span>Tische</a>
         </div>
         <div>
-            <a href="/users/authenticate" ><span><i class="fa fa-user"></i> Logout </span></a>
+            <a href="/#/users/authenticate" ><span><i class="fa fa-user"></i> Logout </span></a>
         </div>
     </nav>
 </header>
@@ -212,7 +211,7 @@
             <td>{{user.city}}</td>
             <td>{{user.street}}</td>
             <td>{{user.streetnumber}}</td>
-            <td><a href="/users/{{user._id}}" class="btn btn-gradient" ng-click="users.saveUserTempID(user._id)"><i style="color: grey" class="fa fa-pencil"></i></a></td>
+            <td><a href="/#/users/{{user._id}}" class="btn btn-gradient" ng-click="users.saveUserTempID(user._id)"><i style="color: grey" class="fa fa-pencil"></i></a></td>
         </tr>
         </tbody>
     </table>

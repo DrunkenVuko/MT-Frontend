@@ -8,8 +8,8 @@
     <h2>Navigation</h2>
     <ul>
         <li><a href="{{order.getUrl()}}">Home</a></li>
-        <li class="marked"><a href='/m/orders/' data-value='Speisekarte'>Speisekarte</a></li>
-        <li><a href='/m/invoice' data-value='Rechnung'>Rechnung</a></li>
+        <li class="marked"><a href='/#/m/orders/' data-value='Speisekarte'>Speisekarte</a></li>
+        <li><a href='/#/m/invoice' data-value='Rechnung'>Rechnung</a></li>
         <li><a href='#' data-value='Kellnerruf'>Kellnerruf</a></li>
     </ul>
 </aside>
@@ -23,7 +23,7 @@
         <body>
         <div class="container">
             <div class="items" style="background-color: #E4E4E4;">
-                <a href="/m/orders/" class="btn btn-gradient" ng-click="order.saveArticleTempID(groups.data._id)">
+                <a href="/#/m/orders/" class="btn btn-gradient" ng-click="order.saveArticleTempID(groups.data._id)">
                     <div class="values">
                         <img class="img_1" src="http://www.friedrich-grafling.com/bilder/back.jpg" />
                         <div class="name_2">Zurück</div>
@@ -31,7 +31,7 @@
                 </a>
             </div>
             <div class="items" ng-if="order.list" ng-repeat="groups in order.list | filter:filterAll" ng-re ng-class="'color' + ($index % 2)" style="margin-top: 0%">
-                <a href="/m/orders/d/{{groups.data._id}}" class="btn btn-gradient" ng-click="order.saveArticleTempID(groups.data._id)">
+                <a href="/#/m/orders/d/{{groups.data._id}}" class="btn btn-gradient" ng-click="order.saveArticleTempID(groups.data._id)">
                     <div class="values">
                         <img class="img_1" src={{groups.data.img}} alt=""/>
                         <div class="name_2">{{groups.data.name}}</div>

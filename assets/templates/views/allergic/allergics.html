@@ -147,22 +147,22 @@
 <header>
     <nav>
         <div>
-            <a href="/articles/" ><span>Artikel </span></a>
+            <a href="/#/articles/" ><span>Artikel </span></a>
         </div>
         <div>
-            <a href="/users/"><span>Benutzer</span></a>
+            <a href="/#/users/"><span>Benutzer</span></a>
         </div>
         <div>
-            <a href="/allergics/"><span> </span>Allergene</a>
+            <a href="/#/allergics/"><span> </span>Allergene</a>
         </div>
         <div>
-            <a href="/groups/"><span> </span>Artikelgruppen</a>
+            <a href="/#/groups/"><span> </span>Artikelgruppen</a>
         </div>
         <div>
-            <a href="/tables/"><span> </span>Tische</a>
+            <a href="/#/tables/"><span> </span>Tische</a>
         </div>
         <div>
-            <a href="/users/authenticate" ><span><i class="fa fa-user"></i> Logout </span></a>
+            <a href="/#/users/authenticate" ><span><i class="fa fa-user"></i> Logout </span></a>
         </div>
     </nav>
 </header>
@@ -178,7 +178,7 @@
         <thead>
         <tr>
             <th colspan="4"> Globale Suche </th>
-            <th><a href="/add/allergics/" class="btn btn-gradient"><i class="fa fa-plus"> Hinzufügen</i></a></th>
+            <th><a href="/#/add/allergics/" class="btn btn-gradient"><i class="fa fa-plus"> Hinzufügen</i></a></th>
         </tr>
         <tr>
             <td colspan="5">
@@ -195,7 +195,7 @@
         <tr ng-repeat="allergic in allergics.list | filter:filterAll">
             <td colspan="2">{{allergic.shortName}}</td>
             <td colspan="2">{{allergic.longName}}</td>
-            <td><a href="/allergics/{{allergic._id}}" class="btn btn-gradient" ng-click="allergics.saveAllergicTempID(allergic._id)"><i style="color: grey"  class="fa fa-pencil-square-o" aria-hidden="true"> Edit</i></a>
+            <td><a href="/#/allergics/{{allergic._id}}" class="btn btn-gradient" ng-click="allergics.saveAllergicTempID(allergic._id)"><i style="color: grey"  class="fa fa-pencil-square-o" aria-hidden="true"> Edit</i></a>
         </tr>
         </tbody>
     </table>

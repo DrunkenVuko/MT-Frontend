@@ -96,7 +96,7 @@ module.exports = [
         {
             if(simpleStorage.get('secToken') == null)
             {
-                document.location.href = ('/users/authenticate');
+                document.location.href = ('/#/users/authenticate');
                 console.log("Done");
             }
         }
